@@ -1,3 +1,4 @@
+//dependencies
 require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
@@ -8,6 +9,10 @@ const app = express();
 
 app.use(bodyParser.json())
 
+const user = require('./controllers/user_controller')
+const ingredient = require('./controllers/ingredient_controller')
+const recipe = require('./controllers/recipe_controller')
+
 let {
   SERVER_PORT,
   CONNECTION_STRING,
@@ -16,6 +21,7 @@ let {
 
 massive(CONNECTION_STRING).then(dbInstance => {
   app.set('db', dbInstance)
+  console.log('connected to DB')
 })
 
 app.use(session({
@@ -35,8 +41,9 @@ app.get('/api/recipes/getResults');
 app.post('/api/recipes/saveRecipe');
 
 // user endpoints
-app.get('/api/user/getUser');
-app.post('/api/user/updateUser');
+app.get('/api/user/getUser', user.sessionLogin);
+app.post('/api/user/loginUser', user.login);
+app.post('/api/user/register', user.register);
 app.delete('/api/user/deleteUser');
 
 //saved recipes endpoints
