@@ -47,7 +47,7 @@ module.exports = {
     let { username, password } = req.body
     // check if that user already exists in our db
     const dbInstance = req.app.get('db')
-    let foundUser = await dbInstance.check_users([username])
+    let foundUser = await dbInstance.find_user([username])
       .catch((err) => {
         console.log(err)
       })
@@ -71,8 +71,31 @@ module.exports = {
 
   },
   logout: async (req, res) => {
-      req.session.destroy();
-      res.sendStatus(200)
+    req.session.destroy();
+    res.sendStatus(200)
+  },
+  delete: async (req, res) => {
+    let { username, password } = req.body
+    const dbInstance = req.app.get('db')
+    let foundUser = await dbInstance.find_user([username])
+      .catch((err) => {
+        console.log(err)
+      })
+
+
+    if (foundUser[0]) {
+      if (bcrypt.compareSync(password, foundUser[0].password)) {
+        await dbInstance.delete_user([foundUser[0].user_id])
+        req.session.destroy();
+        res.status(200).send('User successfully removed')
+      } else {
+        // Passwords don't match
+        res.status(401).send('Username or password entered was incorrect')
+      }
+    } else {
+      // username or password do not match
+      res.status(401).send('Username or password entered was incorrect')
+    }
   }
 
 

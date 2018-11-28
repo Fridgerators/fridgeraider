@@ -13,6 +13,8 @@ const user = require('./controllers/user_controller')
 const ingredient = require('./controllers/ingredient_controller')
 const recipe = require('./controllers/recipe_controller')
 
+app.use( express.static( `${__dirname}/../build` ) );
+
 let {
   SERVER_PORT,
   CONNECTION_STRING,
@@ -31,24 +33,23 @@ app.use(session({
 }))
 
 //ingredient endpoints
-app.get('/api/ingredients/getItem');
-app.post('/api/ingredients/addItem');
-app.put('/api/ingredients/editItem');
-app.delete('/api/ingredients/deleteItem');
+app.get('/api/ingredients/getItem', ingredient.getItem);
+app.post('/api/ingredients/addItem', ingredient.addItem);
+app.put('/api/ingredients/editItem', ingredient.editItem);
+app.delete('/api/ingredients/deleteItem', ingredient.deleteItem);
 
-//api recipe endpoints
-app.get('/api/recipes/getResults');
-app.post('/api/recipes/saveRecipe');
+//api/saved recipe endpoints
+app.get('/api/recipes/getResults', recipe.getResults);
+app.get('/api/cookbook/recipeList', recipe.recipeList);
+app.post('/api/cookbook/saveRecipe', recipe.saveRecipe);
+app.delete('/api/cookbook/deleteRecipe', recipe.deleteRecipe);
 
 // user endpoints
-app.get('/api/user/getUser', user.sessionLogin);
-app.post('/api/user/loginUser', user.login);
-app.post('/api/user/register', user.register);
-app.delete('/api/user/deleteUser');
-
-//saved recipes endpoints
-app.get('/api/cookbook/recipeList');
-app.delete('/api/cookbook/deleteRecipe');
+app.get('/auth/getUser', user.sessionLogin);
+app.get('/auth/logout', user.logout);
+app.post('/auth/loginUser', user.login);
+app.post('/auth/register', user.register);
+app.delete('/auth/deleteUser', user.delete);
 
 
 app.listen(SERVER_PORT, () => {
