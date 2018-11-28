@@ -13,14 +13,13 @@ const user = require('./controllers/user_controller')
 const ingredient = require('./controllers/ingredient_controller')
 const recipe = require('./controllers/recipe_controller')
 
-app.use( express.static( `${__dirname}/../build` ) );
+app.use(express.static(`${__dirname}/../build`));
 
 let {
   SERVER_PORT,
   CONNECTION_STRING,
   SECRET
 } = process.env;
-
 massive(CONNECTION_STRING).then(dbInstance => {
   app.set('db', dbInstance)
   console.log('connected to DB')
@@ -47,7 +46,7 @@ app.delete('/api/cookbook/deleteRecipe', recipe.deleteRecipe);
 // user endpoints
 app.get('/auth/getUser', user.sessionLogin);
 app.get('/auth/logout', user.logout);
-app.post('/auth/loginUser', user.login);
+app.post('/auth/login', user.login);
 app.post('/auth/register', user.register);
 app.delete('/auth/deleteUser', user.delete);
 

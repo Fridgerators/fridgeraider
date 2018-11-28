@@ -39,7 +39,7 @@ module.exports = {
         res.status(401).send('Username or password entered was incorrect')
       }
     } else {
-      // email or password do not match
+      // Username or password do not match
       res.status(401).send('Username or password entered was incorrect')
     }
   },
