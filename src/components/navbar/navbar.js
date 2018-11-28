@@ -32,3 +32,5 @@ class Navbar extends Component {
 }
 
 export default Navbar;
+
+//source for login popup w/multi inputs https://sweetalert2.github.io/#multiple-inputs
