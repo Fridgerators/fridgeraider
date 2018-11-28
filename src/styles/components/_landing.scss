@@ -1,0 +1,45 @@
+.landing-page {
+  @include flexSetUp();
+}
+
+.landing-image {
+  @include width-height(auto, 100vh);
+  @include bg-image();
+  margin: auto;
+}
+
+.landing-title {
+  @include position();
+  color: $purple-1;
+  // text-align: center;
+  // text-shadow: 2px 2px 2px rgba(51, 51, 51, 0.25);
+  // font-size: 46px;
+  // line-height: 46px;
+  width: 224.93px;
+height: 167.56px;
+}
+
+.landing-sub {
+  @include position(absolute, auto, 60%);
+  color: $purple-2;
+  width: 240px;
+  height: 46px;
+  left: 48px;
+  top: 434px;
+  text-align: center;
+}
+
+.landing-button {
+  @include position(absolute, auto, 111px);
+  font-family: $main-font;
+  color: $text-color;
+  height: 30px;
+  left: 112px;
+  top: 486px;
+  background: $pale-bg;
+  border: 2px solid $purple-3;
+  box-sizing: border-box;
+  border-radius: 15px 0px;
+  font-size: 14px;
+  // text-align: center;
+}
