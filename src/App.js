@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { HashRouter, Switch, Route} from 'react-router-dom';
 import Landing from './components/landing/landing';
+import NewIngredients from './components/newIngredients/newIngredients'
 
 
 class App extends Component {
@@ -11,10 +12,10 @@ class App extends Component {
         <HashRouter>
             <Switch>
               <Route exact path="/" component={Landing}/>
-              <Route exact path="/input"/>
-              <Route exact path="/results"/>
-              <Route exact path="/cookbook"/>
-              <Route exact path="/profile"/>
+              <Route path="/input" component={NewIngredients}/>
+              <Route path="/results"/>
+              <Route path="/cookbook"/>
+              <Route path="/profile"/>
             </Switch>
         </HashRouter>
 
