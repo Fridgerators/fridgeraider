@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { HashRouter, Switch, Route} from 'react-router-dom';
+import Landing from './components/landing/landing';
 
 
 class App extends Component {
@@ -9,7 +10,7 @@ class App extends Component {
         
         <HashRouter>
             <Switch>
-              <Route exact path="/"/>
+              <Route exact path="/" component={Landing}/>
               <Route exact path="/input"/>
               <Route exact path="/results"/>
               <Route exact path="/cookbook"/>
