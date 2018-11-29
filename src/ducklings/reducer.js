@@ -2,7 +2,9 @@ const initialState={
    user:{}
 }
 
+/////Action Types/////
 const UPDATE_USER_DATA='UPDATE_USER_DATA';
+
 
 export function updateUserData(user) {
    return {
