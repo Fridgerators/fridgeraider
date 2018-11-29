@@ -38,8 +38,9 @@ app.put('/api/ingredients/editItem', ingredient.editItem);
 app.delete('/api/ingredients/deleteItem', ingredient.deleteItem);
 
 //api/saved recipe endpoints
-app.post('/api/recipes/getResults', recipe.getResults);
+app.get('/api/recipes/getResults/:searchIngredients/:rIndex', recipe.getResults);
 app.get('/api/cookbook/recipeList', recipe.recipeList);
+// app.get('/api/recipes/getRecipe/:uri', recipe.getRecipe)
 app.post('/api/cookbook/saveRecipe', recipe.saveRecipe);
 app.delete('/api/cookbook/deleteRecipe', recipe.deleteRecipe);
 
