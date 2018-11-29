@@ -2,21 +2,32 @@ const axios = require('axios');
 
 module.exports = {
     //get search results from edamam api
-    //need the structure of the search api query url
-    //maybe limit results so we don't use up queries? or does 1 result equal 1 query?
     getResults: async (req, res) => {
-        const { searchIngredients } = req.body;
+        const { searchIngredients, rIndex} = req.params;
         const { REACT_APP_AppID, REACT_APP_AppKey } = process.env;
+        console.log(rIndex)
         // const dbInstance = req.app.get('db')
-        axios.get(`https://api.edamam.com/search?q=${searchIngredients}&app_id=${REACT_APP_AppID}&app_key=${REACT_APP_AppKey}`)
+        axios.get(`https://api.edamam.com/search?q=${searchIngredients}&from=${rIndex}&app_id=${REACT_APP_AppID}&app_key=${REACT_APP_AppKey}`)
         .then((response) => {
         res.status(200).send(response.data)
         })
         .catch((err) => {
-            res.status(400).send('An error occurred', err)
+            res.status(400).send('An error occurred')
         })
 
     },
+    // getRecipe: async (req, res) => {
+    //     const { uri } = req.params;
+    //     const { REACT_APP_AppID, REACT_APP_AppKey } = process.env;
+    //     console.log(uri)
+    //     axios.get(`https://api.edamam.com/search?r=${encodeURIComponent(uri)}&app_id=${REACT_APP_AppID}&app_key=${REACT_APP_AppKey}`)
+    //     .then((response) => {
+    //     res.status(200).send(response.data)
+    //     })
+    //     .catch((err) => {
+    //         res.status(400).send('An error occurred')
+    //     })
+    // },
     //get recipes saved to database
     recipeList: async (req, res) => {
         const dbInstance = req.app.get('db')

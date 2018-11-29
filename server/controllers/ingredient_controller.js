@@ -18,7 +18,7 @@ module.exports = {
     editItem: async (req, res) => {
         const { ingredient, ingredientId } = req.body;
         const dbInstance = req.app.get('db')
-        let ingredients = await dbInstance.edit_ingredient([req.session.user.user_id, ingredientId, ingredient])
+        let ingredients = await dbInstance.edit_ingredient([ingredientId, ingredient])
         res.status(200).send(ingredients)
         
     },
@@ -26,7 +26,7 @@ module.exports = {
     deleteItem: async (req, res) => {
         const { ingredientId } = req.body;
         const dbInstance = req.app.get('db')
-        let ingredients = await dbInstance.delete_ingredient([req.session.user.user_id, ingredientId])
+        let ingredients = await dbInstance.delete_ingredient([ingredientId])
         res.status(200).send(ingredients)
 
     }

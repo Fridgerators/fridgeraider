@@ -5,18 +5,28 @@ class NewRecipes extends Component {
     constructor() {
         super()
         this.state = {
-            recipes: []
+            recipes: [],
+            rIndex: 0
         }
+        this.handleNext = this.handleNext.bind(this)
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         let { searchIngredients } = this.props.match.params
-        const { REACT_APP_AppID, REACT_APP_AppKey } = process.env;
-        axios.get(`https://api.edamam.com/search?q=${searchIngredients}&app_id=${REACT_APP_AppID}&app_key=${REACT_APP_AppKey}`)
+        axios.get(`/api/recipes/getResults/${searchIngredients}/0`)
             .then(res =>
                 this.setState({ recipes: res.data.hits }))
     }
 
+    async handleNext(){
+        let { searchIngredients } = this.props.match.params
+        let {rIndex} = this.state;
+        console.log(rIndex)
+        const increment = await this.setState({rIndex:rIndex+=10})
+        const nextRecipeSet = await axios.get(`/api/recipes/getResults/${searchIngredients}/${rIndex}`)
+            .then(res =>
+                this.setState({ recipes: res.data.hits }))
+    }
 
     render() {
         console.log('recipes', this.state.recipes)
@@ -31,6 +41,7 @@ class NewRecipes extends Component {
         return (
             <div>
                 NewRecipes
+                <button className='nr-next' onClick={this.handleNext}>Next</button>
                 {recipeRes}
             </div>
         )
