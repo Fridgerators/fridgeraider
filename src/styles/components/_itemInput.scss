@@ -1,0 +1,53 @@
+.ni-bg {
+  @include position();  
+  @include width-height(100vw, 100vh);
+  background-color: $pale-bg;
+}
+
+.ni-title {
+  color: $purple-1;
+  @include width-height(240px, 85px);
+  @include position();
+  top: 12vh;
+  left: 12vw;
+  text-align: center;
+  line-height: 1.15rem;
+}
+
+// .ni-input-box {
+  // @include position(relative, 4px);  
+// }
+
+.ni-input {
+  top: 26vh;
+  @include position(relative, 4px);  
+  @include width-height(243px, 30px);
+  left: 10.6vw;
+  // border: 3px solid $purple-2;
+  box-sizing: border-box;
+  border-radius: 15px;
+}
+  //   .ni-input:nth-child(1) {
+  //   border: 3px solid $purple-2;
+  // }
+  input:nth-child(even) {
+    border: 3px solid $purple-4;
+  }
+  input:nth-child(odd) {
+    border: 3px solid $purple-3;
+  }
+
+  .ni-add-input {
+    margin-left: 5px;
+  }
+  .ni-clear-input {
+    margin: 0px 27px;
+  }
+
+  .ni-buttons {
+    // @include flexSetUp(space-around);
+    width: 78vw;
+    top: 27.5vh;
+    @include position(relative);
+
+  }

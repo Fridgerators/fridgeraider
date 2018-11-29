@@ -15,9 +15,12 @@
   background-size: $size;
 }
 
-@mixin position($position: absolute, $margin: auto, $width: 60%) {
+@mixin position($position: absolute, $margin: auto) {
   position: $position;
   margin: $margin;
-  width: $width;
 }
+
+// @mixin buttons() {
+//   button:focus {outline:0;}
+// }
 
