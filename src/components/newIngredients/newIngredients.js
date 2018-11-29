@@ -8,6 +8,7 @@ class NewIngredients extends Component {
         this.state = {
             ingredients: ['', '', '', '', '', '']
         }
+        this.handleClear=this.handleClear.bind(this);
     }
     addIngredient() {
         this.setState({ ingredients: [...this.state.ingredients, ''] })
@@ -23,6 +24,9 @@ class NewIngredients extends Component {
         this.setState({ ingredients: this.state.ingredients })
     }
 
+    handleClear(){
+        this.setState({ingredients: ['', '', '', '', '', '']})
+    }
 
 
     render() {
@@ -37,19 +41,22 @@ class NewIngredients extends Component {
             )
         })
         const finalIndex = newInput.length - 1;
-        const ingredientParam = [];
-        const removeNull = this.state.ingredients.map((element) => {
-            if (element !== '') {
-                ingredientParam.push(element)
+        let searchIngredients= ''
+        
+        let {ingredients} = this.state;
+        for(let i = 0; i<ingredients.length; i++){
+            if(ingredients[i]){
+                searchIngredients += ingredients[i] + ','
             }
-        })
-        console.log('ingredientParam',ingredientParam)
+        }
+        console.log(searchIngredients, typeof searchIngredients)
+        console.log('searchIngredients',searchIngredients)
         return (
             <div>
                 <h3 className="ni-title">enter the ingredients you have in your fridge and cupboards so we can find the perfect recipe for you!</h3>
                 {newInput}
-                <Link to={`/results/${ingredientParam}`}><button className='ni-button'>Search</button></Link>
-
+                <Link to={`/results/${searchIngredients}`}><button className='ni-button'>Search</button></Link>
+                <button onClick={this.handleClear}>Clear</button>
                 <button className='ni-add-input-' onClick={(e) => this.addIngredient(e)}>+</button>
                 <button className='ni-remove-input' onClick={() => this.handleRemove(finalIndex)}>-</button>
             </div>
