@@ -9,23 +9,22 @@ class Navbar extends Component {
                     {matches =>
                         matches ? (
                             <div className='nb-mobile'>
-                                <img src='' className="nb-icon-book" />
-                                <img src='' className='nb-icon-profile' />
-                                <img src='' className='nb-icon-login' />
+                                <img src='' className="nb-icon-book" alt=''/>
+                                <img src='' className='nb-icon-profile' alt=''/>
+                                <img src='' className='nb-icon-login' alt=''/>
                             </div>
                         ) : (
-                            <div className='nb-large-screen'>
-                                <h3 className='nb-title'>what's in your fridge?</h3>
-                                <div className='nb-menu'>
-                                    <h3 className='nb-menu-item'>cookbook</h3>
-                                    <h3 className='nb-profile'>profile</h3>
-                                    <h3 className='nb-login'> login</h3>
+                                <div className='nb-large-screen'>
+                                    <h3 className='nb-title'>what's in your fridge?</h3>
+                                    <div className='nb-menu'>
+                                        <h3 className='nb-menu-item'>cookbook</h3>
+                                        <h3 className='nb-profile'>profile</h3>
+                                        <h3 className='nb-login'> login</h3>
+                                    </div>
                                 </div>
-                                </div>
-           )
+                            )
                     }
                 </Media>
-
             </div>
         )
     }

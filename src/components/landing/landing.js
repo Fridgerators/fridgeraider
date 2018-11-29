@@ -13,7 +13,7 @@ class Landing extends Component{
                     <img className="landing-title" src={logo} alt=""/>
                     <img className='landing-image' src='https://s3-us-west-1.amazonaws.com/fridgeraiders/bg-image.png' alt='purple peppers'/>
                     <h2 className='landing-sub'>find recipes based on what you have in your kitchen</h2>
-                    <Link to='/'><button className="landing-button">enter</button></Link>
+                    <Link to='/input'><button className="landing-button">enter</button></Link>
                 </div>
             
             </Grid>
