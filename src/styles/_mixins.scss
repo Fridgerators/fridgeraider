@@ -1,0 +1,23 @@
+@mixin flexSetUp($justify: center, $align: center, $direction: row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin width-height($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin bg-image($position: center, $repeat: no-repeat, $size: cover) {
+  background-position: $position;
+  background-repeat: $repeat; 
+  background-size: $size;
+}
+
+@mixin position($position: absolute, $margin: auto, $width: 60%) {
+  position: $position;
+  margin: $margin;
+  width: $width;
+}
+
