@@ -1,6 +1,7 @@
 .ni-bg {
-  // @include flexSetUp(column);
   @include position();  
+  @include width-height(100vw, 100vh);
+  background-color: $pale-bg;
 }
 
 .ni-title {
@@ -10,19 +11,18 @@
   top: 12vh;
   left: 12vw;
   text-align: center;
+  line-height: 1.15rem;
 }
 
-.ni-input-box {
-  top: 25vh;
-  @include position(relative, 4px);  
-
-}
+// .ni-input-box {
+  // @include position(relative, 4px);  
+// }
 
 .ni-input {
-  top: 22vh;
+  top: 24vh;
   @include position(relative, 4px);  
   @include width-height(243px, 30px);
-  left: 40px;
+  left: 10.6vw;
   // border: 3px solid $purple-2;
   box-sizing: border-box;
   border-radius: 15px;
@@ -35,4 +35,19 @@
   }
   input:nth-child(odd) {
     border: 3px solid $purple-3;
+  }
+
+  .ni-add-input {
+    margin-left: 5px;
+  }
+  .ni-clear-input {
+    margin: 0px 27px;
+  }
+
+  .ni-buttons {
+    // @include flexSetUp(space-around);
+    width: 78vw;
+    top: 25.5vh;
+    @include position(relative);
+
   }

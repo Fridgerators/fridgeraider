@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import header from '../../components/images/header-curve.svg';
 import Nav from '../navbar/navbar';
-
+import add from '../images/add.svg';
+import remove from '../images/remove.svg';
+import search from '../images/search.svg';
+import clear from '../images/clear.svg';
 
 class NewIngredients extends Component {
     constructor() {
@@ -54,10 +57,14 @@ class NewIngredients extends Component {
 
                 <h3 className="ni-title">enter the ingredients you have in your fridge and cupboards so we can find the perfect recipe for you!</h3>
                     {newInput}
-                <Link to={`/results/${ingredientParam}`}><button className='ni-button'>Search</button></Link>
+                
+                <section className="ni-buttons">
+                <img src={remove} className='ni-remove-input' onClick={() => this.handleRemove(finalIndex)} />
+                <img src={add} className='ni-add-input' onClick={(e) => this.addIngredient(e)}/>
+                <img src={clear} className='ni-clear-input' alt="clear inputs"/>
+                <Link to={`/results/${ingredientParam}`}><img src={search} className='ni-img'/></Link>
 
-                <button className='ni-add-input-' onClick={(e) => this.addIngredient(e)}>+</button>
-                <button className='ni-remove-input' onClick={() => this.handleRemove(finalIndex)}>-</button>
+                </section>
             </div>
         )
     }

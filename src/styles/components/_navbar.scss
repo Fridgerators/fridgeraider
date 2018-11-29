@@ -14,3 +14,20 @@
   margin-left: 5px;
   color: $purple-3;
 }
+
+.nb-bottom {
+  @include flexSetUp(flex-end, center, row);
+  @include width-height(100vw, 8vh);
+  @include position();
+  background-color: $purple-bg;
+  bottom: 0px;
+}
+
+.nb-icon-login {
+  padding-right: 45px;
+  padding-left: 12px;
+
+}
+.nb-icon-book {
+  padding-right: 15px;
+}
