@@ -58,7 +58,7 @@ class NewIngredients extends Component {
 
         return (
             <div>
-                <Navbar/>
+                {/* <Navbar/> */}
                 <h3 className="ni-title">enter the ingredients you have in your fridge and cupboards so we can find the perfect recipe for you!</h3>
                 {newInput}
                 {searchIngredients?
