@@ -14,6 +14,7 @@ class NewIngredients extends Component {
         this.state = {
             ingredients: ['', '', '', '', '', '']
         }
+        this.handleClear=this.handleClear.bind(this);
     }
     addIngredient() {
         this.setState({ ingredients: [...this.state.ingredients, ''] })
@@ -29,6 +30,9 @@ class NewIngredients extends Component {
         this.setState({ ingredients: this.state.ingredients })
     }
 
+    handleClear(){
+        this.setState({ingredients: ['', '', '', '', '', '']})
+    }
 
 
     render() {
@@ -43,13 +47,16 @@ class NewIngredients extends Component {
             )
         })
         const finalIndex = newInput.length - 1;
-        const ingredientParam = [];
-        const removeNull = this.state.ingredients.map((element) => {
-            if (element !== '') {
-                ingredientParam.push(element)
+        let searchIngredients= ''
+        
+        let {ingredients} = this.state;
+        for(let i = 0; i<ingredients.length; i++){
+            if(ingredients[i]){
+                searchIngredients += ingredients[i] + ','
             }
-        })
-        console.log('ingredientParam',ingredientParam)
+        }
+        console.log(searchIngredients, typeof searchIngredients)
+        console.log('searchIngredients',searchIngredients)
         return (
             <div className="ni-bg">
                 <Nav />
