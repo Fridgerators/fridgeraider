@@ -4,8 +4,9 @@
 
 .landing-image {
   @include width-height(auto, 100vh);
-  @include bg-image();
-  margin: auto;
+  // @include bg-image();
+  // margin: auto;
+  overflow: hidden;
 }
 
 .landing-title {
@@ -15,27 +16,25 @@
   // text-shadow: 2px 2px 2px rgba(51, 51, 51, 0.25);
   // font-size: 46px;
   // line-height: 46px;
-  width: 224.93px;
-height: 167.56px;
+  @include width-height(225px, 167px);
 }
 
 .landing-sub {
-  @include position(absolute, auto, 60%);
+  @include position(absolute, auto);
   color: $purple-2;
-  width: 240px;
-  height: 46px;
+  @include width-height(240px, 46px);
   left: 48px;
-  top: 434px;
+  top: 445px;
   text-align: center;
 }
 
 .landing-button {
-  @include position(absolute, auto, 111px);
+  @include position(absolute, auto);
   font-family: $main-font;
   color: $text-color;
-  height: 30px;
+  @include width-height(111px, 30px);
   left: 112px;
-  top: 486px;
+  top: 490px;
   background: $pale-bg;
   border: 2px solid $purple-3;
   box-sizing: border-box;

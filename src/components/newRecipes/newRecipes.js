@@ -13,7 +13,7 @@ class NewRecipes extends Component {
 
     componentDidMount() {
         let { searchIngredients } = this.props.match.params
-        axios.get(`/api/recipes/getResults/${searchIngredients}`)
+        axios.get(`/api/recipes/getResults/${searchIngredients}/0`)
             .then(res =>
                 this.setState({ recipes: res.data.hits }))
     }
@@ -21,12 +21,12 @@ class NewRecipes extends Component {
     async handleNext(){
         let { searchIngredients } = this.props.match.params
         let {rIndex} = this.state;
+        console.log(rIndex)
         const increment = await this.setState({rIndex:rIndex+=10})
         const nextRecipeSet = await axios.get(`/api/recipes/getResults/${searchIngredients}/${rIndex}`)
             .then(res =>
                 this.setState({ recipes: res.data.hits }))
     }
-    
     render() {
         console.log('recipes', this.state.recipes)
         console.log('index',this.state.rIndex)
@@ -50,6 +50,7 @@ class NewRecipes extends Component {
         return (
             <div>
                 NewRecipes
+                <button className='nr-next' onClick={this.handleNext}>Next</button>
                 {recipeRes}
                 <button className='nr-next' onClick={this.handleNext}>Next</button>
             </div>

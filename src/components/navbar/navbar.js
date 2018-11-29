@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import Media from 'react-media';
+import logo from '../images/logo-no-text.svg';
+import profile from '../images/profile-icon.svg';
+import book from '../images/book.png';
+import login from '../images/sign-in.png';
 
 class Navbar extends Component {
     render() {
@@ -9,18 +13,27 @@ class Navbar extends Component {
                     {matches =>
                         matches ? (
                             <div className='nb-mobile'>
-                                <img src='' className="nb-icon-book" alt=''/>
-                                <img src='' className='nb-icon-profile' alt=''/>
-                                <img src='' className='nb-icon-login' alt=''/>
+                                <div className="nb-logo-mobile">
+                                    <img className="nb-logo" src={logo} alt="fridge-raiders"/>
+                                    <h3 className='nb-title'>fridge-raiders</h3>
+                                </div>
+                                <div className="nb-bottom">
+                                    <img src={book} className="nb-icon-book" />
+                                    <img src={profile} className='nb-icon-profile' />
+                                    <img src={login} className='nb-icon-login' />
+                                </div>
                             </div>
                         ) : (
-                                <div className='nb-large-screen'>
-                                    <h3 className='nb-title'>what's in your fridge?</h3>
-                                    <div className='nb-menu'>
-                                        <h3 className='nb-menu-item'>cookbook</h3>
-                                        <h3 className='nb-profile'>profile</h3>
-                                        <h3 className='nb-login'> login</h3>
-                                    </div>
+                            <div className='nb-large-screen'>
+                                <div className="nb-logo">
+                                    <img className="nb-logo" src={logo} alt="fridge-raiders"/>
+                                    <h3 className='nb-title'>fridge-raiders</h3>
+                                </div>
+                                <div className='nb-menu'>
+                                    <h3 className='nb-menu-item'>cookbook</h3>
+                                    <h3 className='nb-profile'>profile</h3>
+                                    <h3 className='nb-login'> login</h3>
+                                </div>
                                 </div>
                             )
                     }

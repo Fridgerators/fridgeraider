@@ -1,9 +1,24 @@
 @import url('https://fonts.googleapis.com/css?family=Reem+Kufi');
 @import 'variables';
+@import 'mixins';
 
 body {
   font-family: 'Reem kufi', sans-serif;
   color: $text-color;
 }
 
+button:focus {
+  outline: 0;
+}
+
+input:focus {
+  outline: 0;
+}
+
+.header-curve {
+  @include width-height(100vw, auto);
+  position: absolute;
+  z-index: 0;
+  top: 0;
+}
 

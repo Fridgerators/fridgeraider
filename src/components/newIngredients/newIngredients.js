@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../navbar/navbar';
+import header from '../../components/images/header-curve.svg';
+import Nav from '../navbar/navbar';
+import add from '../images/add.svg';
+import remove from '../images/remove.svg';
+import search from '../images/search.svg';
+import clear from '../images/clear.svg';
 
 class NewIngredients extends Component {
     constructor() {
@@ -33,7 +38,7 @@ class NewIngredients extends Component {
     handleAlert(){
         alert("please enter an ingredient")
     }
-
+ 
 
     render() {
 
@@ -41,7 +46,7 @@ class NewIngredients extends Component {
 
         const newInput = this.state.ingredients.map((ingredient, index) => {
             return (
-                <div key={index}>
+                <div key={index} >
                     <input className='ni-input' value={ingredient} onChange={(e) => this.handleChange(e, index)} />
                 </div>
             )
@@ -55,21 +60,32 @@ class NewIngredients extends Component {
                 searchIngredients += ingredients[i] + ','
             }
         }
-
+        console.log(searchIngredients, typeof searchIngredients)
+        console.log('searchIngredients',searchIngredients)
+        
         return (
-            <div>
-                {/* <Navbar/> */}
+            <div className="ni-bg">
+                <Nav />
+                <img className="header-curve" src={header} alt="background"/>
+
                 <h3 className="ni-title">enter the ingredients you have in your fridge and cupboards so we can find the perfect recipe for you!</h3>
-                {newInput}
-                {searchIngredients?
-                <Link to={`/results/${searchIngredients}`}><button className='ni-button'>Search</button></Link>:
-                <button className='ni-button' onClick={this.handleAlert}>Search</button>
-                }
-                <button onClick={this.handleClear}>Clear</button>
-                <button className='ni-add-input-' onClick={(e) => this.addIngredient(e)}>+</button>
-                <button className='ni-remove-input' onClick={() => this.handleRemove(finalIndex)}>-</button>
+                    {newInput}
+                
+                <section className="ni-buttons">
+                <img src={remove} className='ni-remove-input' onClick={() => this.handleRemove(finalIndex)} />
+                <img src={add} className='ni-add-input' onClick={(e) => this.addIngredient(e)}/>
+                <img src={clear} className='ni-clear-input' alt="clear inputs"/>
+                {searchIngredients ?
+            
+            <Link to={`/results/${searchIngredients}`}><img src={search} className='ni-img'/></Link> :
+
+            <img src={search} onClick={this.handleAlert} className='ni-img'/>
+               
+            }
+            
+            </section>
             </div>
-        )
+            )
     }
 }
 
