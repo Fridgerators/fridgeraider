@@ -19,7 +19,7 @@
 // }
 
 .ni-input {
-  top: 24vh;
+  top: 26vh;
   @include position(relative, 4px);  
   @include width-height(243px, 30px);
   left: 10.6vw;
@@ -47,7 +47,7 @@
   .ni-buttons {
     // @include flexSetUp(space-around);
     width: 78vw;
-    top: 25.5vh;
+    top: 27.5vh;
     @include position(relative);
 
   }
