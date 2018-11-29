@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import header from '../../components/images/header-curve.svg';
+import Nav from '../navbar/navbar';
+
 
 class NewIngredients extends Component {
     constructor() {
@@ -31,7 +34,7 @@ class NewIngredients extends Component {
 
         const newInput = this.state.ingredients.map((ingredient, index) => {
             return (
-                <div key={index}>
+                <div key={index} >
                     <input className='ni-input' value={ingredient} onChange={(e) => this.handleChange(e, index)} />
                 </div>
             )
@@ -45,9 +48,12 @@ class NewIngredients extends Component {
         })
         console.log('ingredientParam',ingredientParam)
         return (
-            <div>
+            <div className="ni-bg">
+                <Nav />
+                <img className="header-curve" src={header} alt="background"/>
+
                 <h3 className="ni-title">enter the ingredients you have in your fridge and cupboards so we can find the perfect recipe for you!</h3>
-                {newInput}
+                    {newInput}
                 <Link to={`/results/${ingredientParam}`}><button className='ni-button'>Search</button></Link>
 
                 <button className='ni-add-input-' onClick={(e) => this.addIngredient(e)}>+</button>

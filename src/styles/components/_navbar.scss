@@ -1,0 +1,16 @@
+.nb-logo-mobile {
+  @include flexSetUp(flex-start, center, row);
+  padding: 10px;
+  @include position();
+  z-index: 1;
+}
+
+.nb-logo {
+  @include width-height(30px, 35px);
+}
+
+.nb-title {
+  font-size: 14px;
+  margin-left: 5px;
+  color: $purple-3;
+}
