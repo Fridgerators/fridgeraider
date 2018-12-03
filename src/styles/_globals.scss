@@ -5,9 +5,7 @@
 body {
   font-family: $main-font;  
   color: $text-color;
-  @include desktop {
-    background-image: linear-gradient( darken($purple-bg, 1%), darken($purple-bg, 2.5%));
-  }
+  background: $purple-bg;
 }
 
 button:focus {
