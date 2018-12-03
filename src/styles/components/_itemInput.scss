@@ -1,5 +1,4 @@
 .ni-bg {
-  @include position();  
   @include width-height(100vw, 100vh);
   background-color: $pale-bg;
 }
@@ -7,47 +6,108 @@
 .ni-title {
   color: $purple-1;
   @include width-height(240px, 85px);
-  @include position();
-  top: 12vh;
-  left: 12vw;
+  margin: auto;
   text-align: center;
   line-height: 1.15rem;
+
+  @include tablet {
+    width: 60vw;
+    font-size: 1.8rem;
+    line-height: 2rem;
+    margin-top: 2vh;
+
+    }
+
+  @include height {
+    width: 80vw;
+  }
 }
 
-// .ni-input-box {
-  // @include position(relative, 4px);  
-// }
+.ni-inputs-box {
+  display: flex;
+  margin-top: 2vh;
+
+  @include tablet {
+    margin-top: 4vh;
+  }
+  @include height {
+    margin-top: 6vh;
+  }
+}
+.inputs {
+  margin: auto;
+}
 
 .ni-input {
-  top: 26vh;
-  @include position(relative, 4px);  
-  @include width-height(243px, 30px);
-  left: 10.6vw;
-  // border: 3px solid $purple-2;
+  @include width-height(243px, 32px);
   box-sizing: border-box;
   border-radius: 15px;
+  margin-bottom: 4px;
+
+
+  @include tablet {
+    @include width-height(620px, 40px);
+    border-radius: 20px;
+    margin-bottom: 5.5px;
+
+  }
+  @include height {
+    margin-bottom: 5.5px;
+  }
+  @include desktop {
+    margin-bottom: 5.5px;
+  }
+
+}
+.ni-buttons {
+  width: 78vw;
+  margin: auto;
+  margin-top: 5px;
+
+
+  @include tablet {
+    width: 620px; 
+  }
+@include height {
+
+}
 }
   //   .ni-input:nth-child(1) {
   //   border: 3px solid $purple-2;
   // }
-  input:nth-child(even) {
+  .ni-input:nth-child(even) {
     border: 3px solid $purple-4;
   }
-  input:nth-child(odd) {
+  .ni-input:nth-child(odd) {
     border: 3px solid $purple-3;
   }
 
   .ni-add-input {
     margin-left: 5px;
+
+    @include tablet {
+      margin-left: 15px;
+      height: 50px;
+    }
   }
   .ni-clear-input {
     margin: 0px 27px;
+
+    @include tablet {
+      margin: 0px 144px;
+      height: 50px;
+    }
   }
 
-  .ni-buttons {
-    // @include flexSetUp(space-around);
-    width: 78vw;
-    top: 27.5vh;
-    @include position(relative);
 
+@media only screen and (min-width: 768px) {
+
+.ni-remove-input {
+  height: 50px;
+}
+
+  .ni-search {
+    height: 50px;
   }
+  
+}

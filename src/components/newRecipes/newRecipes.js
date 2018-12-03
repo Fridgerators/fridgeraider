@@ -22,8 +22,8 @@ class NewRecipes extends Component {
         let { searchIngredients } = this.props.match.params
         let {rIndex} = this.state;
         console.log(rIndex)
-        const increment = await this.setState({rIndex:rIndex+=10})
-        const nextRecipeSet = await axios.get(`/api/recipes/getResults/${searchIngredients}/${rIndex}`)
+        await this.setState({rIndex:rIndex+=10})
+        await axios.get(`/api/recipes/getResults/${searchIngredients}/${rIndex}`)
             .then(res =>
                 this.setState({ recipes: res.data.hits }))
     }

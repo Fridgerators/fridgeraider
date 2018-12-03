@@ -18,19 +18,19 @@ class Navbar extends Component {
                                     <h3 className='nb-title'>fridge-raiders</h3>
                                 </div>
                                 <div className="nb-bottom">
-                                    <img src={book} className="nb-icon-book" />
-                                    <img src={profile} className='nb-icon-profile' />
-                                    <img src={login} className='nb-icon-login' />
+                                    <img src={book} className="nb-icon-book" alt=''/>
+                                    <img src={profile} className='nb-icon-profile' alt=''/>
+                                    <img src={login} className='nb-icon-login' alt=''/>
                                 </div>
                             </div>
                         ) : (
                             <div className='nb-large-screen'>
-                                <div className="nb-logo">
-                                    <img className="nb-logo" src={logo} alt="fridge-raiders"/>
+                                <div className='nb-logo-mobile large'>
+                                    <img className='nb-logo' src={logo} alt="fridge-raiders"/>
                                     <h3 className='nb-title'>fridge-raiders</h3>
                                 </div>
                                 <div className='nb-menu'>
-                                    <h3 className='nb-menu-item'>cookbook</h3>
+                                    <h3 className='nb-book'>cookbook</h3>
                                     <h3 className='nb-profile'>profile</h3>
                                     <h3 className='nb-login'> login</h3>
                                 </div>

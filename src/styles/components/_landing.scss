@@ -1,44 +1,63 @@
 .landing-page {
-  @include flexSetUp();
+  background-image: url('https://s3-us-west-1.amazonaws.com/fridgeraiders/bg-image.png');
+  @include bg-image();
+  height: 100vh;
 }
-
-.landing-image {
-  @include width-height(auto, 100vh);
-  // @include bg-image();
-  // margin: auto;
-  overflow: hidden;
+.landing-content {
+  @include flexSetUp(center, center, column);
 }
 
 .landing-title {
-  @include position();
   color: $purple-1;
-  // text-align: center;
-  // text-shadow: 2px 2px 2px rgba(51, 51, 51, 0.25);
-  // font-size: 46px;
-  // line-height: 46px;
-  @include width-height(225px, 167px);
+  @include width-height(auto, 167px);
+  margin-top: 31vh;
+  margin-bottom: 18vh;
+  
+  @include desktop {
+    height: 42vh;
+    margin-top: 15vh;
+    margin-bottom: 10vh;
+  }
+  @include height {
+    height: 35vh;
+    margin-top: 30vh;
+    margin-bottom: 12vh;
+  }
 }
 
 .landing-sub {
-  @include position(absolute, auto);
   color: $purple-2;
   @include width-height(240px, 46px);
-  left: 48px;
-  top: 445px;
   text-align: center;
+
+  @include desktop {
+    @include width-height(500px, 86px);
+    font-size: 36px;
+    margin-bottom: 2.5vh;
+  }
+  @include height{
+    @include width-height(500px, 86px);
+    font-size: 36px;
+    margin-bottom: 2.5vh;
+    }
 }
 
 .landing-button {
-  @include position(absolute, auto);
   font-family: $main-font;
   color: $text-color;
   @include width-height(111px, 30px);
-  left: 112px;
-  top: 490px;
   background: $pale-bg;
   border: 2px solid $purple-3;
   box-sizing: border-box;
   border-radius: 15px 0px;
   font-size: 14px;
-  // text-align: center;
+
+  @include desktop {
+    @include width-height(155px, 42px);
+    font-size: 24px;
+  }
+  @include height {
+    @include width-height(155px, 42px);
+    font-size: 24px;
+    }
 }
