@@ -11,9 +11,11 @@
   line-height: 1.15rem;
 
   @include tablet {
-      width: 60vw;
-      font-size: 1.8rem;
-      line-height: 2rem;
+    width: 60vw;
+    font-size: 1.8rem;
+    line-height: 2rem;
+    margin-top: 2vh;
+
     }
 
   @include height {
@@ -23,6 +25,14 @@
 
 .ni-inputs-box {
   display: flex;
+  margin-top: 2vh;
+
+  @include tablet {
+    margin-top: 4vh;
+  }
+  @include height {
+    margin-top: 6vh;
+  }
 }
 .inputs {
   margin: auto;
@@ -32,21 +42,35 @@
   @include width-height(243px, 32px);
   box-sizing: border-box;
   border-radius: 15px;
+  margin-bottom: 4px;
+
 
   @include tablet {
     @include width-height(620px, 40px);
     border-radius: 20px;
     margin-bottom: 5.5px;
-    top: 18vh;
-  
+
   }
   @include height {
-    // left: 9vw;
+    margin-bottom: 5.5px;
   }
   @include desktop {
-    // left: 0px;
+    margin-bottom: 5.5px;
   }
 
+}
+.ni-buttons {
+  width: 78vw;
+  margin: auto;
+  margin-top: 5px;
+
+
+  @include tablet {
+    width: 620px; 
+  }
+@include height {
+
+}
 }
   //   .ni-input:nth-child(1) {
   //   border: 3px solid $purple-2;
@@ -75,20 +99,6 @@
     }
   }
 
-  .ni-buttons {
-    width: 78vw;
-    margin: auto;
-    margin-top: 155px;
-
-    @include tablet {
-      width: 620px; 
-      top: 180px;
-    }
-  @include height {
-    top: 200px;
-  }
-
-  }
 
 @media only screen and (min-width: 768px) {
 

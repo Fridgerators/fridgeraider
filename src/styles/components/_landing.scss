@@ -10,10 +10,18 @@
 .landing-title {
   color: $purple-1;
   @include width-height(auto, 167px);
-  margin: auto;
-
+  margin-top: 31vh;
+  margin-bottom: 18vh;
+  
   @include desktop {
-    height: 40vh;
+    height: 42vh;
+    margin-top: 15vh;
+    margin-bottom: 10vh;
+  }
+  @include height {
+    height: 35vh;
+    margin-top: 30vh;
+    margin-bottom: 12vh;
   }
 }
 
@@ -23,10 +31,15 @@
   text-align: center;
 
   @include desktop {
-  @include width-height(440px, 86px);
-  font-size: 36px;
-
+    @include width-height(500px, 86px);
+    font-size: 36px;
+    margin-bottom: 2.5vh;
   }
+  @include height{
+    @include width-height(500px, 86px);
+    font-size: 36px;
+    margin-bottom: 2.5vh;
+    }
 }
 
 .landing-button {
@@ -40,8 +53,11 @@
   font-size: 14px;
 
   @include desktop {
-  @include width-height(155px, 42px);
-  font-size: 24px;
-
+    @include width-height(155px, 42px);
+    font-size: 24px;
   }
+  @include height {
+    @include width-height(155px, 42px);
+    font-size: 24px;
+    }
 }

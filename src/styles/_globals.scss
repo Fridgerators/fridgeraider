@@ -24,12 +24,11 @@ input:focus {
 
   @include tablet {
     background-image: url('../components/images/landscape-tablet.svg');
-    background-size: cover;
+    // background-size: cover;
   }
 
   @include height {
     background-image: url('../components/images/portrait-tablet.svg'); 
-  // @include width-height(100vw, 100vh);
   }
 
   @include desktop {
