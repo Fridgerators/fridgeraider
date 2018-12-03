@@ -5,6 +5,9 @@
 body {
   font-family: $main-font;  
   color: $text-color;
+  @include desktop {
+    background-image: linear-gradient( darken($purple-bg, 1%), darken($purple-bg, 2.5%));
+  }
 }
 
 button:focus {
@@ -16,10 +19,23 @@ input:focus {
 }
 
 .header-curve {
-  @include width-height(100vw, auto);
-  position: absolute;
-  z-index: 0;
-  top: 0;
+  background-image: url('../components/images/header-curve.svg');
+  @include bg-image(top, no-repeat, auto);
+
+  @include tablet {
+    background-image: url('../components/images/landscape-tablet.svg');
+    background-size: cover;
+  }
+
+  @include height {
+    background-image: url('../components/images/portrait-tablet.svg'); 
+  // @include width-height(100vw, 100vh);
+  }
+
+  @include desktop {
+    background-image: url('../components/images/desktop-header.svg'); 
+
+  }
 }
 
 input {
@@ -27,22 +43,9 @@ input {
   padding: 8px;
   font-size: 1.1rem;
   color: $text-color;
-}
 
-
-@media only screen and (min-width: 768px) {
-  .header-curve { 
-    transform: scaleY(.5) translateY(-52%);
-    @include position();
-  }
-
-  input {
+  @include tablet {
     font-size: 1.4rem;
   }
 }
 
-@media (min-height: 800px) {
-  .header-curve { 
-    transform: scaleY(.5) translateY(-50%);
-  }
-}

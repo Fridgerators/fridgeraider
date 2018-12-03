@@ -1,5 +1,4 @@
 .ni-bg {
-  @include position();  
   @include width-height(100vw, 100vh);
   background-color: $pale-bg;
 }
@@ -7,26 +6,47 @@
 .ni-title {
   color: $purple-1;
   @include width-height(240px, 85px);
-  @include position();
-  top: 12vh;
-  left: 12vw;
+  margin: auto;
   text-align: center;
   line-height: 1.15rem;
+
+  @include tablet {
+      width: 60vw;
+      font-size: 1.8rem;
+      line-height: 2rem;
+    }
+
+  @include height {
+    width: 80vw;
+  }
 }
 
 .ni-inputs-box {
-  overflow: auto;
-  height: 80vh;
+  display: flex;
+}
+.inputs {
+  margin: auto;
 }
 
 .ni-input {
-  top: 26vh;
-  @include position(relative, 4px);  
   @include width-height(243px, 32px);
-  left: 10.6vw;
-  // border: 3px solid $purple-2;
   box-sizing: border-box;
   border-radius: 15px;
+
+  @include tablet {
+    @include width-height(620px, 40px);
+    border-radius: 20px;
+    margin-bottom: 5.5px;
+    top: 18vh;
+  
+  }
+  @include height {
+    // left: 9vw;
+  }
+  @include desktop {
+    // left: 0px;
+  }
+
 }
   //   .ni-input:nth-child(1) {
   //   border: 3px solid $purple-2;
@@ -40,74 +60,44 @@
 
   .ni-add-input {
     margin-left: 5px;
+
+    @include tablet {
+      margin-left: 15px;
+      height: 50px;
+    }
   }
   .ni-clear-input {
     margin: 0px 27px;
+
+    @include tablet {
+      margin: 0px 144px;
+      height: 50px;
+    }
   }
 
   .ni-buttons {
-    // @include flexSetUp(space-around);
     width: 78vw;
-    // top: 27.5vh;
-    @include position(relative);
+    margin: auto;
+    margin-top: 155px;
+
+    @include tablet {
+      width: 620px; 
+      top: 180px;
+    }
+  @include height {
+    top: 200px;
+  }
 
   }
 
 @media only screen and (min-width: 768px) {
 
-  .ni-title {
-    width: 60vw;
-    top: 16vh;
-    left: 20vw;
-    font-size: 1.8rem;
-    line-height: 2rem;
-  }
-
-.ni-input {
-  @include width-height(620px, 40px);
-  left: 19.5%;
-  border-radius: 20px;
-  margin: 5.5px;
-  top: 24vh;
-
-}
-
-.ni-buttons {
-  width: 620px; 
-}
-
 .ni-remove-input {
   height: 50px;
 }
- .ni-add-input {
-    margin-left: 15px;
-    height: 50px;
-  }
-  .ni-clear-input {
-    margin: 0px 144px;
-    height: 50px;
-  }
 
   .ni-search {
     height: 50px;
   }
-  .ni-inputs-box {
-    height: 75vh;
-
-}
-}
-
-@media (min-height: 800px) {
- 
-  .ni-title {
-    top: 14vh;
-    left: 10.5vw;
-    width: 80vw;
-  }
-
-  .ni-input {
-    left: 10.5vw;
-
-  }
-
+  
 }

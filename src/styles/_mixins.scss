@@ -1,7 +1,27 @@
+$desktop: 840px;
+@mixin desktop {
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
+}
+$tablet: 768px;
+@mixin tablet {
+  @media (min-width: #{$tablet}) {
+    @content;
+  }
+}
+// $height: 800px;
+@mixin height {
+  @media (min-height: 800px) {
+    @content;
+  }
+}
+
 @mixin flexSetUp($justify: center, $align: center, $direction: row) {
   display: flex;
   justify-content: $justify;
   align-items: $align;
+  flex-direction: $direction;
 }
 
 @mixin width-height($width, $height) {
