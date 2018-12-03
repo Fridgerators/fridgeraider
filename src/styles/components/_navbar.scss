@@ -1,24 +1,31 @@
+.nb-large-screen {
+  display: flex;
+}
+
+.nb-menu {
+  @include flexSetUp(flex-end, center, row);
+}
 .nb-logo-mobile {
   @include flexSetUp(flex-start, center, row);
   padding: 10px;
-  @include position();
+  // @include position();
   z-index: 1;
 }
 
 .nb-logo {
-  @include width-height(30px, 35px);
+  @include width-height(auto, 35px);
 }
 
 .nb-title {
-  font-size: 14px;
+  font-size: 1rem;
   margin-left: 5px;
-  color: $purple-3;
+  color: $purple-2;
 }
 
 .nb-bottom {
   @include flexSetUp(flex-end, center, row);
   @include width-height(100vw, 8vh);
-  @include position();
+  @include position(fixed);
   background-color: $purple-bg;
   bottom: 0px;
 }
@@ -30,4 +37,34 @@
 }
 .nb-icon-book {
   padding-right: 15px;
+}
+
+
+@media only screen and (min-width: 768px) {
+  .nb-logo {
+    @include width-height(auto, 70px);
+  }
+
+  .nb-title {
+    font-size: 1.5rem;
+    margin-left: 15px;
+  }
+
+  .nb-logo-mobile.large {
+    padding: 25px;
+  }
+
+  .nb-menu {
+    @include flexSetUp(flex-end, center, row);
+    width: 60%;
+    // @include position();
+    z-index: 1;
+    font-size: 1.5rem;
+    color: $purple-2;
+  }
+
+  .nb-profile {
+    margin: 0px 20px;
+  }
+
 }

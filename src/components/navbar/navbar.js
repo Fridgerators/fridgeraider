@@ -25,12 +25,12 @@ class Navbar extends Component {
                             </div>
                         ) : (
                             <div className='nb-large-screen'>
-                                <div className="nb-logo">
-                                    <img className="nb-logo" src={logo} alt="fridge-raiders"/>
+                                <div className='nb-logo-mobile large'>
+                                    <img className='nb-logo' src={logo} alt="fridge-raiders"/>
                                     <h3 className='nb-title'>fridge-raiders</h3>
                                 </div>
                                 <div className='nb-menu'>
-                                    <h3 className='nb-menu-item'>cookbook</h3>
+                                    <h3 className='nb-book'>cookbook</h3>
                                     <h3 className='nb-profile'>profile</h3>
                                     <h3 className='nb-login'> login</h3>
                                 </div>

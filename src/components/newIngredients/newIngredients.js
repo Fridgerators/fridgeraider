@@ -62,15 +62,17 @@ class NewIngredients extends Component {
         }
         console.log(searchIngredients, typeof searchIngredients)
         console.log('searchIngredients',searchIngredients)
-        
-        return (
-            <div className="ni-bg">
-                <Nav />
-                <img className="header-curve" src={header} alt="background"/>
 
+        return (
+            <div className="ni-bg header-curve">
+                <Nav />
                 <h3 className="ni-title">enter the ingredients you have in your fridge and cupboards so we can find the perfect recipe for you!</h3>
+
+                <div className="ni-inputs-box" >
+                <div className="inputs">
                     {newInput}
-                
+                    </div>
+                    </div>
                 <section className="ni-buttons">
                 <img src={remove} className='ni-remove-input' onClick={() => this.handleRemove(finalIndex)} alt=''/>
                 <img src={add} className='ni-add-input' onClick={(e) => this.addIngredient(e)} alt=''/>
@@ -85,6 +87,7 @@ class NewIngredients extends Component {
             
             </section>
             </div>
+
             )
     }
 }
