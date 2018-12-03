@@ -35,10 +35,9 @@ class Navbar extends Component {
                                     <h3 className='nb-login'> login</h3>
                                 </div>
                                 </div>
-           )
+                            )
                     }
                 </Media>
-
             </div>
         )
     }
