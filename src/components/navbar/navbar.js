@@ -18,9 +18,9 @@ class Navbar extends Component {
                                     <h3 className='nb-title'>fridge-raiders</h3>
                                 </div>
                                 <div className="nb-bottom">
-                                    <img src={book} className="nb-icon-book" />
-                                    <img src={profile} className='nb-icon-profile' />
-                                    <img src={login} className='nb-icon-login' />
+                                    <img src={book} className="nb-icon-book" alt=''/>
+                                    <img src={profile} className='nb-icon-profile' alt=''/>
+                                    <img src={login} className='nb-icon-login' alt=''/>
                                 </div>
                             </div>
                         ) : (
