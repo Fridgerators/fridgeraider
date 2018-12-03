@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Nav from '../navbar/navbar';
@@ -6,98 +6,104 @@ import add from '../images/add.svg';
 import remove from '../images/remove.svg';
 import search from '../images/search.svg';
 
-class Profile extends Component{
+class Profile extends Component {
     constructor() {
         super()
 
         this.state = {
-            myIngredients: ['tomato', 'potato', 'carrot', 'onion']
+            myIngredients: 
+            // [],
+            ['tomato', 'potato', 'carrot', 'onion'],
+            addIngredients: ['']
         }
-        this.handleRemove=this.handleRemove.bind(this);
-        this.handleWarning=this.handleWarning.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
+        this.handleWarning = this.handleWarning.bind(this);
     }
 
-    componentDidMount(){
-        axios.get('/api/ingredients/getItem').then(res=>
-            this.setState({myIngredients:res.data}))
+    componentDidMount() {
+        axios.get('/api/ingredients/getItem').then(res =>
+            this.setState({ myIngredients: res.data }))
     }
 
     //add new input field
     addInput() {
-        this.setState({ myIngredients: [...this.state.myIngredients, ''] })
+        this.setState({ addIngredients: [...this.state.addIngredients, ''] })
     }
 
     //remove input field
-    handleDelete(index) {
-        this.state.myIngredients.splice(index, 1)
-        this.setState({ myIngredients: this.state.myIngredients })
+    handleRemove(index) {
+     {index === 0 ? this.state.addIngredients.splice(index, 1,'') :this.state.addIngredients.splice(index, 1)}
+        this.setState({ addIngredients: this.state.addIngredients })
     }
 
     handleInput(e, index) {
-        this.state.myIngredients[index] = e.target.value
-        this.setState({ myIngredients: this.state.myIngredients })
+        this.state.addIngredients[index] = e.target.value
+        this.setState({ addIngredients: this.state.addIngredients })
     }
 
-    //update database with new ingredients
-    handleUpdate(){
-        const {myIngredients}=this.state
-        axios.post('/api/ingredients/addItem',{myIngredients})
+    //update database with new ingredient
+    handleUpdate(ingredient) {
+        axios.post('/api/ingredients/addItem', { ingredient }).then(res => {
+            this.setState({ myIngredients: res.data })
+        })
     }
 
     //remove individual ingredients from database
-    handleRemove(index){
-        axios.delete(`/api/ingredients/deleteItem/${index}`).then(res=>this.setState({myIngredients:res.data}))
+    handleDelete(index) {
+        axios.delete(`/api/ingredients/deleteItem/${index}`).then(res => this.setState({ myIngredients: res.data }))
     }
-    
-    handleWarning(){
+
+    handleWarning() {
         alert("please enter an ingredient")
     }
- 
-    render(){
-        const newIngredient = this.state.myIngredients.map((ingredient,index)=>{
+
+    render() {
+        const existingIngredients = this.state.myIngredients.map((ingredient, index) => {
             return (
                 <div key={index}>
-                <input className='prof-input' value = {ingredient} onChange={(e)=>this.handleInput(e,index)}/>
-                <button className='prof-remove-ingredient'onClick={(index)=>this.handleRemove(index)}>Remove from DB</button>
+                    <input className='prof-input' value={ingredient} readOnly />
+                    <button className='prof-remove-ingredient' onClick={(index) => this.handleDelete(index)}>Remove from DB</button>
                 </div>
             )
         })
-        
-        const lastIndex = newIngredient.length - 1; 
-        let queryIngredients = '';
-        
-        let {myIngredients} = this.state;
-        for(let i = 0; i<myIngredients.length; i++){
-            if(myIngredients[i]){
-                queryIngredients += myIngredients[i] + ','
-            }
-        } 
-        
 
-        return(
+        const newIngredient = this.state.addIngredients.map((ingredient, index) => {
+            return (
+                <div key={index}>
+
+                    <input className='prof-input' placeholder="add a new ingredient" value={ingredient} onChange={(e) => this.handleInput(e, index)} />
+
+                    {index===0 && ingredient !== ''? <div>
+                            <button onClick={() => this.handleUpdate(ingredient)}>Save to database</button>
+                            <img src={remove} onClick={() => this.handleRemove(index)} alt=''/>
+                        </div>  : index===0 ?null :
+                        ingredient === '' ? <img src={remove} onClick={() => this.handleRemove(index)} alt=''/> :
+                        <div>
+                            <button onClick={() => this.handleUpdate(ingredient)}>Save to database</button>
+                            <img src={remove} onClick={() => this.handleRemove(index)} alt=''/>
+                        </div>
+                    }
+                </div>
+            )
+        })
+
+        console.log("add", this.state.addIngredients)
+        return (
             <div>
-            <Nav />
-            <h3>
-                enter the ingredients you have in your fridge and cupboards so you can easily search for recipes in the future
+                <Nav />
+                <h3>
+                    enter the ingredients you have in your fridge and cupboards so you can easily search for recipes in the future
             </h3>
-            {newIngredient}
-            <section className="prof-buttons">
-            {this.state.myIngredients[lastIndex]===''?
-            <img src={remove} className="prof-remove-input" 
-            onClick={()=>this.handleDelete(lastIndex)}
-            />:
-            <img src={remove} className="prof-remove-input"/>
-            }
-            <img src={add} className='prof-add-input' onClick={(e) => this.addInput(e)}/>
-            <button onClick={this.handleUpdate}>Update Saved Ingredients</button>
-                {queryIngredients ?
-            
-            <Link to={`/results/${queryIngredients}`}><img src={search} className='prof-img'/></Link> :
+                <br />
+                
+                {existingIngredients.length?<div><h2>saved ingredients</h2>{existingIngredients}
+                <h4>search recipes</h4>
+                <Link to={`/results/${this.state.myIngredients}`}><img src={search} className='prof-img' alt=''/></Link></div>: null}
+                
+                <br />
+                {newIngredient}
+                <img src={add} className='prof-add-input' onClick={(e) => this.addInput(e)} alt=''/>
 
-            <img src={search} onClick={this.handleWarning} className='prof-img'/>
-               
-            }
-            </section>
             </div>
         )
     }
