@@ -62,29 +62,32 @@ class NewIngredients extends Component {
         }
         console.log(searchIngredients, typeof searchIngredients)
         console.log('searchIngredients',searchIngredients)
-        
-        return (
-            <div className="ni-bg">
-                <Nav />
-                <img className="header-curve" src={header} alt="background"/>
 
+        return (
+            <div className="ni-bg header-curve">
+                <Nav />
                 <h3 className="ni-title">enter the ingredients you have in your fridge and cupboards so we can find the perfect recipe for you!</h3>
+
+                <div className="ni-inputs-box" >
+                <div className="inputs">
                     {newInput}
-                
+                    </div>
+                    </div>
                 <section className="ni-buttons">
                 <img src={remove} className='ni-remove-input' onClick={() => this.handleRemove(finalIndex)} />
                 <img src={add} className='ni-add-input' onClick={(e) => this.addIngredient(e)}/>
-                <img src={clear} className='ni-clear-input' alt="clear inputs"/>
+                <img src={clear} className='ni-clear-input' alt="clear inputs" onClick={this.handleClear} />
                 {searchIngredients ?
             
-            <Link to={`/results/${searchIngredients}`}><img src={search} className='ni-img'/></Link> :
+                    <Link to={`/results/${searchIngredients}`}><img src={search} className='ni-search'/></Link> :
 
-            <img src={search} onClick={this.handleAlert} className='ni-img'/>
-               
-            }
+                    <img src={search} onClick={this.handleAlert} className='ni-search'/>
+                    
+                    }
             
             </section>
             </div>
+
             )
     }
 }
