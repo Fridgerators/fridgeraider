@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Nav from '../navbar/navbar';
 
 class NewRecipes extends Component {
     constructor() {
@@ -49,6 +50,7 @@ class NewRecipes extends Component {
         })
         return (
             <div>
+                <Nav/>
                 NewRecipes
                 <button className='nr-next' onClick={this.handleNext}>Next</button>
                 {recipeRes}

@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import Media from 'react-media';
+import {Link} from 'react-router-dom';
+import swal from 'sweetalert2';
 import logo from '../images/logo-no-text.svg';
 import profile from '../images/profile-icon.svg';
 import book from '../images/book.png';
 import login from '../images/sign-in.png';
 
 class Navbar extends Component {
+        
+
     render() {
         return (
             <div className='nb-page'>

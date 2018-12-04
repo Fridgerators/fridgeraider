@@ -41,28 +41,38 @@ class Profile extends Component {
         this.setState({ addIngredients: this.state.addIngredients })
     }
 
-    //update database with new ingredient
-    handleUpdate(ingredient) {
-        axios.post('/api/ingredients/addItem', { ingredient }).then(res => {
-            this.setState({ myIngredients: res.data })
-        })
+    //add new ingredient myIngredients on state
+    handleUpdate(ingredient,index) {
+        this.setState({myIngredients: [...this.state.myIngredients,ingredient]})
+        this.state.addIngredients.splice(index,1,'')
+        this.setState({addIngredients: this.state.addIngredients})        
     }
 
-    //remove individual ingredients from database
-    handleDelete(index) {
-        axios.delete(`/api/ingredients/deleteItem/${index}`).then(res => this.setState({ myIngredients: res.data }))
+    //remove from myIngredients on state
+    handleDelete(ingredient) {
+        let deleteIngredient = this.state.myIngredients
+        deleteIngredient.splice(deleteIngredient.indexOf(ingredient),1)
+        this.setState({myIngredients: deleteIngredient})
     }
 
     handleWarning() {
         alert("please enter an ingredient")
     }
 
+    handleUpdateIngredients(){
+        let {myIngredients} = this.state
+        axios.put('/api/ingredients/editItem',{myIngredients}).then(res=>{
+            this.setState({myIngredients: res.data})
+        })
+    }
+
     render() {
+        console.log('add',this.state.addIngredients)
         const existingIngredients = this.state.myIngredients.map((ingredient, index) => {
             return (
                 <div key={index}>
                     <input className='prof-input' value={ingredient} readOnly />
-                    <button className='prof-remove-ingredient' onClick={(index) => this.handleDelete(index)}>Remove from DB</button>
+                    <button className='prof-remove-ingredient' onClick={() => this.handleDelete(ingredient)}>Remove</button>
                 </div>
             )
         })
@@ -71,15 +81,15 @@ class Profile extends Component {
             return (
                 <div key={index}>
 
-                    <input className='prof-input' placeholder="add a new ingredient" value={ingredient} onChange={(e) => this.handleInput(e, index)} />
+                    <input className='prof-input' placeholder="add a new ingredient" value={ingredient} onChange={(e) => this.handleInput(e,index)} />
 
                     {index===0 && ingredient !== ''? <div>
-                            <button onClick={() => this.handleUpdate(ingredient)}>Save to database</button>
+                            <button onClick={() => this.handleUpdate(ingredient)}>Add</button>
                             <img src={remove} onClick={() => this.handleRemove(index)} alt=''/>
                         </div>  : index===0 ?null :
                         ingredient === '' ? <img src={remove} onClick={() => this.handleRemove(index)} alt=''/> :
                         <div>
-                            <button onClick={() => this.handleUpdate(ingredient)}>Save to database</button>
+                            <button onClick={() => this.handleUpdate(ingredient)}>Add</button>
                             <img src={remove} onClick={() => this.handleRemove(index)} alt=''/>
                         </div>
                     }
@@ -87,7 +97,6 @@ class Profile extends Component {
             )
         })
 
-        console.log("add", this.state.addIngredients)
         return (
             <div>
                 <Nav />
@@ -98,6 +107,7 @@ class Profile extends Component {
                 
                 {existingIngredients.length?<div><h2>saved ingredients</h2>{existingIngredients}
                 <h4>search recipes</h4>
+                <button onClick={this.handleUpdateIngredients}>update database</button>
                 <Link to={`/results/${this.state.myIngredients}`}><img src={search} className='prof-img' alt=''/></Link></div>: null}
                 
                 <br />
