@@ -5,6 +5,8 @@ import Nav from '../navbar/navbar';
 import add from '../images/add.svg';
 import remove from '../images/remove.svg';
 import search from '../images/search.svg';
+import deleteItem from '../images/delete.svg';
+import sweetie from 'sweetalert2';
 
 class Profile extends Component {
     constructor() {
@@ -43,7 +45,10 @@ class Profile extends Component {
         axios.put('/api/ingredients/manageList',{saveIngredients}).then(res=>{
             this.setState({myIngredients: res.data})
         })   
-    }
+    
+    this.setState({myIngredients: myIngredients})
+    this.setState({addIngredients: ['']})
+}
 
     //remove from myIngredients on state
     handleDelete(ingredient) {
@@ -63,12 +68,13 @@ class Profile extends Component {
             )
         })
 
+        console.log("add", this.state.addIngredients)
         return (
-            <div>
+            <div className="profile-bg header-curve">
                 <Nav />
-                <h3>
+                <h3 className="title">
                     enter the ingredients you have in your fridge and cupboards so you can easily search for recipes in the future
-            </h3>
+                </h3>
                 <br />
                 
                 {existingIngredients.length?<div><h2>saved ingredients</h2>{existingIngredients}

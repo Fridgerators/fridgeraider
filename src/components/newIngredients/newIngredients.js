@@ -7,6 +7,7 @@ import add from '../images/add.svg';
 import remove from '../images/remove.svg';
 import search from '../images/search.svg';
 import clear from '../images/clear.svg';
+import sweetie from 'sweetalert2';
 
 class NewIngredients extends Component {
     constructor() {
@@ -35,7 +36,7 @@ class NewIngredients extends Component {
     }
 
     handleAlert(){
-        swal("please enter an ingredient")
+        sweetie("please enter an ingredient")
     }
  
 
@@ -65,13 +66,13 @@ class NewIngredients extends Component {
         return (
             <div className="ni-bg header-curve">
                 <Nav />
-                <h3 className="ni-title">enter the ingredients you have in your fridge and cupboards so we can find the perfect recipe for you!</h3>
+                <h3 className="title">enter the ingredients you have in your fridge and cupboards so we can find the perfect recipe for you!</h3>
 
                 <div className="ni-inputs-box" >
-                <div className="inputs">
+                    <div className="inputs">
                     {newInput}
                     </div>
-                    </div>
+                </div>
                 <section className="ni-buttons">
                 <img src={remove} className='ni-remove-input' onClick={() => this.handleRemove(finalIndex)} alt=''/>
                 <img src={add} className='ni-add-input' onClick={(e) => this.addIngredient(e)} alt=''/>
