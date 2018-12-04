@@ -3,26 +3,6 @@
   background-color: $pale-bg;
 }
 
-.ni-title {
-  color: $purple-1;
-  @include width-height(240px, 85px);
-  margin: auto;
-  text-align: center;
-  line-height: 1.15rem;
-
-  @include tablet {
-    width: 60vw;
-    font-size: 1.8rem;
-    line-height: 2rem;
-    margin-top: 2vh;
-
-    }
-
-  @include height {
-    width: 80vw;
-  }
-}
-
 .ni-inputs-box {
   display: flex;
   margin-top: 2vh;

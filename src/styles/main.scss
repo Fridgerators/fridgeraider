@@ -1,12 +1,12 @@
-@import "reset";
-@import "mixins";
-@import "variables";
-@import "globals";
+@import "reset.scss";
+@import "mixins.scss";
+@import "variables.scss";
+@import "globals.scss";
 
-@import "./components/landing";
-@import "./components/itemInput";
-@import "./components/results";
-@import "./components/profile";
-@import "./components/cookbook";
-@import "./components/navbar";
-@import "./components/login";
+@import "./components/landing.scss";
+@import "./components/itemInput.scss";
+@import "./components/results.scss";
+@import "./components/profile.scss";
+@import "./components/cookbook.scss";
+@import "./components/navbar.scss";
+@import "./components/login.scss";

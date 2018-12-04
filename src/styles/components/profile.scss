@@ -1,0 +1,67 @@
+.profile-bg {
+  @include width-height(100vw, 100vh);
+  background-color: $pale-bg;
+}
+
+.prof-input-box {
+    // display: flex;
+    margin-top: 2vh;
+    margin: auto;
+    margin-right: 34px;
+
+    @include tablet {
+      margin-top: 10px;
+    }
+    @include height {
+      margin-top: 6vh;
+    }
+  }
+
+  .prof-img {
+    margin-left: 15px;
+  }
+
+  .saved-items {
+    @include flexSetUp(center, center, column);
+  }
+  .add-box {
+    @include flexSetUp(center, center, column);
+    .prof-input {
+      margin-bottom: 0;
+      margin-right: 4px;
+    }
+  }
+  .prof-add-input {
+    margin-top: 5px;
+  }
+
+  .prof-remove-ingredient {
+    margin-bottom: 6px;
+    margin-left: 4px;
+  }
+
+  .prof-input {
+    @include width-height(236px, 32px);
+    box-sizing: border-box;
+    border-radius: 15px;
+    margin-bottom: 5px;
+  
+    @include tablet {
+      @include width-height(620px, 40px);
+      border-radius: 20px;
+      margin-bottom: 5.5px;
+  
+    }
+    @include height {
+      margin-bottom: 5.5px;
+    }
+    @include desktop {
+      margin-bottom: 5.5px;
+    }
+  }
+
+  .prof-input:nth-child(1) {
+    border: 3px solid darken($purple-1, 10%);
+  }
+
+  

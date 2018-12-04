@@ -1,6 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Reem+Kufi');
-@import 'variables';
-@import 'mixins';
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.title {
+  color: $purple-1;
+  @include width-height(240px, 85px);
+  margin: auto;
+  text-align: center;
+  line-height: 1.15rem;
+
+  @include tablet {
+    width: 60vw;
+    font-size: 1.8rem;
+    line-height: 2rem;
+    margin-top: 2vh;
+
+    }
+
+  @include height {
+    width: 80vw;
+  }
+}
 
 body {
   font-family: $main-font;  
