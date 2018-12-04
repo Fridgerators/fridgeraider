@@ -42,10 +42,13 @@ class Profile extends Component {
     }
 
     //add new ingredient myIngredients on state
-    handleUpdate(ingredient,index) {
-        this.setState({myIngredients: [...this.state.myIngredients,ingredient]})
-        this.state.addIngredients.splice(index,1,'')
-        this.setState({addIngredients: this.state.addIngredients})        
+    handleUpdate() {
+        let {addIngredients,myIngredients} = this.state
+        for(let i = 0; i<addIngredients.length; i++){
+            myIngredients.push(addIngredients[i])
+        }
+        this.setState({myIngredients: myIngredients})
+        this.setState({addIngredients: ['']})        
     }
 
     //remove from myIngredients on state
@@ -83,15 +86,10 @@ class Profile extends Component {
 
                     <input className='prof-input' placeholder="add a new ingredient" value={ingredient} onChange={(e) => this.handleInput(e,index)} />
 
-                    {index===0 && ingredient !== ''? <div>
-                            <button onClick={() => this.handleUpdate(ingredient)}>Add</button>
+                    {index===0 && ingredient === ''? null : <div>
+                            
                             <img src={remove} onClick={() => this.handleRemove(index)} alt=''/>
-                        </div>  : index===0 ?null :
-                        ingredient === '' ? <img src={remove} onClick={() => this.handleRemove(index)} alt=''/> :
-                        <div>
-                            <button onClick={() => this.handleUpdate(ingredient)}>Add</button>
-                            <img src={remove} onClick={() => this.handleRemove(index)} alt=''/>
-                        </div>
+                        </div>  
                     }
                 </div>
             )
@@ -113,6 +111,7 @@ class Profile extends Component {
                 <br />
                 {newIngredient}
                 <img src={add} className='prof-add-input' onClick={(e) => this.addInput(e)} alt=''/>
+                <button onClick={this.handleUpdate.bind(this)}>Add</button>
 
             </div>
         )
