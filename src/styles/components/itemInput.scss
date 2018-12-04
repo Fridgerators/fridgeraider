@@ -3,26 +3,6 @@
   background-color: $pale-bg;
 }
 
-.ni-title {
-  color: $purple-1;
-  @include width-height(240px, 85px);
-  margin: auto;
-  text-align: center;
-  line-height: 1.15rem;
-
-  @include tablet {
-    width: 60vw;
-    font-size: 1.8rem;
-    line-height: 2rem;
-    margin-top: 2vh;
-
-    }
-
-  @include height {
-    width: 80vw;
-  }
-}
-
 .ni-inputs-box {
   display: flex;
   margin-top: 2vh;
@@ -44,7 +24,6 @@
   border-radius: 15px;
   margin-bottom: 4px;
 
-
   @include tablet {
     @include width-height(620px, 40px);
     border-radius: 20px;
@@ -57,8 +36,17 @@
   @include desktop {
     margin-bottom: 5.5px;
   }
-
 }
+.ni-input:nth-child(1) {
+  border: 3px solid darken($purple-1, 10%);
+}
+// .ni-input:nth-child(even) {
+//   border: 3px solid $purple-4;
+// }
+// .ni-input:nth-child(odd) {
+//   border: 3px solid $purple-3;
+// }
+
 .ni-buttons {
   width: 78vw;
   margin: auto;
@@ -72,16 +60,6 @@
 
 }
 }
-  //   .ni-input:nth-child(1) {
-  //   border: 3px solid $purple-2;
-  // }
-  .ni-input:nth-child(even) {
-    border: 3px solid $purple-4;
-  }
-  .ni-input:nth-child(odd) {
-    border: 3px solid $purple-3;
-  }
-
   .ni-add-input {
     margin-left: 5px;
 

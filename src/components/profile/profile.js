@@ -5,6 +5,8 @@ import Nav from '../navbar/navbar';
 import add from '../images/add.svg';
 import remove from '../images/remove.svg';
 import search from '../images/search.svg';
+import deleteItem from '../images/delete.svg';
+import sweetie from 'sweetalert2';
 
 class Profile extends Component {
     constructor() {
@@ -42,11 +44,15 @@ class Profile extends Component {
     }
 
     //add new ingredient myIngredients on state
-    handleUpdate(ingredient,index) {
-        this.setState({myIngredients: [...this.state.myIngredients,ingredient]})
-        this.state.addIngredients.splice(index,1,'')
-        this.setState({addIngredients: this.state.addIngredients})        
+   handleUpdate() {
+    let {addIngredients,myIngredients} = this.state
+    for(let i = 0; i<addIngredients.length; i++){
+        if(addIngredients[i]){
+        myIngredients.push(addIngredients[i])}
     }
+    this.setState({myIngredients: myIngredients})
+    this.setState({addIngredients: ['']})
+}
 
     //remove from myIngredients on state
     handleDelete(ingredient) {
@@ -79,17 +85,24 @@ class Profile extends Component {
 
         const newIngredient = this.state.addIngredients.map((ingredient, index) => {
             return (
-                <div key={index}>
+                <div key={index} style={{display: "flex", alignItems: "center", alignContent: "center"}}>
+                    <div className='prof-input-box'>
+                    <input className='prof-input' placeholder="add a new ingredient" value={ingredient} onChange={(e) => this.handleInput(e, index)} />
+                </div>
 
-                    <input className='prof-input' placeholder="add a new ingredient" value={ingredient} onChange={(e) => this.handleInput(e,index)} />
-
-                    {index===0 && ingredient !== ''? <div>
-                            <button onClick={() => this.handleUpdate(ingredient)}>Add</button>
+                    {index===0 && ingredient !== '' ? 
+                        // <div className='add-box'>
+                        <div style={{display: "flex", alignItems: "center", alignContent: "center"}}>
+                            <button onClick={() => this.handleUpdate(ingredient)}>Save to database</button>
                             <img src={remove} onClick={() => this.handleRemove(index)} alt=''/>
-                        </div>  : index===0 ?null :
-                        ingredient === '' ? <img src={remove} onClick={() => this.handleRemove(index)} alt=''/> :
+                        </div>  
+                            : index===0 ?null :
+
+                            ingredient === '' ? <img style={{marginTop: "4px"}} src={remove} onClick={() => this.handleRemove(index)} alt=''/> 
+
+                            :
                         <div>
-                            <button onClick={() => this.handleUpdate(ingredient)}>Add</button>
+                            <button onClick={() => this.handleUpdate(ingredient)}>Save to database</button>
                             <img src={remove} onClick={() => this.handleRemove(index)} alt=''/>
                         </div>
                     }
@@ -97,22 +110,34 @@ class Profile extends Component {
             )
         })
 
+        console.log("add", this.state.addIngredients)
         return (
-            <div>
+            <div className="profile-bg header-curve">
                 <Nav />
-                <h3>
+                <h3 className="title">
                     enter the ingredients you have in your fridge and cupboards so you can easily search for recipes in the future
-            </h3>
+                </h3>
                 <br />
-                
-                {existingIngredients.length?<div><h2>saved ingredients</h2>{existingIngredients}
-                <h4>search recipes</h4>
-                <button onClick={this.handleUpdateIngredients}>update database</button>
-                <Link to={`/results/${this.state.myIngredients}`}><img src={search} className='prof-img' alt=''/></Link></div>: null}
+                <div>
+                    {existingIngredients.length?<div className='saved-items'>
+                    
+                        {existingIngredients}
+                    
+                    <h4>search recipes</h4> 
+                    <button onClick={this.handleUpdateIngredients}>update database</button>
+                    <Link to={`/results/${this.state.myIngredients}`}><img src={search} className='prof-img' alt=''/></Link>
+                </div>
+                    : null}
+                </div>
                 
                 <br />
-                {newIngredient}
-                <img src={add} className='prof-add-input' onClick={(e) => this.addInput(e)} alt=''/>
+                <div className='add-box'>
+                    <div>
+                        <img src={add} className='prof-add-input' onClick={(e) => this.addInput(e)} alt=''/>
+                        <Link to={`/results/${this.state.myIngredients}`}><img src={search} className='prof-img' alt=''/></Link> 
+                    </div>
+                    {newIngredient}
+                </div>
 
             </div>
         )
