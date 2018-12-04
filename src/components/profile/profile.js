@@ -43,28 +43,42 @@ class Profile extends Component {
         this.setState({ addIngredients: this.state.addIngredients })
     }
 
-    //update database with new ingredient
-    handleUpdate(ingredient) {
-        axios.post('/api/ingredients/addItem', { ingredient }).then(res => {
-            this.setState({ myIngredients: res.data })
-        })
+    //add new ingredient myIngredients on state
+   handleUpdate() {
+    let {addIngredients,myIngredients} = this.state
+    for(let i = 0; i<addIngredients.length; i++){
+        if(addIngredients[i]){
+        myIngredients.push(addIngredients[i])}
     }
+    this.setState({myIngredients: myIngredients})
+    this.setState({addIngredients: ['']})
+}
 
-    //remove individual ingredients from database
-    handleDelete(index) {
-        axios.delete(`/api/ingredients/deleteItem/${index}`).then(res => this.setState({ myIngredients: res.data }))
+    //remove from myIngredients on state
+    handleDelete(ingredient) {
+        let deleteIngredient = this.state.myIngredients
+        deleteIngredient.splice(deleteIngredient.indexOf(ingredient),1)
+        this.setState({myIngredients: deleteIngredient})
     }
 
     handleWarning() {
-        sweetie("please enter an ingredient")
+        alert("please enter an ingredient")
+    }
+
+    handleUpdateIngredients(){
+        let {myIngredients} = this.state
+        axios.put('/api/ingredients/editItem',{myIngredients}).then(res=>{
+            this.setState({myIngredients: res.data})
+        })
     }
 
     render() {
+        console.log('add',this.state.addIngredients)
         const existingIngredients = this.state.myIngredients.map((ingredient, index) => {
             return (
-                <div key={index} style={{display: "flex", alignItems: "center", alignContent: "center"}}>
+                <div key={index}>
                     <input className='prof-input' value={ingredient} readOnly />
-                    <img src={deleteItem} className='prof-remove-ingredient' onClick={(index) => this.handleDelete(index)}></img>
+                    <button className='prof-remove-ingredient' onClick={() => this.handleDelete(ingredient)}>Remove</button>
                 </div>
             )
         })
@@ -109,8 +123,9 @@ class Profile extends Component {
                     
                         {existingIngredients}
                     
-                    {/* <h4>search recipes</h4> */}
-                    {/* <Link to={`/results/${this.state.myIngredients}`}><img src={search} className='prof-img' alt=''/></Link> */}
+                    <h4>search recipes</h4> 
+                    <button onClick={this.handleUpdateIngredients}>update database</button>
+                    <Link to={`/results/${this.state.myIngredients}`}><img src={search} className='prof-img' alt=''/></Link>
                 </div>
                     : null}
                 </div>
