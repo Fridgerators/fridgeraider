@@ -32,10 +32,10 @@ app.use(session({
 }))
 
 //ingredient endpoints
-app.get('/api/ingredients/getItem', ingredient.getItem);
-app.post('/api/ingredients/addItem', ingredient.addItem);
-app.put('/api/ingredients/editItem', ingredient.editItem);
-app.delete('/api/ingredients/deleteItem', ingredient.deleteItem);
+app.get('/api/ingredients/getList', ingredient.getItem);
+// app.post('/api/ingredients/addItem', ingredient.addItem);
+app.put('/api/ingredients/manageList', ingredient.manageList);
+// app.delete('/api/ingredients/deleteItem', ingredient.deleteItem);
 
 //api/saved recipe endpoints
 app.get('/api/recipes/getResults/:searchIngredients/:rIndex', recipe.getResults);
