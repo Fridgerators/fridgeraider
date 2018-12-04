@@ -50,7 +50,7 @@ class Profile extends Component {
 
     //remove individual ingredients from database
     handleDelete(index) {
-        axios.delete(`/api/ingredients/deleteItem/${index}`).then(res => this.setState({ myIngredients: res.data }))
+        this.setState({myIngredients: this.state.myIngredients.splice(index,1)})
     }
 
     handleWarning() {
@@ -62,7 +62,7 @@ class Profile extends Component {
             return (
                 <div key={index}>
                     <input className='prof-input' value={ingredient} readOnly />
-                    <button className='prof-remove-ingredient' onClick={(index) => this.handleDelete(index)}>Remove from DB</button>
+                    <button className='prof-remove-ingredient' onClick={() => this.handleDelete(index)}>Remove</button>
                 </div>
             )
         })
