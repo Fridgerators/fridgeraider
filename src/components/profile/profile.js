@@ -71,19 +71,20 @@ class Profile extends Component {
 
         const newIngredient = this.state.addIngredients.map((ingredient, index) => {
             return (
-                <div key={index}>
+                <div key={index} style={{display: "flex", alignItems: "center", alignContent: "center"}}>
                     <div className='prof-input-box'>
                     <input className='prof-input' placeholder="add a new ingredient" value={ingredient} onChange={(e) => this.handleInput(e, index)} />
                 </div>
 
                     {index===0 && ingredient !== '' ? 
-                        <div className='add-box'>
+                        // <div className='add-box'>
+                        <div style={{display: "flex", alignItems: "center", alignContent: "center"}}>
                             <button onClick={() => this.handleUpdate(ingredient)}>Save to database</button>
                             <img src={remove} onClick={() => this.handleRemove(index)} alt=''/>
                         </div>  
                             : index===0 ?null :
 
-                            ingredient === '' ? <img style={{marginTop: "10px"}} src={remove} onClick={() => this.handleRemove(index)} alt=''/> 
+                            ingredient === '' ? <img style={{marginTop: "4px"}} src={remove} onClick={() => this.handleRemove(index)} alt=''/> 
 
                             :
                         <div>
@@ -104,7 +105,7 @@ class Profile extends Component {
                 </h3>
                 <br />
                 <div>
-                    {existingIngredients.length?<div className='saved-items'><h2>saved ingredients</h2>
+                    {existingIngredients.length?<div className='saved-items'>
                     
                         {existingIngredients}
                     
@@ -119,8 +120,8 @@ class Profile extends Component {
                     <div>
                         <img src={add} className='prof-add-input' onClick={(e) => this.addInput(e)} alt=''/>
                         <Link to={`/results/${this.state.myIngredients}`}><img src={search} className='prof-img' alt=''/></Link> 
-                    {newIngredient}
                     </div>
+                    {newIngredient}
                 </div>
 
             </div>
