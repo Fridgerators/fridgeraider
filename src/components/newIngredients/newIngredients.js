@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert2';
 import header from '../../components/images/header-curve.svg';
 import Nav from '../navbar/navbar';
 import add from '../images/add.svg';
@@ -14,8 +15,6 @@ class NewIngredients extends Component {
         this.state = {
             ingredients: ['', '', '', '', '', '']
         }
-        this.handleClear=this.handleClear.bind(this);
-        this.handleAlert=this.handleAlert.bind(this);
     }
     addIngredient() {
         this.setState({ ingredients: [...this.state.ingredients, ''] })
@@ -36,7 +35,7 @@ class NewIngredients extends Component {
     }
 
     handleAlert(){
-        alert("please enter an ingredient")
+        swal("please enter an ingredient")
     }
  
 
@@ -76,12 +75,12 @@ class NewIngredients extends Component {
                 <section className="ni-buttons">
                 <img src={remove} className='ni-remove-input' onClick={() => this.handleRemove(finalIndex)} alt=''/>
                 <img src={add} className='ni-add-input' onClick={(e) => this.addIngredient(e)} alt=''/>
-                <img src={clear} className='ni-clear-input' alt="clear inputs" onClick={this.handleClear}/>
+                <img src={clear} className='ni-clear-input' alt="clear inputs" onClick={this.handleClear.bind(this)}/>
                 {searchIngredients ?
             
             <Link to={`/results/${searchIngredients}`}><img src={search} className='ni-img' alt=''/></Link> :
 
-            <img src={search} onClick={this.handleAlert} className='ni-img' alt=''/>
+            <img src={search} onClick={this.handleAlert.bind(this)} className='ni-img' alt=''/>
                
             }
             
