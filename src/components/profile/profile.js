@@ -70,8 +70,9 @@ class Profile extends Component {
         const newIngredient = this.state.addIngredients.map((ingredient, index) => {
             return (
                 <div key={index}>
-
+                    <div className='prof-input-box'>
                     <input className='prof-input' placeholder="add a new ingredient" value={ingredient} onChange={(e) => this.handleInput(e, index)} />
+                    </div>
 
                     {index===0 && ingredient !== ''? <div>
                             <button onClick={() => this.handleUpdate(ingredient)}>Save to database</button>
@@ -89,14 +90,14 @@ class Profile extends Component {
 
         console.log("add", this.state.addIngredients)
         return (
-            <div>
+            <div className="profile-bg header-curve">
                 <Nav />
                 <h3>
                     enter the ingredients you have in your fridge and cupboards so you can easily search for recipes in the future
             </h3>
                 <br />
                 
-                {existingIngredients.length?<div><h2>saved ingredients</h2>{existingIngredients}
+                {existingIngredients.length?<div className='saved-items'><h2>saved ingredients</h2>{existingIngredients}
                 <h4>search recipes</h4>
                 <Link to={`/results/${this.state.myIngredients}`}><img src={search} className='prof-img' alt=''/></Link></div>: null}
                 
