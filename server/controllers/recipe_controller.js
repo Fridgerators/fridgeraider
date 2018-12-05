@@ -4,10 +4,11 @@ module.exports = {
     //get search results from edamam api
     getResults: async (req, res) => {
         const { searchIngredients, rIndex} = req.params;
+        // let searchIngredients = 'Chicken'
         const { REACT_APP_AppID, REACT_APP_AppKey } = process.env;
-        console.log(rIndex)
+        // console.log(rIndex)
         // const dbInstance = req.app.get('db')
-        axios.get(`https://api.edamam.com/search?q=${searchIngredients}&from=${rIndex}&app_id=${REACT_APP_AppID}&app_key=${REACT_APP_AppKey}`)
+        axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=5&ranking=1&ingredients=${searchIngredients}`, {headers: {"X-RapidAPI-Key": REACT_APP_AppKey}} )
         .then((response) => {
         res.status(200).send(response.data)
         })
