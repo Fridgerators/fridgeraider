@@ -9,8 +9,11 @@ class NewRecipes extends Component {
         this.state = {
             recipes: [],
             params: '',
-            rIndex: 0
+            rIndex: 0,
+            tIndex: 0
         }
+
+        this.expandRecipe = this.expandRecipe.bind(this);
         this.handleNext = this.handleNext.bind(this)
         this.handlePrevios=this.handlePrevios.bind(this)
     }
@@ -40,17 +43,18 @@ class NewRecipes extends Component {
                 this.setState({ recipes: res.data.hits }))
     }
     
-    expandRecipe = () => {
+    
+    
+    expandRecipe(index){
+        this.setState({tIndex: index})
         document.querySelector('.nr-tab-content').classList.toggle('expand');
         document.querySelector('.nr-tab').classList.toggle('radius');
         document.querySelector('.food').classList.toggle('radius2');
         document.querySelector('.nr-tab>img').classList.toggle('spin');
-    }
+        }
 
     render() {
-
         let recipeRes = this.state.recipes.map((element, index) => {
-            console.log(element, index)
             return (
                 <div key={index} className='nr-outer-box'>
                 <div className="initial-view">
@@ -58,15 +62,14 @@ class NewRecipes extends Component {
                     <div className='nr-tab'>
                     <h4>{element.recipe.label}</h4>
                         <label>see ingredients and instructions</label>
-                        <img src={expand} onClick={this.expandRecipe} alt="see recipe"/>
+                        <img src={expand} onClick={()=>this.expandRecipe(index)} alt="see recipe"/>
                     </div>
-
                 </div>
-                        {/* <input type="checkbox" name='tabs' /> */}
+                {index===this.state.tIndex?
                         <div className='nr-tab-content'>
                             <p>{element.recipe.ingredientLines}</p>
-                            {/* <h5>for full instructions please visit {element.recipe.url}</h5> */}
                         </div>
+                        :null} 
                 </div>
             )
         })
