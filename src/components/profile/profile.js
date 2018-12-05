@@ -88,6 +88,3 @@ class Profile extends Component {
 }
 
 export default Profile;
-
-
-//allow edits with existingIngredients inputs
