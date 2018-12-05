@@ -44,7 +44,7 @@ class NewRecipes extends Component {
             console.log(element, index)
             return (
                 <div key={index} className='nr-outer-box'>
-                <div className="initial-view">
+                <div className='initial-view'>
                     <img className='food' src={element.recipe.image} alt={element.recipe.image} />
                     <div className='nr-tab'>
                     <h4>{element.recipe.label}</h4>
@@ -53,7 +53,7 @@ class NewRecipes extends Component {
                     </div>
 
                 </div>
-                        {/* <input type="checkbox" name='tabs' /> */}
+        
                         <div className='nr-tab-content'>
                             <p>{element.recipe.ingredientLines}</p>
                             {/* <h5>for full instructions please visit {element.recipe.url}</h5> */}

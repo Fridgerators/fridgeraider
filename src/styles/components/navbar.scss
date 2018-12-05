@@ -7,7 +7,8 @@
 }
 .nb-logo-mobile {
   @include flexSetUp(flex-start, center, row);
-  padding: 10px;
+  // padding: 10px;
+  padding: 10px 0px 0 10px;
 }
 
 .nb-logo {

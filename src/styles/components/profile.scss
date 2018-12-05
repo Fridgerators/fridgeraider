@@ -3,6 +3,12 @@
   background-color: $pale-bg;
 }
 
+.prof-btns {
+  @include flexSetUp(space-between, center);
+  width: 270px;
+  margin: auto
+}
+
 .prof-input-box {
     display: flex;
     margin-top: 2vh;
@@ -15,11 +21,6 @@
       margin-top: 6vh;
     }
   }
-
-  .prof-img {
-    margin-left: 15px;
-  }
-
   .saved-items {
     @include flexSetUp(center, center, column);
   }

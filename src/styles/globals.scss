@@ -4,8 +4,9 @@
 
 .title {
   color: $purple-1;
-  @include width-height(240px, 85px);
+  @include width-height(240px, auto);
   margin: auto;
+  margin-bottom: 15px;
   text-align: center;
   line-height: 1.15rem;
 

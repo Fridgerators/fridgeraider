@@ -4,7 +4,7 @@
 }
 .nr-next {
   float: right;
-  margin: 0 15px 5px 0px;
+  margin: 0 15px 8px 0px;
   color: $purple-1;
   font-family: $main-font;
   font-size: 14px;
@@ -67,7 +67,7 @@
 
 .spin {
   transform: rotate(180deg);
-  transition: all .35s ease-in-out;
+  // transition: all .35s ease-in-out;
 }
 .nr-tab-content {
   width: 88vw;
