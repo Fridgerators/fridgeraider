@@ -8,8 +8,6 @@
 .nb-logo-mobile {
   @include flexSetUp(flex-start, center, row);
   padding: 10px;
-  // @include position();
-  z-index: 1;
 }
 
 .nb-logo {
@@ -28,6 +26,7 @@
   @include position(fixed);
   background-color: $purple-bg;
   bottom: 0px;
+  z-index: 1;
 }
 
 .nb-icon-login {
