@@ -8,9 +8,13 @@ import book from '../images/book.png';
 import login from '../images/sign-in.png';
 
 class Navbar extends Component {
-        
+        constructor(){
+            super()
+
+        }
 
     render() {
+
         return (
             <div className='nb-page'>
                 <Media query='(max-width: 400px)'>
