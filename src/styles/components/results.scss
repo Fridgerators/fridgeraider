@@ -1,0 +1,88 @@
+.nr-bg {
+  @include width-height(100vw, 100vh);
+  background-color: $pale-bg;
+}
+.nr-next {
+  float: right;
+  margin: 0 15px 5px 0px;
+  color: $purple-1;
+  font-family: $main-font;
+  font-size: 14px;
+}
+
+.nr-next-btn {
+  float: right;
+  margin: -40px 10px 50px 0px;
+  color: $text-color;
+  font-family: $main-font;
+  font-size: 14px;
+}
+
+.nr-outer-box {
+  @include width-height(88vw, auto);
+  box-shadow: 1px 1px 1px lighten($faded-bg, 10%);
+  @include flexSetUp(flex-end, center, column);
+  border-radius: 18px;
+  border: 2px solid $purple-4;
+  margin: auto;
+  margin-bottom: 35px;
+  margin-top: -20px;
+}
+.initial-view {
+  @include flexSetUp(flex-end, center, column);
+
+}
+
+.nr-tab {
+  background: $faded-bg;
+  border-radius: 0px 0px 15px 15px;
+  position: absolute;
+  width: 88vw;
+  padding-bottom: 10px;
+  transition: all .35s ease-in-out;
+
+  h4 {
+    padding-top: 5px;
+    color: #fff;
+  }
+  label {
+    color: #fff;
+    
+  }
+  img {
+    margin-left: 5px;
+    transition: all .35s ease-in-out;
+
+  }
+}
+
+.radius {
+  border-radius: 0px;
+  transition: all .35s ease-in-out;
+}
+.radius2 {
+  border-radius: 15px 15px 0px 0px !important;
+  transition: all .35s ease-in-out;
+}
+
+.spin {
+  transform: rotate(180deg);
+  transition: all .35s ease-in-out;
+}
+.nr-tab-content {
+  width: 88vw;
+  padding: 8px 0;
+  display: none;
+  transition: all .35s ease-in-out;
+}
+
+.expand {
+  display: flex;
+  transition: all .35s ease-in-out;
+  }
+
+.food {
+  width: 88vw;
+  border-radius: 15px;
+  border: 2px solid $purple-4;
+}
