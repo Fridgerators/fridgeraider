@@ -7,6 +7,7 @@ import remove from '../images/remove.svg';
 import search from '../images/search.svg';
 import deleteItem from '../images/delete.svg';
 import sweetie from 'sweetalert2';
+import save from '../images/save.svg';
 
 class Profile extends Component {
     constructor() {
@@ -88,6 +89,3 @@ class Profile extends Component {
 }
 
 export default Profile;
-
-
-//allow edits with existingIngredients inputs

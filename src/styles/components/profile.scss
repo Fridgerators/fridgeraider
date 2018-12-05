@@ -4,7 +4,7 @@
 }
 
 .prof-input-box {
-    // display: flex;
+    display: flex;
     margin-top: 2vh;
     // margin-right: 34px;
 
@@ -24,14 +24,18 @@
     @include flexSetUp(center, center, column);
   }
   .add-box {
-    @include flexSetUp(center, center, column);
+    @include flexSetUp(space-evenly, center, row);
     .prof-input {
       margin-bottom: 0;
       margin-right: 4px;
     }
+    img {
+      justify-content: flex-start;
+    }
   }
   .prof-add-input {
-    margin-top: 5px;
+    // margin-top: 5px;
+    // margin-bottom: 2px;
   }
 
   .prof-remove-ingredient {

@@ -6,7 +6,7 @@ import Nav from '../navbar/navbar';
 import add from '../images/add.svg';
 import remove from '../images/remove.svg';
 import search from '../images/search.svg';
-import clear from '../images/clear.svg';
+import clearInputs from '../images/clear-inputs.svg';
 import sweetie from 'sweetalert2';
 
 class NewIngredients extends Component {
@@ -76,7 +76,7 @@ class NewIngredients extends Component {
                 <section className="ni-buttons">
                 <img src={remove} className='ni-remove-input' onClick={() => this.handleRemove(finalIndex)} alt=''/>
                 <img src={add} className='ni-add-input' onClick={(e) => this.addIngredient(e)} alt=''/>
-                <img src={clear} className='ni-clear-input' alt="clear inputs" onClick={this.handleClear.bind(this)}/>
+                <img src={clearInputs} className='ni-clear-input' alt="clear inputs" onClick={this.handleClear.bind(this)}/>
                 {searchIngredients ?
             
             <Link to={`/results/${searchIngredients}`}><img src={search} className='ni-img' alt=''/></Link> :
