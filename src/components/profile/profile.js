@@ -79,7 +79,7 @@ class Profile extends Component {
                 <br />
             <div >
                 {existingIngredients.length?
-                <div className style={{display: "flex", alignItems: "center", alignContent: "center", flexDirection: "column"}}>
+                <div className='existing-items' >
                 {existingIngredients}
                 </div>: null}
     <div className='prof-btns'>

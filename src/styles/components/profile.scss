@@ -8,6 +8,9 @@
   width: 270px;
   margin: auto
 }
+.existing-items {
+  @include flexSetUp(center, center, column);
+}
 
 .prof-input-box {
     display: flex;
