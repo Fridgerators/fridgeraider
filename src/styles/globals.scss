@@ -2,6 +2,10 @@
 @import 'variables.scss';
 @import 'mixins.scss';
 
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 .title {
   color: $purple-1;
   @include width-height(240px, auto);
@@ -21,6 +25,8 @@
     width: 80vw;
   }
 }
+
+
 
 body {
   font-family: $main-font;  

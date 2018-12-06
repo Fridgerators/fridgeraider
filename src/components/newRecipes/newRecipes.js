@@ -4,6 +4,8 @@ import Nav from '../navbar/navbar';
 import expand from '../images/open-icon.svg';
 import Grid from '@material-ui/core/Grid';
 import Loading from '../Loading';
+import next from '../images/next.svg';
+import prev from '../images/previous.svg';
 
 class NewRecipes extends Component {
     constructor() {
@@ -17,7 +19,6 @@ class NewRecipes extends Component {
     }
 
     componentDidMount() {
-        console.log('PROPS: ', this.props)
         let { searchIngredients } = this.props.match.params
         axios.get(`/api/recipes/getResults/${searchIngredients}/0`)
             .then(res =>
@@ -27,12 +28,6 @@ class NewRecipes extends Component {
                 }))
     }
 
-    loadingAnimation = () => {
-        console.log('loading', this.state.loaded)
-        this.setState({
-            loaded: true
-        })
-    }
 
     async handleNext(){
         let { searchIngredients } = this.props.match.params
@@ -62,10 +57,9 @@ class NewRecipes extends Component {
                     <img className='food' src={element.recipe.image} alt={element.recipe.image} />
                     <div className='nr-tab'>
                     <h4>{element.recipe.label}</h4>
-                        <label>see ingredients and instructions</label>
+                        <label>ingredients and instructions</label>
                         <img src={expand} onClick={this.expandRecipe} alt="see recipe"/>
                     </div>
-
                 </div>
         
                         <div className='nr-tab-content'>
@@ -81,14 +75,18 @@ class NewRecipes extends Component {
             <div>
                 <Nav/>
 
-                <button className='nr-next' onClick={this.handleNext}>next</button>
-                <Grid container justify="space-evenly" align="flex-start" direction="row"
-                margin="40px">
-                    
-                    {recipeRes}
+                {/* <img src={next} className='nr-next' onClick={this.handleNext}>next</img> */}
+<Grid item>
 
-                </Grid>
-                <button className='nr-next-btn' onClick={this.handleNext}>next</button>
+            <Grid container spacing={8}justify="center" alignItems="baseline" direction="row" margin="80px">
+                    {recipeRes}
+           
+            </Grid>
+</Grid>
+<div className='nr-buttons'>
+
+                <img src={next} className='nr-next-btn' onClick={this.handleNext} />
+</div>
 
             </div>
                 
@@ -102,4 +100,4 @@ class NewRecipes extends Component {
 export default NewRecipes;
 
 //add next button to increment recipe results by 10;
-//source for accordian instructions https://codepen.io/lara-potjewyd/pen/gBJEaG
+//source for accordion instructions https://codepen.io/lara-potjewyd/pen/gBJEaG

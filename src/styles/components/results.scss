@@ -3,19 +3,9 @@
   background-color: $pale-bg;
 }
 
-.MuiGrid-container-1 {
-  width: 85% !important;
-  margin: auto !important;
-  margin-top: 20px !important;
-}
-.MuiGrid-container-98 {
-  width: 90% !important;
-  margin: auto !important;
-}
-
 .nr-next {
   float: right;
-  margin: 0 15px 8px 0px;
+  margin: 0 15px 20px 0px;
   color: $purple-1;
   font-family: $main-font;
   font-size: 14px;
@@ -31,23 +21,30 @@
     display: none;
   }
 }
+.nr-buttons {
 
+  @include tablet {
+    background-color: $purple-bg;
+    width: 100vw;
+    height: 10vh;
+    margin: 20px 0px 0px 0px;
+    @include flexSetUp(center, center, row);
+  }
+  @include height {
+    margin: 40px 0px 0px 0px;
+  }
+}
 .nr-next-btn {
-  float: right;
-  margin: -40px 10px 50px 0px;
-  color: $text-color;
-  font-family: $main-font;
-  font-size: 14px;
+  margin-bottom: 9vh;
   cursor: pointer;
 
   @include tablet {
-    float: unset;
-    margin: 10px 0px 0px 0px;
-    font-size: 24px;
-    background-color: $purple-bg;
-    color: $purple-1;
-    width: 100vw;
-    height: 8vh;
+    margin-bottom: 0px;
+    height: 5vh;
+  }
+  @include height {
+    margin-bottom: 0px;
+    height: 5vh;
   }
 }
 
@@ -65,7 +62,7 @@
   @include tablet {
     flex-wrap: wrap;
     width: 50vw;
-    margin-top: 10px;
+    margin: 15px 18px;
     
   }
       @include height {
@@ -73,6 +70,8 @@
       }
       @include desktop {
         width: 25.75vw;
+        margin: 15px 18px;
+
       }
 }
 .initial-view {
@@ -98,6 +97,8 @@
   }
   img {
     margin-left: 5px;
+    margin-top: 5px;
+
     transition: all .35s ease-in-out;
 
   }
@@ -105,24 +106,45 @@
     width: 50vw;
     h4 {
       padding-top: 8px;
-      font-size: 24px;
+      font-size: 20px;
     }
     label {
-      font-size: 24px;
+      font-size: 18px;
     }
     img {
       margin-top: 5px;
-      height: 28px;
+      height: 18px;
     }
   }
 
   @include height {
     width: 75.5vw;
+    h4 {
+      padding-top: 8px;
+      font-size: 28px;
+    }
+    label {
+      font-size: 22px;
+    }
+    img {
+      margin-top: 5px;
+      height: 22px;
+    }
   }
 
   @include desktop {
     width: 25.15vw;
     padding: 5px;
+    border-radius: 0px;
+    h4 {
+      padding: 8px;
+    }
+    label {
+      display: none;
+    }
+    img {
+      display: none;
+    }
   }
 }
 
@@ -145,9 +167,7 @@
   display: none;
   transition: all .35s ease-in-out;
 
-  @include height {
-    width: 70vw;
-  }
+  
   @include tablet {
     width: 45vw;
     p {
@@ -155,9 +175,16 @@
     }
   }
   @include desktop {
+    display: flex;
     width: 20vw;
     p {
       font-size: 18px;
+    }
+  }
+  @include height {
+    width: 70vw;
+    p {
+      font-size: 22px;
     }
   }
 }

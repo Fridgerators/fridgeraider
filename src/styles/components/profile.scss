@@ -7,12 +7,16 @@
   @include flexSetUp(space-between, center);
   width: 270px;
   margin: auto;
+  margin-top: 5px;
+
 
   @include desktop {
     width: 654px;
+    margin-top: 10px;
   }
   @include height {
     width: 654px;
+    margin-top: 10px;
   }
 }
 .existing-items {

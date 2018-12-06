@@ -3,14 +3,34 @@
   background-color: $pale-bg;
   h1 {
     font-size: 48px;
-    color: $purple-1;
+    color: $purple-2;
     margin-top: 20px;
+
+    @include height {
+    color: $purple-1;
+      }
+      @include tablet {
+    color: $purple-1;
+        }
+    @include desktop {
+    color: $purple-1;
+      }
   }
 }
 
 .loading-animation {
   @include flexSetUp(center, center, row);
   padding-top: 25%;
+
+  @include height {
+    padding-top: 35%;
+    }
+    @include tablet {
+      padding-top: 40%;
+      }
+  @include desktop {
+    padding-top: 15%;
+    }
 }
 
 @keyframes float {
