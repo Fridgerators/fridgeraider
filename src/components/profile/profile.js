@@ -36,7 +36,7 @@ class Profile extends Component {
     }
 
     //add new ingredient myIngredients on state
-    async handleUpdate() {
+    handleUpdate() {
         let {myIngredients} = this.state
         const saveIngredients = [];
         for(let i = 0; i<myIngredients.length; i++){
@@ -46,10 +46,7 @@ class Profile extends Component {
         axios.put('/api/ingredients/manageList',{saveIngredients}).then(res=>{
             this.setState({myIngredients: res.data})
         })   
-    
-    this.setState({myIngredients: myIngredients})
-    this.setState({addIngredients: ['']})
-}
+    }
 
     //remove from myIngredients on state
     handleDelete(ingredient) {
