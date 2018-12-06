@@ -8,134 +8,131 @@ class NewRecipes extends Component {
         super()
         this.state = {
             recipes: [],
+            recipeDisplay: [],
+            recipeRes: [],
             params: '',
             rIndex: 0,
-            tIndex: 0
+            tIndex: 0,
+            iniState: 0
         }
 
-        
+
         this.expandRecipe = this.expandRecipe.bind(this);
-        this.handleNext = this.handleNext.bind(this)
-        this.handlePrevios=this.handlePrevios.bind(this)
+        this.handleNext = this.handleNext.bind(this);
+        this.handlePrevious = this.handlePrevious.bind(this);
     }
 
     async componentDidMount() {
         let { searchIngredients } = this.props.match.params
-        let res = await axios.get(`/api/recipes/getResults/${searchIngredients}/0`)
-        await this.setState({ recipes: res.data.hits })
+        let { rIndex } = this.state;
+        let res = await axios.get(`/api/recipes/getResults/${searchIngredients}/1`)
+        await this.setState({ recipes: res.data })
         await this.setState({params: searchIngredients})
+        await this.setState({recipeRes: this.tempName()})
+        console.log(this.state.recipeRes)
+        // await this.pageDisplay()
     }
 
-    async handleNext(){
-        let { searchIngredients } = this.props.match.params
-        let {rIndex} = this.state;
-        await this.setState({rIndex:rIndex+=10})
-        await axios.get(`/api/recipes/getResults/${searchIngredients}/${rIndex}`)
-            .then(res =>
-                this.setState({ recipes: res.data.hits }))
+    async handleNext() {
+        await this.setState({
+            iniState: this.state.iniState += 9
+        })
+        // if (this.state.iniState)
+            // await this.pageDisplay()
     }
-    async handlePrevios(){
-        let { searchIngredients } = this.props.match.params
-        let {rIndex} = this.state;
-        console.log(rIndex)
-        await this.setState({rIndex:rIndex-=10})
-        await axios.get(`/api/recipes/getResults/${searchIngredients}/${rIndex}`)
-            .then(res =>
-                this.setState({ recipes: res.data.hits }))
+    async handlePrevious() {
+        await this.setState({
+            iniState: this.state.iniState -= 9
+        })
+        // await this.pageDisplay()
     }
-    
-    expandRecipe(index){
-        this.setState({tIndex: index})
 
-        // const expand= document.querySelectorAll('.nr-tab-content');
-        // for(var i = 0; i < expand.length; i++){
-        //     if(i===index){
-        //         expand[i].classList.toggle('expand')
-        //     }
-        // } 
+    expandRecipe(TF, index, id) {
+        // this.setState({ tIndex: index })
+        if(TF[0] === 1){
+        TF[0] = 0
+        // let res = await axios.get(`/api/recipes/getRecipe/${id}`)
+        }
+        console.log(id)
 
-        // const radius = document.querySelectorAll('.nr-tab');
-        // for(var i = 0; i < radius.length; i++){
-        //     if(i===index){
-        //     radius.classList.toggle('radius');
-        // }}
+        document.getElementById(`c${index}`).classList.toggle('expand');
+        document.getElementById(`b${index}`).classList.toggle('radius');
+        document.getElementById(`a${index}`).classList.toggle('radius2');
+        document.getElementById(`d${index}`).classList.toggle('spin');
+    }
+    // pageDisplay() {
+    //     console.log(this.state.recipes)
+    //     let iniDiv = this.state.iniState / 9;
+    //     let tempRecipeDisplay = [];
 
-        // let radius2 = document.querySelectorAll('.food');
-        // for(var i = 0; i < radius2.length; i++){
-        //     if(i===index){
-        //     radius2.classList.toggle('radius2');
-        // }}
+    //     for (let i = 0; i < 36; i++) {
+    //         tempRecipeDisplay[i - (iniDiv * 9)] = this.state.recipes[i]
+    //     }
+    //     this.setState({
+    //         recipeDisplay: tempRecipeDisplay
+    //     })
+    //     console.log(tempRecipeDisplay);
 
-        // let spin = document.querySelectorAll('.nr-tab>img');
-        // for(var i = 0; i < spin.length; i++){
-        //     if(i===index){
-        //     spin.classList.toggle('spin');
-        // }}
-        let expand= document.querySelectorAll('.nr-tab-content');
-        expand.forEach(expand=>{
-            expand.classList.toggle('expand')
-        })
-
-        let radius = document.querySelectorAll('.nr-tab');
-        radius.forEach(radius=>{
-            radius.classList.toggle('radius');
-        })
-
-        let radius2 = document.querySelectorAll('.food');
-        radius2.forEach(radius2=>{
-            radius2.classList.toggle('radius2');
-        })
-
-        let spin = document.querySelectorAll('.nr-tab>img');
-        spin.forEach(spin=>{
-            spin.classList.toggle('spin');
-        })
-        // document.querySelector('.nr-tab-content').classList.toggle('expand');
-        // document.querySelector('.nr-tab').classList.toggle('radius');
-        // document.querySelector('.food').classList.toggle('radius2');
-        // document.querySelector('.nr-tab>img').classList.toggle('spin');
-        }        
-
-    render() {
-        let recipeRes = this.state.recipes.map((element, index) => {
-            return (
-                <div key={index} className='nr-outer-box'>
+    // }
+    tempName(){
+        return this.state.recipes.map((element, index) => {
+        let TF = [1];
+        let instructions = [];
+        // console.log('Index: ', index, 'TF: ', TF)
+        return (
+            <div key={index} className='nr-outer-box'>
                 <div className="initial-view">
-                    <img className='food' src={element.recipe.image} alt={element.recipe.image} />
-                    <div className='nr-tab'>
-                    <h4>{element.recipe.label}</h4>
-                        <label>see ingredients and instructions</label>
-                        <img src={expand} onClick={()=>this.expandRecipe(index)} alt="see recipe"/>
+                    <img id={`a${index}`} className='food' src={element.image} alt={element.image} />
+                    <div id={`b${index}`} className='nr-tab'>
+                        <h4>{element.title}</h4>
+                        <label>see ingredients and instructions</label>`
+                        <img id={`d${index}`} src={expand} onClick={() => this.expandRecipe(TF, index, element.id)} alt="see recipe" />
                     </div>
                 </div>
-                {index===this.state.tIndex?
-                        <div className='nr-tab-content'>
-                            <p>{element.recipe.ingredientLines}</p>
-                        </div>
-                        :null}  
-                </div>
-            )
-        })
+                    <div id={`c${index}`} className='nr-tab-content'>
+                        <p>{element.ingredientLines}</p>
+                    </div>
+            </div>
+        )
+    })
+
+    }
+    render() {
+        // let recipeRes = 
         return (
             <div className="nr-bg header-curve">
-                <Navbar/>
+                <Navbar />
                 NewRecipes
-                {this.state.rIndex===0?
-                <button className='nr-next' onClick={this.handleNext}>Next</button>
-                :
-                <div>
-                  <button className='nr-next' onClick={this.handleNext}>Next</button>
-                  <button className='nr-previous' onClick={this.handlePrevios}>previous</button>  
-                </div>
+                {this.state.iniState === 0 ?
+                    <button className='nr-next' onClick={this.handleNext}>Next</button>
+                    :
+                    <div>
+                        {this.state.iniState >= 36 ?
+                            null
+                            : <button className='nr-next' onClick={this.handleNext}>Next</button>
+                        }
+                        <button className='nr-previous' onClick={this.handlePrevious}>previous</button>
+                    </div>
                 }
-                {recipeRes}
-                {this.state.rIndex===0?
-                <button className='nr-next' onClick={this.handleNext}>Next</button>
-                :
-                <div>
-                  <button className='nr-next' onClick={this.handleNext}>Next</button>
-                  <button className='nr-previous' onClick={this.handlePrevios}>previous</button>  
-                </div>
+                {this.state.recipeRes[0 + this.state.iniState]}
+                {this.state.recipeRes[1 + this.state.iniState]}
+                {this.state.recipeRes[2 + this.state.iniState]}
+                {this.state.recipeRes[3 + this.state.iniState]}
+                {this.state.recipeRes[4 + this.state.iniState]}
+                {this.state.recipeRes[5 + this.state.iniState]}
+                {this.state.recipeRes[6 + this.state.iniState]}
+                {this.state.recipeRes[7 + this.state.iniState]}
+                {this.state.recipeRes[8 + this.state.iniState]}
+                {this.state.iniState === 0 ?
+                    <button className='nr-next' onClick={this.handleNext}>Next</button>
+                    :
+                    <div>
+                        {this.state.iniState >= 36 ?
+                            null
+                            : <button className='nr-next' onClick={this.handleNext}>Next</button>
+                        }
+                        <button className='nr-previous' onClick={this.handlePrevious}>previous</button>
+                    </div>
                 }
             </div>
         )
