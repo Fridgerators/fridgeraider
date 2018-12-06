@@ -13,7 +13,8 @@ class NewRecipes extends Component {
             params: '',
             rIndex: 0,
             tIndex: 0,
-            iniState: 0
+            iniState: 0,
+            recipeDetails: []
         }
 
 
@@ -29,6 +30,11 @@ class NewRecipes extends Component {
         await this.setState({ recipes: res.data })
         await this.setState({params: searchIngredients})
         await this.setState({recipeRes: this.tempName()})
+        let id=[]
+        res.data.map(element=>{
+            id.push(element.id)})
+            console.log('ids',id)
+        await axios.get(`/api/recipes/getRecipe/${id}`)
         console.log(this.state.recipeRes)
         // await this.pageDisplay()
     }
@@ -52,6 +58,7 @@ class NewRecipes extends Component {
         if(TF[0] === 1){
         TF[0] = 0
         // let res = await axios.get(`/api/recipes/getRecipe/${id}`)
+        this.setState({})
         }
         console.log(id)
 
@@ -78,6 +85,7 @@ class NewRecipes extends Component {
         return this.state.recipes.map((element, index) => {
         let TF = [1];
         let instructions = [];
+        let {recipeDetails} = this.state;
         // console.log('Index: ', index, 'TF: ', TF)
         return (
             <div key={index} className='nr-outer-box'>
@@ -85,12 +93,19 @@ class NewRecipes extends Component {
                     <img id={`a${index}`} className='food' src={element.image} alt={element.image} />
                     <div id={`b${index}`} className='nr-tab'>
                         <h4>{element.title}</h4>
-                        <label>see ingredients and instructions</label>`
+                        <label>see ingredients and instructions</label>
                         <img id={`d${index}`} src={expand} onClick={() => this.expandRecipe(TF, index, element.id)} alt="see recipe" />
                     </div>
                 </div>
                     <div id={`c${index}`} className='nr-tab-content'>
-                        <p>{element.ingredientLines}</p>
+                    <div>
+                        <p>prep:{recipeDetails.preparationMinutes} minutes</p>
+                        <p>cook:{recipeDetails.cookingMinutes} minutes</p>
+                        <p>serves {recipeDetails.servings}</p>
+                        </div>
+                        <div>
+                            <p></p>
+                            </div>
                     </div>
             </div>
         )
@@ -142,3 +157,4 @@ class NewRecipes extends Component {
 export default NewRecipes;
 
 //source for accordian instructions https://codepen.io/lara-potjewyd/pen/gBJEaG
+
