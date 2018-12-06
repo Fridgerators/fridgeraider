@@ -4,6 +4,14 @@
 
 .nb-menu {
   @include flexSetUp(flex-end, center, row);
+
+  @include desktop {
+    @include flexSetUp(flex-end, center, row);
+    z-index: 1;
+    width: 75%;
+    font-size: 1.5rem;
+    color: $purple-2;
+  }
 }
 .nb-logo-mobile {
   @include flexSetUp(flex-start, center, row);
@@ -13,12 +21,21 @@
 
 .nb-logo {
   @include width-height(auto, 35px);
+
+  @include desktop {
+    @include width-height(auto, 70px);
+  }
 }
 
 .nb-title {
   font-size: 1rem;
   margin-left: 5px;
   color: $purple-2;
+
+  @include desktop {
+    font-size: 1.5rem;
+    margin-left: 15px;
+  }
 }
 
 .nb-bottom {
@@ -41,26 +58,9 @@
 
 
 @media only screen and (min-width: 768px) {
-  .nb-logo {
-    @include width-height(auto, 70px);
-  }
-
-  .nb-title {
-    font-size: 1.5rem;
-    margin-left: 15px;
-  }
-
+  
   .nb-logo-mobile.large {
     padding: 25px;
-  }
-
-  .nb-menu {
-    @include flexSetUp(flex-end, center, row);
-    width: 60%;
-    // @include position();
-    z-index: 1;
-    font-size: 1.5rem;
-    color: $purple-2;
   }
 
   .nb-profile {

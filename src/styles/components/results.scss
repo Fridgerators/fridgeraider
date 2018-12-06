@@ -2,12 +2,29 @@
   @include width-height(100vw, 100vh);
   background-color: $pale-bg;
 }
+
+.MuiGrid-container-1 {
+  width: 85% !important;
+  margin: auto !important;
+  margin-top: 20px !important;
+}
 .nr-next {
   float: right;
   margin: 0 15px 8px 0px;
   color: $purple-1;
   font-family: $main-font;
   font-size: 14px;
+  cursor: pointer;
+
+  @include tablet {
+    position: absolute;
+    top: 90px;
+    font-size: 24px;
+  }
+
+  @include desktop {
+    display: none;
+  }
 }
 
 .nr-next-btn {
@@ -16,17 +33,42 @@
   color: $text-color;
   font-family: $main-font;
   font-size: 14px;
+  cursor: pointer;
+
+  @include tablet {
+    float: unset;
+    margin: 10px 0px 0px 0px;
+    font-size: 24px;
+    background-color: $purple-bg;
+    color: $purple-1;
+    width: 100vw;
+    height: 8vh;
+  }
 }
 
 .nr-outer-box {
   @include width-height(88vw, auto);
   box-shadow: 1px 1px 1px lighten($faded-bg, 10%);
-  @include flexSetUp(flex-end, center, column);
+  @include flexSetUp(center, center, column);
   border-radius: 18px;
   border: 2px solid $purple-4;
   margin: auto;
   margin-bottom: 35px;
   margin-top: -20px;
+  background: $pale-bg;
+
+  @include tablet {
+    flex-wrap: wrap;
+    width: 50vw;
+    margin-top: 10px;
+    
+  }
+      @include height {
+        width: 75vw;
+      }
+      @include desktop {
+        width: 25.75vw;
+      }
 }
 .initial-view {
   @include flexSetUp(flex-end, center, column);
@@ -54,6 +96,29 @@
     transition: all .35s ease-in-out;
 
   }
+  @include tablet {
+    width: 50vw;
+    h4 {
+      padding-top: 8px;
+      font-size: 24px;
+    }
+    label {
+      font-size: 24px;
+    }
+    img {
+      margin-top: 5px;
+      height: 28px;
+    }
+  }
+
+  @include height {
+    width: 75.5vw;
+  }
+
+  @include desktop {
+    width: 25.15vw;
+    padding: 5px;
+  }
 }
 
 .radius {
@@ -74,6 +139,22 @@
   padding: 8px 0;
   display: none;
   transition: all .35s ease-in-out;
+
+  @include height {
+    width: 70vw;
+  }
+  @include tablet {
+    width: 45vw;
+    p {
+      font-size: 18px;
+    }
+  }
+  @include desktop {
+    width: 20vw;
+    p {
+      font-size: 18px;
+    }
+  }
 }
 
 .expand {
@@ -84,5 +165,16 @@
 .food {
   width: 88vw;
   border-radius: 15px;
-  border: 2px solid $purple-4;
+
+  @include tablet {
+    width: 50vw;
+  }
+
+  @include height {
+    width: 75vw;
+  }
+
+  @include desktop {
+    width: 25.75vw;
+  }
 }

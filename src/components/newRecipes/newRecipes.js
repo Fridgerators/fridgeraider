@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Nav from '../navbar/navbar';
 import expand from '../images/open-icon.svg';
+import Grid from '@material-ui/core/Grid';
 
 class NewRecipes extends Component {
     constructor() {
@@ -65,7 +66,11 @@ class NewRecipes extends Component {
             <div className="nr-bg header-curve">
                 <Nav/>
                 <button className='nr-next' onClick={this.handleNext}>next</button>
-                {recipeRes}
+                <Grid container justify="space-evenly" align="flex-start" direction="row">
+                    
+                    {recipeRes}
+
+                </Grid>
                 <button className='nr-next-btn' onClick={this.handleNext}>next</button>
             </div>
         )
