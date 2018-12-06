@@ -6,7 +6,14 @@
 .prof-btns {
   @include flexSetUp(space-between, center);
   width: 270px;
-  margin: auto
+  margin: auto;
+
+  @include desktop {
+    width: 654px;
+  }
+  @include height {
+    width: 654px;
+  }
 }
 .existing-items {
   @include flexSetUp(center, center, column);

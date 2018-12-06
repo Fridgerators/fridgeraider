@@ -48,6 +48,8 @@ input:focus {
 
   @include height {
     background-image: url('../components/images/portrait-tablet.svg'); 
+    background-size: auto;
+
   }
 
   @include desktop {

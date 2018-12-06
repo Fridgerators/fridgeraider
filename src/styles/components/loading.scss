@@ -1,0 +1,35 @@
+.loading {
+  @include width-height(100vw, 100vh);
+  background-color: $pale-bg;
+  h1 {
+    font-size: 48px;
+    color: $purple-1;
+    margin-top: 20px;
+  }
+}
+
+.loading-animation {
+  @include flexSetUp(center, center, row);
+  padding-top: 25%;
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-20px);
+    filter: drop-shadow(0px 8px 2.5px rgba(51, 51, 51, 0.5))
+  }
+}
+
+.fork {
+  animation: float 2s cubic-bezier(.49,.05,.32,1.04) infinite alternate;
+  
+}
+
+.plate {
+  margin: 5px;
+  animation: float 2s .25s cubic-bezier(.49,.05,.32,1.04) infinite alternate;
+}
+
+.knife {
+  animation: float 2s .5s cubic-bezier(.49,.05,.32,1.04) infinite alternate;
+}
