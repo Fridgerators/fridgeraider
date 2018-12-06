@@ -65,7 +65,7 @@ class Navbar extends Component {
                                             </Popup>} */}
                                             <Popup trigger={<h3 className='nb-login'> login</h3>} modal>
                                                 <SignIn />
-                                            </Popup>}
+                                            </Popup>
                                     </div>
                                 </div>
                             )
