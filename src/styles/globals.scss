@@ -2,10 +2,14 @@
 @import 'variables.scss';
 @import 'mixins.scss';
 
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 .title {
   color: $purple-1;
-  @include width-height(240px, 85px);
-  margin: auto;
+  @include width-height(240px, auto);
+  margin: 15px auto;
   text-align: center;
   line-height: 1.15rem;
 
@@ -21,6 +25,8 @@
     width: 80vw;
   }
 }
+
+
 
 body {
   font-family: $main-font;  
@@ -48,6 +54,8 @@ input:focus {
 
   @include height {
     background-image: url('../components/images/portrait-tablet.svg'); 
+    background-size: auto;
+
   }
 
   @include desktop {

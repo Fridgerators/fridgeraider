@@ -59,9 +59,9 @@ class Profile extends Component {
         console.log('add',this.state.addIngredients)
         const existingIngredients = this.state.myIngredients.map((ingredient, index) => {
             return (
-                <form key={index}>
+                <form key={index} style={{display: "flex", alignItems: "center", alignContent: "center"}}>
                     <input className='prof-input' type="text" value={ingredient} onChange={(e) => this.handleInput(e,index)}/>
-                    <button className='prof-remove-ingredient' onClick={() => this.handleDelete(ingredient)}>Remove</button>
+                    <img src={deleteItem} className='prof-remove-ingredient' onClick={() => this.handleDelete(ingredient)}></img>
                 </form>
             )
         })
@@ -74,12 +74,17 @@ class Profile extends Component {
                     enter the ingredients you have in your fridge and cupboards so you can easily search for recipes in the future
                 </h3>
                 <br />
-                
-                {existingIngredients.length?<div><h2>saved ingredients</h2>{existingIngredients}
-                <h4>search recipes</h4>
-                <Link to={`/results/${this.state.myIngredients}`}><img src={search} className='prof-img' alt=''/></Link></div>: null}
+            <div >
+                {existingIngredients.length?
+                <div className='existing-items' >
+                {existingIngredients}
+                </div>: null}
+    <div className='prof-btns'>
+                <img src={save} onClick={this.handleUpdate.bind(this)} ></img>
                 <img src={add} className='prof-add-input' onClick={(e) => this.addInput(e)} alt=''/>
-                <button onClick={this.handleUpdate.bind(this)}>Add</button>
+                <Link to={`/results/${this.state.myIngredients}`}><img src={search} className='prof-img' alt=''/></Link>
+    </div>
+            </div>
             </div>
         )
     }

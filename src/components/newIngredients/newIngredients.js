@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert2';
-import header from '../../components/images/header-curve.svg';
 import Nav from '../navbar/navbar';
 import add from '../images/add.svg';
 import remove from '../images/remove.svg';
 import search from '../images/search.svg';
 import clearInputs from '../images/clear-inputs.svg';
-import sweetie from 'sweetalert2';
 
 class NewIngredients extends Component {
     constructor() {
         super()
 
         this.state = {
-            ingredients: ['', '', '', '', '', '']
+            ingredients: ['', '', '', '', '', ''],
         }
     }
     addIngredient() {
@@ -36,7 +34,7 @@ class NewIngredients extends Component {
     }
 
     handleAlert(){
-        sweetie("please enter an ingredient")
+        swal("please enter an ingredient")
     }
  
 
@@ -65,6 +63,7 @@ class NewIngredients extends Component {
 
         return (
             <div className="ni-bg header-curve">
+
                 <Nav />
                 <h3 className="title">enter the ingredients you have in your fridge and cupboards so we can find the perfect recipe for you!</h3>
 
