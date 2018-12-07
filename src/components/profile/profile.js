@@ -38,7 +38,7 @@ class Profile extends Component {
     //add new ingredient myIngredients on state
     handleUpdate() {
         let {myIngredients} = this.state
-        const saveIngredients = [];
+        let saveIngredients = [];
         for(let i = 0; i<myIngredients.length; i++){
             if(myIngredients[i]){
             saveIngredients.push(myIngredients[i])}
