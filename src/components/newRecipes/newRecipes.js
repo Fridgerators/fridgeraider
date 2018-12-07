@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Navbar from '../navbar/navbar';
 import expand from '../images/open-icon.svg';
+import Grid from '@material-ui/core/Grid';
+import Loading from '../Loading';
+import next from '../images/next.svg';
+import prev from '../images/previous.svg';
 
 class NewRecipes extends Component {
     constructor() {
@@ -27,7 +31,9 @@ class NewRecipes extends Component {
         let { searchIngredients } = this.props.match.params
         let { rIndex } = this.state;
         let res = await axios.get(`/api/recipes/getResults/${searchIngredients}/1`)
-        await this.setState({ recipes: res.data })
+        await this.setState({ 
+            recipes: res.data,
+            loaded: true })
         await this.setState({params: searchIngredients})
         await this.setState({recipeRes: this.tempName()})
         let id=[]
@@ -89,11 +95,11 @@ class NewRecipes extends Component {
         // console.log('Index: ', index, 'TF: ', TF)
         return (
             <div key={index} className='nr-outer-box'>
-                <div className="initial-view">
+                <div className='initial-view'>
                     <img id={`a${index}`} className='food' src={element.image} alt={element.image} />
                     <div id={`b${index}`} className='nr-tab'>
                         <h4>{element.title}</h4>
-                        <label>see ingredients and instructions</label>
+                        <label>ingredients and instructions</label>
                         <img id={`d${index}`} src={expand} onClick={() => this.expandRecipe(TF, index, element.id)} alt="see recipe" />
                     </div>
                 </div>
@@ -116,19 +122,13 @@ class NewRecipes extends Component {
         // let recipeRes = 
         return (
             <div className="nr-bg header-curve">
+            { this.state.loaded ? 
+            <div>
                 <Navbar />
-                NewRecipes
-                {this.state.iniState === 0 ?
-                    <button className='nr-next' onClick={this.handleNext}>Next</button>
-                    :
-                    <div>
-                        {this.state.iniState >= 36 ?
-                            null
-                            : <button className='nr-next' onClick={this.handleNext}>Next</button>
-                        }
-                        <button className='nr-previous' onClick={this.handlePrevious}>previous</button>
-                    </div>
-                }
+      
+                <Grid item>
+                <Grid container spacing={8}justify="center" alignItems="baseline" direction="row" margin="80px">
+
                 {this.state.recipeRes[0 + this.state.iniState]}
                 {this.state.recipeRes[1 + this.state.iniState]}
                 {this.state.recipeRes[2 + this.state.iniState]}
@@ -138,18 +138,23 @@ class NewRecipes extends Component {
                 {this.state.recipeRes[6 + this.state.iniState]}
                 {this.state.recipeRes[7 + this.state.iniState]}
                 {this.state.recipeRes[8 + this.state.iniState]}
+                </Grid>
+        </Grid>
+
                 {this.state.iniState === 0 ?
-                    <button className='nr-next' onClick={this.handleNext}>Next</button>
+                    <img src={next} className='nr-next-btn' onClick={this.handleNext} />
                     :
                     <div>
                         {this.state.iniState >= 36 ?
                             null
-                            : <button className='nr-next' onClick={this.handleNext}>Next</button>
+                            : <img src={next} className='nr-next-btn' onClick={this.handleNext} />
                         }
-                        <button className='nr-previous' onClick={this.handlePrevious}>previous</button>
+                        <img src={prev} className='nr-previous' onClick={this.handlePrevious} />
                     </div>
                 }
             </div>
+             : <Loading/> }
+        </div>
         )
     }
 }
