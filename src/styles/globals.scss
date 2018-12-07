@@ -5,6 +5,11 @@
 ::-webkit-scrollbar {
   width: 0px;
 }
+a {
+text-decoration: none;
+outline: none;
+color: inherit;
+}
 
 .title {
   color: $purple-1;

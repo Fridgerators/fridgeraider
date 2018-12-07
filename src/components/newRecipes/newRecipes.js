@@ -139,6 +139,7 @@ class NewRecipes extends Component {
                     </div>
                 }
             </div>
+            
              : <Loading/> }
         </div>
         )

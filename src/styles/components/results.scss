@@ -48,6 +48,11 @@
   }
 }
 
+.nr-previous {
+  margin-bottom: 9vh;
+  cursor: pointer;
+}
+
 .nr-outer-box {
   @include width-height(88vw, auto);
   box-shadow: 0px 2px 5px $text-color;
