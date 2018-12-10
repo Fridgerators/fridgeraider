@@ -38,7 +38,9 @@ module.exports = {
     saveRecipe: async (req, res) => {
         const { recipeId, image, title } = req.body;
         const dbInstance = req.app.get('db')
-        let check = await dbInstance.check_for_recipe([req.session.user.user_id, recipeId])
+        let check = await dbInstance.check_for_recipe([
+            // req.session.user.user_id, 
+            recipeId])
         if(check[0]){
             res.status(400).send('Recipe already saved!')
         } else {

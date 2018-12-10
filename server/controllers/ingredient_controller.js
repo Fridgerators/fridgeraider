@@ -4,6 +4,7 @@ module.exports = {
         const dbInstance = req.app.get('db')
         if (req.session.user) {
             let ingredients = await dbInstance.get_ingredients([req.session.user.user_id])
+            console.log('ingredients',ingredients)
             res.status(200).send(ingredients)
         } else {
         res.status(200).send('Log in to get your list of ingredients')

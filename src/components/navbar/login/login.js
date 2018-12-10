@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {updateUserData} from '../../../ducklings/reducer';
 
 class SignIn extends Component{
     constructor(){
@@ -18,12 +20,21 @@ class SignIn extends Component{
         this.setState({password: value})
     }
 
-    login(username,password){
-        axios.post('/auth/login',{username,password})
+    async login(username,password){
+    await axios.post('/auth/login',{username,password}).then(res=>{this.props.updateUserData(res.data)});
+        // console.log('ses',this.props.user)
+    // await axios.post('/auth/login',{username,password})
+    // const session = await axios.get('/auth/getUser');
+    // await this.props.updateUserData(session.data);
+    // await this.props.history.push('/input');
+
     }
 
-    register(username,password){
-        axios.post('/auth/register',{username,password})
+    async register(username,password){
+    await axios.post('/auth/register',{username,password})
+    const session = await axios.get('/auth/getUser');
+    console.log('user',session.data)
+    await this.props.updateUserData(session.data);
     }
 
 
@@ -44,4 +55,10 @@ class SignIn extends Component{
     }
 }
 
-export default SignIn;
+function mapStateToProps(state) {
+    return {
+      user: state.user
+    }
+  }
+
+export default connect(mapStateToProps,{updateUserData})(SignIn);
