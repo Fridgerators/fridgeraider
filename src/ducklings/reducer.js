@@ -1,5 +1,5 @@
 const initialState={
-   user:{}
+   user:{empty:'empty'}
 }
 
 /////Action Types/////
