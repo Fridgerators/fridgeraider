@@ -120,9 +120,13 @@ class NewRecipes extends Component {
                     <div className='initial-view'>
                         <img id={`a${index}`} className='food' src={element.image} alt={element.image} />
                         <div id={`b${index}`} className='nr-tab'>
+                    
                             <h4>{element.title}</h4>
+                            <div className='label-box'>
                             <label>ingredients and instructions</label>
                             <img id={`d${index}`} src={expand} onClick={() => this.expandRecipe(index, element.id)} alt="see recipe" />
+
+                            </div>
                         </div>
                     </div>
                     <div id={`c${index}`} className='nr-tab-content'>
