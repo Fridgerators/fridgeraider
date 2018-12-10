@@ -112,6 +112,7 @@ class NewRecipes extends Component {
         return
 
     }
+    
     render() {
         let recipeRes = this.state.recipes.map((element, index) => {
             return (

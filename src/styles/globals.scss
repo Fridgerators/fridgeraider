@@ -18,6 +18,11 @@ color: inherit;
   text-align: center;
   line-height: 1.15rem;
 
+  @include mobile {
+  margin: 30px auto;
+
+  }
+
   @include tablet {
     width: 60vw;
     font-size: 1.8rem;
@@ -50,7 +55,7 @@ input:focus {
 
 .header-curve {
   background-image: url('../components/images/header-curve.svg');
-  @include bg-image(top, no-repeat, auto);
+  @include bg-image(top, no-repeat, contain);
 
   @include tablet {
     background-image: url('../components/images/landscape-tablet.svg');
@@ -65,7 +70,7 @@ input:focus {
 
   @include desktop {
     background-image: url('../components/images/desktop-header.svg'); 
-
+    background-size: auto;
   }
 }
 

@@ -1,0 +1,95 @@
+.popup-content {
+  width: 75% !important;
+  height: 48%;
+  border-radius: 20px;
+  border: 3px solid $purple-4 !important;
+  background-color: $pale-bg !important;
+
+  @include tablet {
+    width: 62% !important;
+  }
+
+  @include desktop {
+    width: 47% !important;
+  }
+
+  @include height {
+    height: 40%;
+  }
+}
+
+.popup-overlay {
+  background: $faded-bg !important;
+}
+
+.login-box {
+  padding-top: 10px;
+  input {
+    border: 3px solid darken($purple-1, 10%);
+    border-radius: 20px;
+    height: 26px;
+    padding: 4px;
+    width: 80%;
+  }
+  h3 {
+    margin: 20px 0px 5px 0px;
+    color: $text-color;
+  }
+  img {
+    margin: 11px;
+    margin-top: 30px;
+  }
+
+  @include mobile {
+    height: 45%;
+    img {
+      margin: 12px;
+      margin-top: 40px;
+      height: 35px;
+
+    }
+    h3 {
+      margin: 30px 0px 5px 0px;
+    }
+  }
+
+  @include tablet {
+    padding-top: 20px;
+    input {
+      width: 80%;
+    }
+    img {
+      height: 50px;
+      margin-top: 40px;
+    }
+    img:nth-last-of-type(1) {
+      margin-left: 13%;
+    }
+  }
+  @include desktop {
+    input {
+      width: 60%;
+    }
+    img {
+      height: 50px;
+    }
+    img:nth-last-of-type(1) {
+      margin-left: 13%;
+    }
+  }
+
+  @include height {
+    padding-top: 10%;
+    input {
+      width: 75%;
+      height: 30px;
+    }
+    img {
+      height: 50px;
+      margin-top: 50px;
+    }
+    img:nth-last-of-type(1) {
+      margin-left: 8%;
+    }
+  }
+}

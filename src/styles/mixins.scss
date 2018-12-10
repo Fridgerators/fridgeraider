@@ -10,6 +10,13 @@ $tablet: 768px;
     @content;
   }
 }
+
+$mobile: 375px;
+@mixin mobile {
+  @media (min-width: #{$mobile}) and (max-width: #{$tablet}) {
+    @content;
+  }
+}
 // $height: 800px;
 @mixin height {
   @media (min-height: 800px) {
