@@ -5,6 +5,7 @@ import Media from 'react-media';
 import Navbar from '../navbar/navbar';
 import InstructionsPopup from './instructionsPopup/instructionsPopup';
 import {connect} from 'react-redux';
+import swal from 'sweetalert2';
 import expand from '../images/open-icon.svg';
 import Grid from '@material-ui/core/Grid';
 import Loading from '../Loading';
@@ -45,6 +46,7 @@ class NewRecipes extends Component {
                 servings: 0,
                 ingredients: []
             }
+            this.handleSaveRecipe=this.handleSaveRecipe.bind(this);
         }
         await this.setState({ recipeDetails: recDets })
         console.log(this.state.recipeDetails)
@@ -88,12 +90,12 @@ class NewRecipes extends Component {
         if (!this.state.recipeDetails[index].ingredients[0]) {
             let recipeDeets = [...this.state.recipeDetails]
             let ingDeets = [];
-            await axios.get(`/api/recipes/getRecipe/${id}`)
+        let res= await axios.get(`/api/recipes/getRecipe/${id}`)
                 .then(response => {
                     recipeDeets[index].preparationMinutes = response.data.preparationMinutes;
                     recipeDeets[index].cookingMinutes = response.data.cookingMinutes;
                     recipeDeets[index].readyInMinutes = response.data.readyInMinutes;
-                    recipeDeets[index].instructions = response.data.instructions;
+                    recipeDeets[index].instructions = response.data.analyzedInstructions[0].steps;
                     recipeDeets[index].servings = response.data.servings;
                     recipeDeets[index].ingredients = response.data.extendedIngredients.map((element, index) => {
                         return element.original
@@ -111,6 +113,12 @@ class NewRecipes extends Component {
         // document.getElementById(`b${index}`).classList.toggle('radius');
         // document.getElementById(`a${index}`).classList.toggle('radius2');
         // document.getElementById(`d${index}`).classList.toggle('spin');
+    }
+
+    handleSaveRecipe(id,image,title){
+        axios.post('/api/cookbook/saveRecipe',{recipeId:id,image,title }).then(()=>
+        swal(`${title} has been saved`)
+        )
     }
 
     // async handlePopUpInfo(index, id){
@@ -142,6 +150,11 @@ class NewRecipes extends Component {
     
     render() {
         console.log('nr recipeDetails',this.state.recipeDetails)
+        const numberedInstructions = this.state.recipeDetails.map((element,id)=>{
+            return(
+            <p key={id}>{element.number}{element.step}</p>
+            )
+        })
         let recipeRes = this.state.recipes.map((element, index) => {
             return (
                 <div key={index} className='nr-outer-box'>
@@ -153,10 +166,48 @@ class NewRecipes extends Component {
                             
                                 <Media query='(max-width: 768px)'>
                                 {matches => matches ? (
+                                    <div>
                                     <div className='label-box'>
                                         <label>ingredients and instructions</label>
                                         <img id={`d${index}`} src={expand} onClick={() => this.expandRecipe(index, element.id)} alt="see recipe" />
                                     </div>
+                                    <div id={`c${index}`} className='nr-tab-content'>
+                                    {
+                                        this.state.recipeDetails[index].instructions === '' ?
+                                            <div>
+                                                <img className='fork' src={fork} alt="" />
+                                                <img className='plate' src={plate} alt="" />
+                                                <img className='knife' src={knife} alt="" />
+                                                <h1>loading...</h1>
+
+                                            </div>
+
+                                            :
+                                            <div>
+                                                <div>
+                                                    {this.state.recipeDetails[index].preparationMinutes && this.state.recipeDetails[index].cookingMinutes ?
+                                                        <div>
+                                                            <p>prep:{this.state.recipeDetails[index].preparationMinutes} minutes</p>
+                                                            <p>cook:{this.state.recipeDetails[index].cookingMinutes} minutes</p>
+                                                        </div>
+                                                        :
+                                                        <p>Ready in:{this.state.recipeDetails[index].readyInMinutes} minutes</p>
+
+                                                    }
+                                                    <p>serves {this.state.recipeDetails[index].servings}</p>
+                                                </div>
+                                                <div>
+                                                    <p>{this.state.recipeDetails[index].ingredients}</p>
+                                                    {numberedInstructions}
+                                                </div>
+                                                {this.props.user.empty==='empty'?null:
+                                                <button onClick={()=>this.handleSaveRecipe(element.id,element.image,element.title,)}>save</button>
+                                                }
+                                            </div>
+
+                                    }
+                                </div>
+                                </div>
                                     ):(
                                         <Popup trigger={
                                         <div className='label-box'>
@@ -170,14 +221,14 @@ class NewRecipes extends Component {
                                 }
                                 </Media>
                                 
-                                <div id={`c${index}`} className='nr-tab-content'>
+                                {/* <div id={`c${index}`} className='nr-tab-content'>
                                     {
                                         this.state.recipeDetails[index].instructions === '' ?
                                             <div>
                                                 <img className='fork' src={fork} alt="" />
                                                 <img className='plate' src={plate} alt="" />
                                                 <img className='knife' src={knife} alt="" />
-                                                {/* <h1>loading...</h1> */}
+                                                <h1>loading...</h1>
 
                                             </div>
 
@@ -205,7 +256,7 @@ class NewRecipes extends Component {
                                             </div>
 
                                     }
-                                </div>
+                                </div> */}
                             
                         </div>
                     </div>
@@ -245,6 +296,8 @@ class NewRecipes extends Component {
                 </div>
             )
         })
+
+        
         return (
             <div className="nr-bg header-curve">
                 {this.state.loaded ?
