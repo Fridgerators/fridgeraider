@@ -13,6 +13,7 @@ import prev from '../images/previous.svg';
 import fork from '../images/fork.svg';
 import plate from '../images/plate.svg';
 import knife from '../images/knife.svg';
+import saveRecipe from '../images/saveRecipe.svg';
 
 class NewRecipes extends Component {
     constructor() {
@@ -153,33 +154,22 @@ class NewRecipes extends Component {
                             
                                 <Media query='(max-width: 768px)'>
                                 {matches => matches ? (
+                                    <div>
                                     <div className='label-box'>
                                         <label>ingredients and instructions</label>
                                         <img id={`d${index}`} src={expand} onClick={() => this.expandRecipe(index, element.id)} alt="see recipe" />
                                     </div>
-                                    ):(
-                                        <Popup trigger={
-                                        <div className='label-box'>
-                                            <label>ingredients and instructions</label>
-                                            <img id={`d${index}`} src={expand} />
-                                        </div>
-                                        
-                                        // onClick={() => this.expandRecipe(index, element.id)}
-                                        
-                                    }modal><InstructionsPopup recipeId={element.id} recipeTitle={element.title} recipeImage={element.image}/></Popup>)
-                                }
-                                </Media>
-                                
-                                <div id={`c${index}`} className='nr-tab-content'>
+                                    <div id={`c${index}`} className='nr-tab-content'>
                                     {
                                         this.state.recipeDetails[index].instructions === '' ?
-                                            <div>
-                                                <img className='fork' src={fork} alt="" />
-                                                <img className='plate' src={plate} alt="" />
-                                                <img className='knife' src={knife} alt="" />
+                                        <div className='loading2'>
+                                            
+                                                <img className='fork popup' src={fork} alt="" />
+                                                <img className='plate popup' src={plate} alt="" />
+                                                <img className='knife popup' src={knife} alt="" />
                                                 {/* <h1>loading...</h1> */}
 
-                                            </div>
+                                        </div>
 
                                             :
                                             <div>
@@ -200,12 +190,29 @@ class NewRecipes extends Component {
                                                     <p>{this.state.recipeDetails[index].instructions}</p>
                                                 </div>
                                                 {this.props.user.empty==='empty'?null:
-                                                <button>save</button>
+                                                <img src={saveRecipe} style={{cursor: "pointer"}}/>
                                                 }
                                             </div>
 
                                     }
                                 </div>
+                                </div>
+
+                                    ):(
+                                        <Popup trigger={
+                                        <div className='label-box'>
+                                            <label>ingredients and instructions</label>
+                                            <img id={`d${index}`} src={expand} />
+                                        </div>
+
+
+                                        
+                                        // onClick={() => this.expandRecipe(index, element.id)}
+                                        
+                                    }modal><InstructionsPopup recipeId={element.id} recipeTitle={element.title} recipeImage={element.image}/></Popup>)
+                                }
+                                </Media>
+                                
                             
                         </div>
                     </div>

@@ -5,6 +5,7 @@
 
 .label-box {
   @include flexSetUp();
+  padding-bottom: 8px;
   img {
     cursor: pointer;
   }
@@ -196,13 +197,16 @@
   width: 88vw;
   padding: 8px 0;
   display: none;
-  height: 0;
+  opacity: 0;
   transition: all .35s ease-in-out;
   box-shadow: 0px 3px 5px $text-color;
   background-color: $pale-bg;
-  position: absolute;
-  z-index: 5;
+  // position: absolute;
+  // z-index: 5;
   border-radius: 0px 0px 15px 15px;
+
+  position: absolute;
+    z-index: 1;
 
     
   // @include tablet {
@@ -211,7 +215,7 @@
   //   width: 45vw;
     p {
       font-size: 18px;
-      width: 100%;
+      width: 76vw;
       padding: 15px;
       margin: auto;
       
@@ -226,16 +230,23 @@
   //   }
   // }
   @include height {
-    width: 70vw;
+    width: 75.5vw;
     p {
       font-size: 22px;
+      width: 70vw;
+
     }
   }
 }
 
+.nr-tab-content.expand:last-child {
+  margin-bottom: 12vh;;
+
+}
+
 .expand {
   display: flex;
-  height: 20%;
+  opacity: 1;
   transition: all .35s ease-in-out;
   }
 
@@ -248,7 +259,7 @@
   }
 
   @include height {
-    width: 75vw;
+    width: 75.5vw;
   }
 
   @include desktop {
