@@ -9,10 +9,13 @@
   margin: auto;
   margin-top: 5px;
 
-
   @include desktop {
     width: 654px;
     margin-top: 10px;
+
+    img {
+    height: 40px;
+    }
   }
   @include height {
     width: 654px;

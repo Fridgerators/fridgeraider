@@ -5,6 +5,22 @@
 ::-webkit-scrollbar {
   width: 0px;
 }
+a {
+text-decoration: none;
+outline: none;
+color: inherit;
+}
+
+.swal2-popup .swal2-styled.swal2-confirm {
+  background-color: $purple-2;
+  border-radius: 15px 0px 15px 0px;
+  color: $text-color;
+}
+.swal2-popup {
+  background-color: $pale-bg;
+  border-radius: 15px;  
+  padding: 2.25em;
+}
 
 .title {
   color: $purple-1;
@@ -12,6 +28,11 @@
   margin: 15px auto;
   text-align: center;
   line-height: 1.15rem;
+
+  @include mobile {
+  margin: 30px auto;
+
+  }
 
   @include tablet {
     width: 60vw;
@@ -45,7 +66,7 @@ input:focus {
 
 .header-curve {
   background-image: url('../components/images/header-curve.svg');
-  @include bg-image(top, no-repeat, auto);
+  @include bg-image(top, no-repeat, contain);
 
   @include tablet {
     background-image: url('../components/images/landscape-tablet.svg');
@@ -60,7 +81,7 @@ input:focus {
 
   @include desktop {
     background-image: url('../components/images/desktop-header.svg'); 
-
+    background-size: auto;
   }
 }
 

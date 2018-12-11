@@ -5,6 +5,7 @@ import Media from 'react-media';
 import Navbar from '../navbar/navbar';
 import InstructionsPopup from './instructionsPopup/instructionsPopup';
 import {connect} from 'react-redux';
+import swal from 'sweetalert2';
 import expand from '../images/open-icon.svg';
 import Grid from '@material-ui/core/Grid';
 import Loading from '../Loading';
@@ -13,6 +14,7 @@ import prev from '../images/previous.svg';
 import fork from '../images/fork.svg';
 import plate from '../images/plate.svg';
 import knife from '../images/knife.svg';
+import saveRecipe from '../images/saveRecipe.svg';
 
 class NewRecipes extends Component {
     constructor() {
@@ -45,6 +47,7 @@ class NewRecipes extends Component {
                 servings: 0,
                 ingredients: []
             }
+            this.handleSaveRecipe=this.handleSaveRecipe.bind(this);
         }
         await this.setState({ recipeDetails: recDets })
         console.log(this.state.recipeDetails)
@@ -88,12 +91,12 @@ class NewRecipes extends Component {
         if (!this.state.recipeDetails[index].ingredients[0]) {
             let recipeDeets = [...this.state.recipeDetails]
             let ingDeets = [];
-            await axios.get(`/api/recipes/getRecipe/${id}`)
+        let res= await axios.get(`/api/recipes/getRecipe/${id}`)
                 .then(response => {
                     recipeDeets[index].preparationMinutes = response.data.preparationMinutes;
                     recipeDeets[index].cookingMinutes = response.data.cookingMinutes;
                     recipeDeets[index].readyInMinutes = response.data.readyInMinutes;
-                    recipeDeets[index].instructions = response.data.instructions;
+                    recipeDeets[index].instructions = response.data.analyzedInstructions[0].steps;
                     recipeDeets[index].servings = response.data.servings;
                     recipeDeets[index].ingredients = response.data.extendedIngredients.map((element, index) => {
                         return element.original
@@ -111,6 +114,12 @@ class NewRecipes extends Component {
         // document.getElementById(`b${index}`).classList.toggle('radius');
         // document.getElementById(`a${index}`).classList.toggle('radius2');
         // document.getElementById(`d${index}`).classList.toggle('spin');
+    }
+
+    handleSaveRecipe(id,image,title){
+        axios.post('/api/cookbook/saveRecipe',{recipeId:id,image,title }).then(()=>
+        swal(`${title} has been saved`)
+        )
     }
 
     // async handlePopUpInfo(index, id){
@@ -139,56 +148,90 @@ class NewRecipes extends Component {
         return
 
     }
+    
     render() {
         console.log('nr recipeDetails',this.state.recipeDetails)
+        const numberedInstructions = this.state.recipeDetails.map((element,id)=>{
+            return(
+            <p key={id}>{element.number}{element.step}</p>
+            )
+        })
         let recipeRes = this.state.recipes.map((element, index) => {
             return (
                 <div key={index} className='nr-outer-box'>
                     <div className='initial-view'>
                         <img id={`a${index}`} className='food' src={element.image} alt={element.image} />
                         <div id={`b${index}`} className='nr-tab'>
+                    
                             <h4>{element.title}</h4>
-                            <label>ingredients and instructions</label>
                             
-                                <Media query='(max-width: 400px)'>
+                                <Media query='(max-width: 768px)'>
                                 {matches => matches ? (
-                                    <img id={`d${index}`} src={expand} onClick={() => this.expandRecipe(index, element.id)} alt="see recipe" />
-                                    ):(
-                                        <Popup trigger={
-                                        // <h3>see ingredients/instructions</h3>} modal>
-                                        <img src={expand}></img> }modal> 
-                                        <InstructionsPopup recipeId={element.id} recipeTitle={element.title} recipeImage={element.image}/></Popup>)
-                                }
-                                </Media>
-                                {/* <Media query='(max-width: 768px)'>
-                                {matches => matches ? (
+                                    <div>
                                     <div className='label-box'>
                                         <label>ingredients and instructions</label>
                                         <img id={`d${index}`} src={expand} onClick={() => this.expandRecipe(index, element.id)} alt="see recipe" />
                                     </div>
-                                    ):(
-                                        <Popup trigger={
-                                        // <div className='label-box'>
-                                            <label>ingredients and instructions</label>
-                                            // <img id={`d${index}`} src={expand} />
-                                        // </div>
-                                        
-                                        // onClick={() => this.expandRecipe(index, element.id)}
-                                        
-                                    }modal><InstructionsPopup recipeId={element.id} recipeTitle={element.title} recipeImage={element.image}/></Popup>)
-                                }
-                                </Media> */}
-                                
-                                <div id={`c${index}`} className='nr-tab-content'>
+                                    <div id={`c${index}`} className='nr-tab-content'>
                                     {
                                         this.state.recipeDetails[index].instructions === '' ?
                                             <div>
                                                 <img className='fork' src={fork} alt="" />
                                                 <img className='plate' src={plate} alt="" />
                                                 <img className='knife' src={knife} alt="" />
-                                                {/* <h1>loading...</h1> */}
+                                                <h1>loading...</h1>
 
                                             </div>
+
+                                            :
+                                            <div>
+                                                <div>
+                                                    {this.state.recipeDetails[index].preparationMinutes && this.state.recipeDetails[index].cookingMinutes ?
+                                                        <div>
+                                                            <p>prep:{this.state.recipeDetails[index].preparationMinutes} minutes</p>
+                                                            <p>cook:{this.state.recipeDetails[index].cookingMinutes} minutes</p>
+                                                        </div>
+                                                        :
+                                                        <p>Ready in:{this.state.recipeDetails[index].readyInMinutes} minutes</p>
+
+                                                    }
+                                                    <p>serves {this.state.recipeDetails[index].servings}</p>
+                                                </div>
+                                                <div>
+                                                    <p>{this.state.recipeDetails[index].ingredients}</p>
+                                                    {numberedInstructions}
+                                                </div>
+                                                {this.props.user.empty==='empty'?null:
+                                                <button onClick={()=>this.handleSaveRecipe(element.id,element.image,element.title,)}>save</button>
+                                                }
+                                            </div>
+
+                                    }
+                                </div>
+                                </div>
+                                    ):(
+                                        <Popup trigger={
+                                        <div className='label-box'>
+                                            <label>ingredients and instructions</label>
+                                            <img id={`d${index}`} src={expand} />
+                                        </div>
+                                        
+                                        // onClick={() => this.expandRecipe(index, element.id)}
+                                        
+                                    }modal><InstructionsPopup recipeId={element.id} recipeTitle={element.title} recipeImage={element.image}/></Popup>)
+                                }
+                                </Media>
+                                
+                                {/* <div id={`c${index}`} className='nr-tab-content'>
+                                    {
+                                        this.state.recipeDetails[index].instructions === '' ?
+                                            <div>
+                                                <img className='fork' src={fork} alt="" />
+                                                <img className='plate' src={plate} alt="" />
+                                                <img className='knife' src={knife} alt="" />
+                                                <h1>loading...</h1>
+
+                                        </div>
 
                                             :
                                             <div>
@@ -209,12 +252,12 @@ class NewRecipes extends Component {
                                                     <p>{this.state.recipeDetails[index].instructions}</p>
                                                 </div>
                                                 {this.props.user.empty==='empty'?null:
-                                                <button>save</button>
+                                                <img src={saveRecipe} style={{cursor: "pointer"}}/>
                                                 }
                                             </div>
 
                                     }
-                                </div>
+                                </div> */}
                             
                         </div>
                     </div>
@@ -254,6 +297,8 @@ class NewRecipes extends Component {
                 </div>
             )
         })
+
+        
         return (
             <div className="nr-bg header-curve">
                 {this.state.loaded ?
@@ -299,6 +344,3 @@ function mapStateToProps(state){
 }
 
 export default connect(mapStateToProps)(NewRecipes);
-
-//source for accordian instructions https://codepen.io/lara-potjewyd/pen/gBJEaG
-
