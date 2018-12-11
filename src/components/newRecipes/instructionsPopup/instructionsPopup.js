@@ -38,27 +38,29 @@ class InstructionsPopup extends Component {
         
         return (
             <div>
-                <div className='nr-tab-content'>
+                <div className='pop-content'>
                     {
-                        this.state.instructionsInfo.instructions === '' ?
-                            <div>
-                                <img className='fork' src={fork} alt="" />
-                                <img className='plate' src={plate} alt="" />
-                                <img className='knife' src={knife} alt="" />
+                        !this.state.instructionsInfo.hasOwnProperty('extendedIngredients') ?
+                        <div className='loading2'>
+                            <div className='loading-animation2'>
+                                <img className='fork popup' src={fork} alt="fork" />
+                                <img className='plate popup' src={plate} alt="plate" />
+                                <img className='knife popup' src={knife} alt="knife" />
                                 <h1>loading...</h1>
-
                             </div>
+                            </div>
+
 
                             :
                             <div>
                                 <div>
                                     {this.state.instructionsInfo.preparationMinutes && this.state.instructionsInfo.cookingMinutes ?
                                         <div>
-                                            <p>prep:{this.state.instructionsInfo.preparationMinutes} minutes</p>
-                                            <p>cook:{this.state.instructionsInfo.cookingMinutes} minutes</p>
+                                            <p>prep: {this.state.instructionsInfo.preparationMinutes} minutes</p>
+                                            <p>cook: {this.state.instructionsInfo.cookingMinutes} minutes</p>
                                         </div>
                                         :
-                                        <p>ready in:{this.state.instructionsInfo.readyInMinutes} minutes</p>
+                                        <p>ready in {this.state.instructionsInfo.readyInMinutes} minutes</p>
 
                                     }
                                     <p>serves {this.state.instructionsInfo.servings}</p>
