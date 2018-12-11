@@ -155,12 +155,30 @@ class NewRecipes extends Component {
                                     <img id={`d${index}`} src={expand} onClick={() => this.expandRecipe(index, element.id)} alt="see recipe" />
                                     ):(
                                         <Popup trigger={
-                                        <h3 
-                                        // onClick={() => this.expandRecipe(index, element.id)}
-                                        >see ingredients/instructions</h3>}modal><InstructionsPopup recipeId={element.id} recipeTitle={element.title} recipeImage={element.image}/></Popup>)
+                                        // <h3>see ingredients/instructions</h3>} modal>
+                                        <img src={expand}></img> }modal> 
+                                        <InstructionsPopup recipeId={element.id} recipeTitle={element.title} recipeImage={element.image}/></Popup>)
                                 }
                                 </Media>
-                            
+                                {/* <Media query='(max-width: 768px)'>
+                                {matches => matches ? (
+                                    <div className='label-box'>
+                                        <label>ingredients and instructions</label>
+                                        <img id={`d${index}`} src={expand} onClick={() => this.expandRecipe(index, element.id)} alt="see recipe" />
+                                    </div>
+                                    ):(
+                                        <Popup trigger={
+                                        // <div className='label-box'>
+                                            <label>ingredients and instructions</label>
+                                            // <img id={`d${index}`} src={expand} />
+                                        // </div>
+                                        
+                                        // onClick={() => this.expandRecipe(index, element.id)}
+                                        
+                                    }modal><InstructionsPopup recipeId={element.id} recipeTitle={element.title} recipeImage={element.image}/></Popup>)
+                                }
+                                </Media> */}
+                                
                                 <div id={`c${index}`} className='nr-tab-content'>
                                     {
                                         this.state.recipeDetails[index].instructions === '' ?
@@ -276,7 +294,7 @@ class NewRecipes extends Component {
 }
 
 function mapStateToProps(state){
-   let{user}= state;
+   let {user}= state;
    return {user}
 }
 
