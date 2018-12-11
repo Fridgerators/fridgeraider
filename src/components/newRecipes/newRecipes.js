@@ -290,5 +290,3 @@ function mapStateToProps(state){
 }
 
 export default connect(mapStateToProps)(NewRecipes);
-
-// source for accordian instructions https://codepen.io/lara-potjewyd/pen/gBJEaG

@@ -5,6 +5,9 @@
 
 .label-box {
   @include flexSetUp();
+  img {
+    cursor: pointer;
+  }
 }
 
 .nr-next {
@@ -138,6 +141,8 @@
     img {
       margin-top: 5px;
       height: 18px;
+      transition: all .35s ease-in-out;
+
     }
   }
 
@@ -166,6 +171,8 @@
     }
     img {
       transform: rotate(-145deg);
+      transition: all .35s ease-in-out;
+
     }
   }
 }
@@ -183,28 +190,41 @@
   transform: rotate(180deg);
   // transition: all .35s ease-in-out;
 }
+
+
 .nr-tab-content {
   width: 88vw;
   padding: 8px 0;
   display: none;
+  height: 0;
   transition: all .35s ease-in-out;
+  box-shadow: 0px 3px 5px $text-color;
+  background-color: $pale-bg;
+  position: absolute;
+  z-index: 5;
+  border-radius: 0px 0px 15px 15px;
 
-  
-  @include tablet {
-    display: flex;
+    
+  // @include tablet {
+  //   display: flex;
 
-    width: 45vw;
+  //   width: 45vw;
     p {
       font-size: 18px;
+      width: 100%;
+      padding: 15px;
+      margin: auto;
+      
+
     }
-  }
-  @include desktop {
-    display: flex;
-    width: 20vw;
-    p {
-      font-size: 18px;
-    }
-  }
+  // }
+  // @include desktop {
+  //   display: flex;
+  //   width: 50vw;
+  //   p {
+  //     font-size: 18px;
+  //   }
+  // }
   @include height {
     width: 70vw;
     p {
@@ -215,6 +235,7 @@
 
 .expand {
   display: flex;
+  height: 20%;
   transition: all .35s ease-in-out;
   }
 

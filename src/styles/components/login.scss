@@ -1,6 +1,6 @@
 .popup-content {
   width: 75% !important;
-  height: 48%;
+  // height: 48%;
   border-radius: 20px;
   border: 3px solid $purple-4 !important;
   background-color: $pale-bg !important;
@@ -79,7 +79,7 @@
   }
 
   @include height {
-    padding-top: 10%;
+    padding-top: 5%;
     input {
       width: 75%;
       height: 30px;

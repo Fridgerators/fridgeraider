@@ -38,7 +38,7 @@ class InstructionsPopup extends Component {
         
         return (
             <div>
-                <div className='nr-tab-content'>
+                <div className='pop-content'>
                     {
                         this.state.instructionsInfo.instructions === '' ?
                             <div>
