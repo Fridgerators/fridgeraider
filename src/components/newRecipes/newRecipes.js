@@ -24,7 +24,6 @@ class NewRecipes extends Component {
             recipeDisplay: [],
             recipeRes: [],
             params: '',
-            rIndex: 0,
             tIndex: 0,
             iniState: 0,
             recipeDetails: []
@@ -34,6 +33,7 @@ class NewRecipes extends Component {
         this.expandRecipe = this.expandRecipe.bind(this);
         this.handleNext = this.handleNext.bind(this);
         this.handlePrevious = this.handlePrevious.bind(this);
+        this.handleSaveRecipe=this.handleSaveRecipe.bind(this);
     }
 
     async componentDidMount() {
@@ -47,17 +47,13 @@ class NewRecipes extends Component {
                 servings: 0,
                 ingredients: []
             }
-            this.handleSaveRecipe=this.handleSaveRecipe.bind(this);
         }
         await this.setState({ recipeDetails: recDets })
         console.log(this.state.recipeDetails)
         let { searchIngredients } = this.props.match.params
         let { rIndex } = this.state;
         let res = await axios.get(`/api/recipes/getResults/${searchIngredients}/1`)
-        await this.setState({
-            recipes: res.data,
-            loaded: true
-        })
+        await this.setState({recipes: res.data})
 
         await this.setState({ params: searchIngredients })
         await this.setState({ recipeRes: this.tempName() })
