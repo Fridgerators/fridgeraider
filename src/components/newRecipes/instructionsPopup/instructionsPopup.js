@@ -6,6 +6,7 @@ import Loading from '../../Loading';
 import fork from '../../images/fork.svg';
 import plate from '../../images/plate.svg';
 import knife from '../../images/knife.svg';
+import saveRecipe from '../../images/saveRecipe.svg';
 
 class InstructionsPopup extends Component {
     constructor() {
@@ -81,7 +82,7 @@ class InstructionsPopup extends Component {
                                     {instructionList}
                                 </div>
                                 {this.props.user.empty==='empty'?null:
-                                                <button onClick={this.handleSaveRecipe}>save</button>
+                                                <img src={saveRecipe} onClick={this.handleSaveRecipe} />
                                                 }
                             </div>
 
