@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import login from '../../images/login.svg';
+import register from '../../images/register.svg';
+
 import {connect} from 'react-redux';
 import {updateUserData} from '../../../ducklings/reducer';
 
@@ -43,13 +46,13 @@ class SignIn extends Component{
         let {username, password} = this.state;
         return(
             
-            <div>
-              <h3>username</h3><br/>
+            <div className='login-box'>
+              <h3>username</h3>
               <input type="text" onChange={e=>this.handleUsername(e.target.value)}/><br/>
-              <h3>password</h3><br/>
+              <h3>password</h3>
                 <input type="text" onChange={e=>this.handlePassword(e.target.value)}/><br/>
-                <button onClick={()=>this.login(username,password)}>login</button>
-                <button onClick={()=>this.register(username,password)}>register</button>
+                <img src={register} onClick={()=>this.register(username,password)} />
+                <img src={login} onClick={()=>this.login(username,password)} />
             </div>
         )
     }

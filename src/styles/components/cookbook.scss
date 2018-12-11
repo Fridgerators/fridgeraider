@@ -1,0 +1,4 @@
+.cookbook-bg {
+  @include width-height(100vw, 100vh);
+  background-color: $pale-bg;
+}

@@ -58,7 +58,7 @@ class InstructionsPopup extends Component {
                                             <p>cook:{this.state.instructionsInfo.cookingMinutes} minutes</p>
                                         </div>
                                         :
-                                        <p>Ready in:{this.state.instructionsInfo.readyInMinutes} minutes</p>
+                                        <p>ready in:{this.state.instructionsInfo.readyInMinutes} minutes</p>
 
                                     }
                                     <p>serves {this.state.instructionsInfo.servings}</p>

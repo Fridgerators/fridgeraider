@@ -139,6 +139,7 @@ class NewRecipes extends Component {
         return
 
     }
+    
     render() {
         console.log('nr recipeDetails',this.state.recipeDetails)
         let recipeRes = this.state.recipes.map((element, index) => {
@@ -147,20 +148,28 @@ class NewRecipes extends Component {
                     <div className='initial-view'>
                         <img id={`a${index}`} className='food' src={element.image} alt={element.image} />
                         <div id={`b${index}`} className='nr-tab'>
+                    
                             <h4>{element.title}</h4>
-                            <label>ingredients and instructions</label>
                             
-                                <Media query='(max-width: 400px)'>
+                                <Media query='(max-width: 768px)'>
                                 {matches => matches ? (
-                                    <img id={`d${index}`} src={expand} onClick={() => this.expandRecipe(index, element.id)} alt="see recipe" />
+                                    <div className='label-box'>
+                                        <label>ingredients and instructions</label>
+                                        <img id={`d${index}`} src={expand} onClick={() => this.expandRecipe(index, element.id)} alt="see recipe" />
+                                    </div>
                                     ):(
                                         <Popup trigger={
-                                        <h3 
+                                        <div className='label-box'>
+                                            <label>ingredients and instructions</label>
+                                            <img id={`d${index}`} src={expand} />
+                                        </div>
+                                        
                                         // onClick={() => this.expandRecipe(index, element.id)}
-                                        >see ingredients/instructions</h3>}modal><InstructionsPopup recipeId={element.id} recipeTitle={element.title} recipeImage={element.image}/></Popup>)
+                                        
+                                    }modal><InstructionsPopup recipeId={element.id} recipeTitle={element.title} recipeImage={element.image}/></Popup>)
                                 }
                                 </Media>
-                            
+                                
                                 <div id={`c${index}`} className='nr-tab-content'>
                                     {
                                         this.state.recipeDetails[index].instructions === '' ?
@@ -276,11 +285,10 @@ class NewRecipes extends Component {
 }
 
 function mapStateToProps(state){
-   let{user}= state;
+   let {user}= state;
    return {user}
 }
 
 export default connect(mapStateToProps)(NewRecipes);
 
-//source for accordian instructions https://codepen.io/lara-potjewyd/pen/gBJEaG
-
+// source for accordian instructions https://codepen.io/lara-potjewyd/pen/gBJEaG

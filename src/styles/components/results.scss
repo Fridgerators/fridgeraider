@@ -3,6 +3,10 @@
   background-color: $pale-bg;
 }
 
+.label-box {
+  @include flexSetUp();
+}
+
 .nr-next {
   float: right;
   margin: 0 15px 20px 0px;
@@ -37,23 +41,43 @@
 .nr-next-btn {
   margin-bottom: 9vh;
   cursor: pointer;
+  position: relative;
+  left: 25%;
 
   @include tablet {
-    margin-bottom: 0px;
     height: 5vh;
+    margin-top: 20px;
+    left: 140px;
   }
+  
   @include height {
-    margin-bottom: 0px;
+    left: 160px;
+  }
+}
+
+.nr-previous {
+  margin-bottom: 9vh;
+  cursor: pointer;
+  position: relative;
+  right: 25%;
+
+  @include tablet {
     height: 5vh;
+    margin-top: 20px;
+    right: 140px;
+  }
+
+  @include height {
+    right: 160px;
   }
 }
 
 .nr-outer-box {
   @include width-height(88vw, auto);
-  box-shadow: 0px 2px 5px $text-color;
+  box-shadow: 0px 3px 5px $text-color;
   @include flexSetUp(center, center, column);
   border-radius: 18px;
-  border: 2px solid $purple-4;
+  // border: 2px solid $purple-4;
   margin: auto;
   margin-bottom: 35px;
   margin-top: -20px;
@@ -88,7 +112,7 @@
   transition: all .35s ease-in-out;
 
   h4 {
-    padding-top: 5px;
+    padding: 5px;
     color: #fff;
   }
   label {
@@ -135,15 +159,13 @@
   @include desktop {
     width: 25.15vw;
     padding: 5px;
-    border-radius: 0px;
     h4 {
       padding: 8px;
     }
     label {
-      display: none;
     }
     img {
-      display: none;
+      transform: rotate(-145deg);
     }
   }
 }
@@ -169,6 +191,8 @@
 
   
   @include tablet {
+    display: flex;
+
     width: 45vw;
     p {
       font-size: 18px;

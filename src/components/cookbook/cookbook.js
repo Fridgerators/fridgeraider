@@ -34,7 +34,7 @@ class Cookbook extends Component {
             )
         })
         return (
-            <div>
+            <div className='cookbook-bg header-curve'>
                 <Nav />
                 {favRecipes}
             </div>
