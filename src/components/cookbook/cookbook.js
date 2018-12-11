@@ -1,33 +1,174 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Nav from '../navbar/navbar';
+import Popup from 'reactjs-popup';
+import Media from 'react-media';
+import Navbar from '../navbar/navbar';
+import CookbookPopup from './cookbookPopup/cookbookPopup';
+import swal from 'sweetalert2';
+import expand from '../images/open-icon.svg';
+import Grid from '@material-ui/core/Grid';
+import Loading from '../Loading';
+import next from '../images/next.svg';
+import prev from '../images/previous.svg';
+import fork from '../images/fork.svg';
+import plate from '../images/plate.svg';
+import knife from '../images/knife.svg';
+import saveRecipe from '../images/saveRecipe.svg';
 
 class Cookbook extends Component {
     constructor() {
         super()
         this.state = {
-            myRecipes:[]
+            myRecipes: [],
+            firstIndex: 0,
+            allRecipeInfo: []
+
+        }
+        // this.handleDeleteRecipe = this.handleDeleteRecipe.bind(this);
+        this.handleForward = this.handleForward.bind(this);
+        this.handleBack = this.handleBack.bind(this);
+        this.handleRetrieveDetails = this.handleRetrieveDetails.bind(this);
+    }
+
+    async componentDidMount() {
+        let recDets = [];
+        for (let i = 0; i < 45; i++) {
+            recDets[i] = {
+                preparationMinutes: 0,
+                cookingMinutes: 0,
+                readyInMinutes: 0,
+                instructions: '',
+                servings: 0,
+                ingredients: []
+            }
+        }
+        await this.setState({ allRecipeInfo: recDets })
+        await axios.get('/api/cookbook/recipeList').then(res => {
+            this.setState({ myRecipes: res.data })
+        })
+    }
+
+    async handleAccordian(index, id) {
+        document.getElementById(`cc${index}`).classList.toggle('expand');
+        document.getElementById(`bb${index}`).classList.toggle('radius');
+        document.getElementById(`aa${index}`).classList.toggle('radius2');
+        document.getElementById(`dd${index}`).classList.toggle('spin');
+
+        if (!this.state.allRecipeInfo[index].ingredients[0]) {
+            let recipeDeets = [...this.state.allRecipeInfo]
+            let ingDeets = [];
+            let res = await axios.get(`/api/recipes/getRecipe/${id}`)
+                .then(response => {
+                    recipeDeets[index].preparationMinutes = response.data.preparationMinutes;
+                    recipeDeets[index].cookingMinutes = response.data.cookingMinutes;
+                    recipeDeets[index].readyInMinutes = response.data.readyInMinutes;
+                    recipeDeets[index].instructions = response.data.analyzedInstructions[0].steps;
+                    recipeDeets[index].servings = response.data.servings;
+                    recipeDeets[index].ingredients = response.data.extendedIngredients.map((element, index) => {
+                        return element.original
+                    })
+                })
+            await this.setState({
+                allRecipeInfo: recipeDeets
+            })
         }
     }
 
-    // componentDidMount(){
-    //     axios.get()
+    async handleRetrieveDetails() {
+        let res = await axios.get(`/api/recipes/getRecipe/${this.props.recipeId}`)
+        if (this.state.open === true) {
+            await this.setState({ prepTimeServing: res.data })
+            await this.setState({ ings: res.data.extendedIngredients })
+            await this.setState({ instructionSteps: res.data.analyzedInstructions[0].steps })
+        }
+    }
+
+    // handleDeleteRecipe(id, title) {
+    //     axios.delete(`/api/cookbook/deleteRecipe/${id}`).then(() => {
+    //         swal(`${title} has been removed`)
+    //     })
     // }
+
+    async handleForward() {
+        await this.setState({
+            firstIndex: this.state.firstIndex += 9
+        })
+    }
+
+    async handleBack() {
+        await this.setState({
+            firstIndex: this.state.firstIndex -= 9
+        })
+    }
 
 
     render() {
-
-        let favRecipes = this.state.myRecipes.map((element,index)=>{
+console.log('dbcb',this.state.myRecipes)
+        const formatInstructions = this.state.allRecipeInfo.map((element, id) => {
             return (
-                <div key={index}>
-                <img src={element.recipe.image} alt='' />
-                    <h4>{element.recipe.label}</h4>
-                    <div className='nr-tab'>
-                        <input type="checkbox" name='tabs' />
-                        <label>see ingredients and instructions</label>
-                        <div className='nr-tab-content'>
-                            <p>{element.recipe.ingredientLines}</p>
-                            <h5>for full instructions please visit {element.recipe.url}</h5>
+                <p key={id}>{element.number}{element.step}</p>
+            )
+        })
+
+        let favRecipes = this.state.myRecipes.map((element, index) => {
+            return (
+                <div key={index} className='nr-outer-box'>
+                    <div className="initial-view">
+                        <img id={`aa${index}`} src={element.image} alt='' />
+                        <div id={`bb${index}`} className='nr-tab'>
+                            <h4>{element.title}</h4>
+                            <button onClick={() => this.handleDeleteRecipe(element.id, element.title)}>delete</button>
+                            <Media query='(max-width: 768px)'>
+                                {matches => matches ? (
+                                    <div>
+                                        <div className='label-box'>
+                                            <label>ingredients and instructions</label>
+                                            <img id={`dd${index}`} src={expand} onClick={() => this.handleAccordian(index, element.id)} alt="see recipe" />
+                                        </div>
+                                        <div id={`cc${index}`} className='nr-tab-content'>
+                                            {
+                                                this.state.recipeDetails[index].instructions === '' ?
+                                                    <div>
+                                                        <img className='fork' src={fork} alt="" />
+                                                        <img className='plate' src={plate} alt="" />
+                                                        <img className='knife' src={knife} alt="" />
+                                                        <h1>loading...</h1>
+
+                                                    </div>
+
+                                                    :
+                                                    <div>
+                                                        <div>
+                                                            {this.state.recipeDetails[index].preparationMinutes && this.state.recipeDetails[index].cookingMinutes ?
+                                                                <div>
+                                                                    <p>prep:{this.state.recipeDetails[index].preparationMinutes} minutes</p>
+                                                                    <p>cook:{this.state.recipeDetails[index].cookingMinutes} minutes</p>
+                                                                </div>
+                                                                :
+                                                                <p>Ready in:{this.state.recipeDetails[index].readyInMinutes} minutes</p>
+
+                                                            }
+                                                            <p>serves {this.state.recipeDetails[index].servings}</p>
+                                                        </div>
+                                                        <div>
+                                                            <p>{this.state.recipeDetails[index].ingredients}</p>
+                                                            {formatInstructions}
+                                                        </div>
+                                                    </div>
+
+                                            }
+                                        </div>
+                                    </div>
+                                ) : (
+                                        <Popup trigger={
+                                            <div className='label-box'>
+                                                <label>ingredients and instructions</label>
+                                                <img id={`d${index}`} src={expand} />
+                                            </div>
+
+                                        } modal><CookbookPopup recipeNum={element.id} recipeLabel={element.title} /></Popup>)
+                                }
+                            </Media>
                         </div>
                     </div>
                 </div>
@@ -35,8 +176,40 @@ class Cookbook extends Component {
         })
         return (
             <div className='cookbook-bg header-curve'>
-                <Nav />
-                {favRecipes}
+                <div className="nr-bg header-curve">
+                    {this.state.myRecipes.length ?
+                        <div>
+                            <Navbar />
+
+                            <Grid item>
+                                <Grid container spacing={8} justify="center" alignItems="baseline" direction="row" margin="80px">
+
+                                    {favRecipes[0 + this.state.firstIndex]}
+                                    {favRecipes[1 + this.state.firstIndex]}
+                                    {favRecipes[2 + this.state.firstIndex]}
+                                    {favRecipes[3 + this.state.firstIndex]}
+                                    {favRecipes[4 + this.state.firstIndex]}
+                                    {favRecipes[5 + this.state.firstIndex]}
+                                    {favRecipes[6 + this.state.firstIndex]}
+                                    {favRecipes[7 + this.state.firstIndex]}
+                                    {favRecipes[8 + this.state.firstIndex]}
+                                </Grid>
+                            </Grid>
+
+                            {this.state.firstIndex === 0 ?
+                                <img src={next} className='nr-next-btn' onClick={this.handleForward} />
+                                :
+                                <div>
+                                    {this.state.firstIndex >= 36 ?
+                                        null
+                                        : <img src={next} className='nr-next-btn' onClick={this.handleForward} />
+                                    }
+                                    <img src={prev} className='nr-previous' onClick={this.handleBack} />
+                                </div>
+                            }
+                        </div>
+                        : <Loading />}
+                </div>
             </div>
         )
     }
