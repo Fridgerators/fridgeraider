@@ -14,6 +14,7 @@ import prev from '../images/previous.svg';
 import fork from '../images/fork.svg';
 import plate from '../images/plate.svg';
 import knife from '../images/knife.svg';
+import saveRecipe from '../images/saveRecipe.svg';
 
 class NewRecipes extends Component {
     constructor() {
@@ -230,7 +231,7 @@ class NewRecipes extends Component {
                                                 <img className='knife' src={knife} alt="" />
                                                 <h1>loading...</h1>
 
-                                            </div>
+                                        </div>
 
                                             :
                                             <div>
@@ -251,7 +252,7 @@ class NewRecipes extends Component {
                                                     <p>{this.state.recipeDetails[index].instructions}</p>
                                                 </div>
                                                 {this.props.user.empty==='empty'?null:
-                                                <button>save</button>
+                                                <img src={saveRecipe} style={{cursor: "pointer"}}/>
                                                 }
                                             </div>
 
@@ -343,5 +344,3 @@ function mapStateToProps(state){
 }
 
 export default connect(mapStateToProps)(NewRecipes);
-
-// source for accordian instructions https://codepen.io/lara-potjewyd/pen/gBJEaG

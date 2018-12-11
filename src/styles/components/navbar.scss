@@ -18,6 +18,7 @@
   }
 }
 .nb-logo-mobile {
+  cursor: pointer;
   @include flexSetUp(flex-start, center, row);
   // padding: 10px;
   padding: 10px 0px 0 10px;
@@ -39,6 +40,7 @@
   font-size: 1rem;
   margin-left: 5px;
   color: $purple-2;
+  cursor: pointer;
 
   @include desktop {
     font-size: 1.5rem;
@@ -56,16 +58,17 @@
   @include position(fixed);
   background-color: $purple-bg;
   bottom: 0px;
-  z-index: 1;
+  z-index: 5;
 }
 
 .nb-icon-login {
   padding-right: 45px;
   padding-left: 12px;
-
+  cursor: pointer;
 }
 .nb-icon-book {
   padding-right: 15px;
+  cursor: pointer;
 }
 
   .nb-logo-mobile.large {
@@ -73,8 +76,16 @@
     padding-left: 30px;
     width: 40%;
     margin-bottom: 0px;
+  cursor: pointer;
   }
 
   .nb-profile {
     margin: 0px 20px;
+    cursor: pointer;
+  }
+  .nb-book {
+    cursor: pointer;
+  }
+  .nb-login {
+    cursor: pointer;
   }

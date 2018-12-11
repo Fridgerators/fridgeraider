@@ -11,6 +11,17 @@ outline: none;
 color: inherit;
 }
 
+.swal2-popup .swal2-styled.swal2-confirm {
+  background-color: $purple-2;
+  border-radius: 15px 0px 15px 0px;
+  color: $text-color;
+}
+.swal2-popup {
+  background-color: $pale-bg;
+  border-radius: 15px;  
+  padding: 2.25em;
+}
+
 .title {
   color: $purple-1;
   @include width-height(240px, auto);
