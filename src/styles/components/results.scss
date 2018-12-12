@@ -102,6 +102,11 @@
 
       }
 }
+
+.nr-outer-box:first-child {
+  margin-top: 8px;
+}
+
 .initial-view {
   @include flexSetUp(flex-end, center, column);
 

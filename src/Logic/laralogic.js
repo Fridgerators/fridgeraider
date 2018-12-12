@@ -1,19 +1,19 @@
-const axios = require('axios');
+// const axios = require('axios');
 
-module.exports = {
+// module.exports = {
 
-  getUser: (user) => {
-    axios.get()
-  },
+//   getUser: (user) => {
+//     axios.get()
+//   },
 
-  canLogin: (user) => { 
-    return user
-  },
+//   canLogin: (user) => { 
+//     return user
+//   },
 
-  createUser: (user) => {
-    return user
-  }
+//   createUser: (user) => {
+//     return user
+//   }
 
 
 
-}
+// }

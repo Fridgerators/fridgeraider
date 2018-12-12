@@ -2,3 +2,21 @@
   @include width-height(100vw, 100vh);
   background-color: $pale-bg;
 }
+
+.loading-box {
+  margin: auto;
+  padding: 15px;
+   h1 {
+     color: $purple-3;
+     font-size: 32px;
+   }
+}
+
+.recipeTitle {
+  padding-top: 8px;
+  padding-bottom: 0px;
+   button {
+    color: #fff;
+    font-family: $main-font;
+  }
+}
