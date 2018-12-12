@@ -24,7 +24,7 @@ class Cookbook extends Component {
             firstIndex: 0,
             allRecipeInfo: []
         }
-        // this.handleDeleteRecipe = this.handleDeleteRecipe.bind(this);
+        this.handleDeleteRecipe = this.handleDeleteRecipe.bind(this);
         this.handleForward = this.handleForward.bind(this);
         this.handleBack = this.handleBack.bind(this);
         this.handleRetrieveDetails = this.handleRetrieveDetails.bind(this);
@@ -52,9 +52,8 @@ class Cookbook extends Component {
         document.getElementById(`aa${index}`).classList.toggle('radius2');
         document.getElementById(`dd${index}`).classList.toggle('spin');
         if (!this.state.allRecipeInfo[index].ingredients[0]) {
-            let recipeDeets = [...this.state.allRecipeInfo]
-            let ingDeets = [];
-            let res = await axios.get(`/api/recipes/getRecipe/${id}`)
+            let recipeDeets = [...this.state.allRecipeInfo];
+            await axios.get(`/api/recipes/getRecipe/${id}`)
                 .then(response => {
                     recipeDeets[index].preparationMinutes = response.data.preparationMinutes;
                     recipeDeets[index].cookingMinutes = response.data.cookingMinutes;
@@ -78,11 +77,14 @@ class Cookbook extends Component {
             await this.setState({ instructionSteps: res.data.analyzedInstructions[0].steps })
         }
     }
-    // handleDeleteRecipe(id, title) {
-    //     axios.delete(`/api/cookbook/deleteRecipe/${id}`).then(() => {
-    //         swal(`${title} has been removed`)
-    //     })
-    // }
+
+    async handleDeleteRecipe(id, title) {
+        let res = await axios.delete(`/api/cookbook/deleteRecipe/${id}`)
+        await this.setState({ myRecipes: res.data })
+        await swal(`${title} has been removed`)
+
+    }
+
     async handleForward() {
         await this.setState({
             firstIndex: this.state.firstIndex += 9
@@ -94,9 +96,6 @@ class Cookbook extends Component {
         })
     }
     render() {
-console.log('dbcb',this.state.myRecipes)
-console.log('allrecipeinfo',this.state.allRecipeInfo)
-
         const formatInstructions = this.state.allRecipeInfo.map((element, id) => {
             return (
                 <p key={id}>{element.number}{element.step}</p>
@@ -110,7 +109,7 @@ console.log('allrecipeinfo',this.state.allRecipeInfo)
                         <div id={`bb${index}`} className='nr-tab' >
 
                         <div className='label-box recipeTitle'>
-                            <img src={deleteIcon} className='delete-lemon' onClick={() => this.handleDeleteRecipe(element.id, element.title)} alt="delete recipe"/>
+                            <img src={deleteIcon} className='delete-lemon' onClick={() => this.handleDeleteRecipe(element.recipe_id, element.title)} alt="delete recipe"/>
                             <h4 >{element.title}</h4>
                         </div>
                             <Media query='(max-width: 768px)'>
