@@ -43,8 +43,8 @@ class SignIn extends Component{
               <input type="text" onChange={e=>this.handleUsername(e.target.value)}/><br/>
               <h3>password</h3>
                 <input type="text" onChange={e=>this.handlePassword(e.target.value)}/><br/>
-                <img src={register} onClick={()=>this.register(username,password)} alt=''/>
-                <img src={login} onClick={()=>this.login(username,password)} alt=''/>
+                <img src={register} onClick={()=>this.register(username,password)} alt="click to register"/>
+                <img src={login} onClick={()=>this.login(username,password)} alt="click to login"/>
             </div>
         )
     }

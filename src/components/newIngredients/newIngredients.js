@@ -30,7 +30,17 @@ class NewIngredients extends Component {
     }
 
     handleClear(){
-        this.setState({ingredients: ['', '', '', '', '', '']})
+        swal({
+            title: 'Are you sure?',
+            text: 'Do you really want to clear out this search?',
+            showCancelButton: true,
+            cancelButtonText: 'no!',
+            confirmButtonText: 'yep',
+            // backdrop: '$faded-bg'
+
+        }).then((result) => {
+            this.setState({ingredients: ['', '', '', '', '', '']})
+        })
     }
 
     handleAlert(){
@@ -44,7 +54,7 @@ class NewIngredients extends Component {
 
         const newInput = this.state.ingredients.map((ingredient, index) => {
             return (
-                <div key={index} >
+                <div key={index}>
                     <input className='ni-input' value={ingredient} onChange={(e) => this.handleChange(e, index)} />
                     <img src={remove} onClick={()=>this.handleRemove(index)} alt='lemon'/>
                 </div>

@@ -11,6 +11,7 @@ import book from '../images/book.png';
 import login from '../images/sign-in.png';
 import SignIn from '../navbar/login/login';
 import {updateUserData} from '../../ducklings/reducer';
+import logout from '../images/sign-out.png';
 
 class Navbar extends Component {
     constructor() {
@@ -26,6 +27,11 @@ class Navbar extends Component {
     logout() {
     axios.get('/auth/logout')
     this.props.updateUserData({empty:'empty'}) 
+    swal({
+        title: "clocking out",
+        showConfirmButton: false,
+        timer: 500
+    })
     }
 
     async handleCookbook(){

@@ -143,7 +143,7 @@ class NewRecipes extends Component {
                                                     {numberedInstructions}
                                                 </div>
                                                 {this.props.user.empty==='empty'?null:
-                                                <button onClick={()=>this.handleSaveRecipe(element.id,element.image,element.title,)}>save</button>
+                                                <img src={saveRecipe} onClick={()=>this.handleSaveRecipe(element.id,element.image,element.title)} alt="click to save recipe"/>
                                                 }
                                             </div>
                                     }
@@ -181,14 +181,14 @@ class NewRecipes extends Component {
                             </Grid>
                         </Grid>
                         {this.state.iniState === 0 ?
-                            <img src={next} className='nr-next-btn' onClick={this.handleNext} alt=''/>
+                            <img src={next} className='nr-next-btn' onClick={this.handleNext} alt="click to see next page"/>
                             :
                             <div>
                                 {this.state.iniState >= 36 ?
                                     null
-                                    : <img src={next} className='nr-next-btn' onClick={this.handleNext} alt=''/>
+                                    : <img src={next} className='nr-next-btn' onClick={this.handleNext} alt="click to see next page"/>
                                 }
-                                <img src={prev} className='nr-previous' onClick={this.handlePrevious} alt=''/>
+                                <img src={prev} className='nr-previous' onClick={this.handlePrevious} alt="click to see previous page"/>
                             </div>
                         }
                     </div>

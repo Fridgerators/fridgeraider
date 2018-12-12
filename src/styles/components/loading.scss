@@ -35,14 +35,13 @@
 
 @keyframes float {
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-20px) rotate(0deg);
     filter: drop-shadow(0px 8px 2.5px rgba(51, 51, 51, 0.5))
   }
 }
 
 .fork {
   animation: float 2s cubic-bezier(.49,.05,.32,1.04) infinite alternate;
-  
 }
 
 .plate {
