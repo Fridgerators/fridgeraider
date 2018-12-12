@@ -80,7 +80,7 @@ class Navbar extends Component {
                                     </div></Link>
                                     <div className='nb-menu'>
                                     {this.props.user.empty === 'empty'?
-                                    <div>
+                                    <div className='top-menu'>
                                     <Popup trigger={<h3 className='nb-book' >cookbook</h3>}modal><SignIn pageDirect={this.state.pageName}/></Popup>
                                     <Popup trigger={ <h3 className='nb-profile'>profile</h3>} modal><SignIn pageDirect={this.state.pageName}/></Popup>
                                     <Popup trigger={<h3 className='nb-login'> login</h3>} modal><SignIn /></Popup>

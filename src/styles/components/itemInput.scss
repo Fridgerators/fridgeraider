@@ -6,17 +6,17 @@
 .ni-img {
 
   @include tablet{
-    height: 50px;
+    height: 40px;
 
   }
 }
 
 .ni-inputs-box {
   display: flex;
-  margin-top: 2vh;
+  margin-top: 4vh;
 
   @include tablet {
-    margin-top: 4vh;
+    margin-top: 6vh;
   }
   @include height {
     margin-top: 6vh;
@@ -63,7 +63,7 @@ input:nth-child(1) {
   @include flexSetUp(space-between, center, row);
 
   @include tablet {
-    width: 620px; 
+    width: 655px; 
   }
 @include height {
 
@@ -74,7 +74,7 @@ input:nth-child(1) {
 
     @include tablet {
       margin-left: 15px;
-      height: 50px;
+      height: 40px;
     }
   }
   @keyframes scaleUp {
@@ -92,7 +92,7 @@ input:nth-child(1) {
     }
 
     @include tablet {
-      height: 50px;
+      height: 40px;
     }
 
     @include desktop {
@@ -103,11 +103,11 @@ input:nth-child(1) {
 @media only screen and (min-width: 768px) {
 
 .ni-remove-input {
-  height: 50px;
+  height: 40px;
 }
 
   .ni-search {
-    height: 50px;
+    height: 40px;
   }
   
 }
