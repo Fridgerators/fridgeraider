@@ -59,10 +59,16 @@
   .prof-remove-ingredient {
     margin-bottom: 6px;
     margin-left: 4px;
+
   }
+  @keyframes jiggle {
+    50% {
+      transform: scale(1.2) rotate(-15deg);
+    }
+  }
+
   .prof-remove-ingredient:hover {
-    transform: rotate(30deg);
-    transition: all .3s ease-in-out;
+    animation: jiggle .35s 1 forwards;
   }
 
   .prof-input {
