@@ -130,11 +130,11 @@ class NewRecipes extends Component {
                                                 <div>
                                                     {this.state.recipeDetails[index].preparationMinutes && this.state.recipeDetails[index].cookingMinutes ?
                                                         <div>
-                                                            <p>prep:{this.state.recipeDetails[index].preparationMinutes} minutes</p>
-                                                            <p>cook:{this.state.recipeDetails[index].cookingMinutes} minutes</p>
+                                                            <p>prep: {this.state.recipeDetails[index].preparationMinutes} minutes</p>
+                                                            <p>cook: {this.state.recipeDetails[index].cookingMinutes} minutes</p>
                                                         </div>
                                                         :
-                                                        <p>Ready in:{this.state.recipeDetails[index].readyInMinutes} minutes</p>
+                                                        <p>Ready in: {this.state.recipeDetails[index].readyInMinutes} minutes</p>
                                                     }
                                                     <p>serves {this.state.recipeDetails[index].servings}</p>
                                                 </div>

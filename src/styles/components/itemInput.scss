@@ -4,7 +4,6 @@
 }
 
 .ni-img {
-  height: 30px;
 
   @include tablet{
     height: 50px;
@@ -58,10 +57,10 @@ input:nth-child(1) {
 }
 
 .ni-buttons {
-  width: 78vw;
   margin: auto;
   margin-top: 5px;
-
+  width: 86vw;
+  @include flexSetUp(space-between, center, row);
 
   @include tablet {
     width: 620px; 
@@ -88,19 +87,15 @@ input:nth-child(1) {
     animation: scaleUp .35s 1 forwards;
   }
   .ni-clear-input {
-    margin: 0px 44px;
 
     @include mobile {
-      margin: 0px 66px;
     }
 
     @include tablet {
-      margin: 0px 144px;
       height: 50px;
     }
 
     @include desktop {
-        margin: 0px 173px;
     }
   }
 

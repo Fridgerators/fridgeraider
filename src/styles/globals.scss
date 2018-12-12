@@ -95,6 +95,7 @@ input {
   padding: 8px;
   font-size: 1.1rem;
   color: $text-color;
+  text-align: center;
 
   @include tablet {
     font-size: 1.4rem;
