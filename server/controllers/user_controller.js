@@ -56,6 +56,8 @@ module.exports = {
     if (foundUser[0]) {
 
       res.status(400).send('That username is unavailable. Choose another one.')
+    } else if(username.length < 5 || password.length < 5) {
+      res.status(400).send('Username or password not long enough.')
     } else {
       // no user was found in the db
       let hash = bcrypt.hashSync(password, 10)
@@ -77,32 +79,32 @@ module.exports = {
     req.session.destroy();
     res.sendStatus(200)
   },
-  delete: async (req, res) => {
-    let { username, password } = req.body;
-    // username = username.toLowerCase();
-    const dbInstance = req.app.get('db')
-    let foundUser = await dbInstance.find_user([username])
-      .catch((err) => {
-        console.log(err)
-      })
+  // delete: async (req, res) => {
+  //   let { username, password } = req.body;
+  //   // username = username.toLowerCase();
+  //   const dbInstance = req.app.get('db')
+  //   let foundUser = await dbInstance.find_user([username])
+  //     .catch((err) => {
+  //       console.log(err)
+  //     })
 
-    if (foundUser[0]) {
-      if (bcrypt.compareSync(password, foundUser[0].password)) {
-        await dbInstance.delete_user([foundUser[0].user_id])
-        .catch((err) => {
-          console.log(err)
-        })
-        req.session.destroy();
-        res.status(200).send('User successfully removed')
-      } else {
-        // Passwords don't match
-        res.status(401).send('Password entered was incorrect')
-      }
-    } else {
-      // username or password do not match
-      res.status(401).send('Password entered was incorrect')
-    }
-  }
+  //   if (foundUser[0]) {
+  //     if (bcrypt.compareSync(password, foundUser[0].password)) {
+  //       await dbInstance.delete_user([foundUser[0].user_id])
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  //       req.session.destroy();
+  //       res.status(200).send('User successfully removed')
+  //     } else {
+  //       // Passwords don't match
+  //       res.status(401).send('Password entered was incorrect')
+  //     }
+  //   } else {
+  //     // username or password do not match
+  //     res.status(401).send('Password entered was incorrect')
+  //   }
+  // }
 
 
 

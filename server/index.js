@@ -49,7 +49,7 @@ app.get('/auth/getUser', user.sessionLogin);
 app.get('/auth/logout', user.logout);
 app.post('/auth/login', user.login);
 app.post('/auth/register', user.register);
-app.delete('/auth/deleteUser', user.delete);
+// app.delete('/auth/deleteUser', user.delete);
 
 
 app.listen(SERVER_PORT, () => {
