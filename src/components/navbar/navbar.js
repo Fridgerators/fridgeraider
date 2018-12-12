@@ -60,8 +60,8 @@ class Navbar extends Component {
                                 <div className="nb-bottom">
                                 {this.props.user.empty === 'empty'?
                                 <div> 
-                                <Popup trigger= {<img src={book} className="nb-icon-book" alt='' />}modal><SignIn /></Popup>
-                                <Popup trigger={<img  src={profile} className='nb-icon-profile' alt='' />} modal><SignIn/></Popup>
+                                <Popup trigger= {<img src={book} className="nb-icon-book" alt='go to saved recipes' />}modal><SignIn /></Popup>
+                                <Popup trigger={<img  src={profile} className='nb-icon-profile' alt='go to profile' />} modal><SignIn/></Popup>
                                 <Popup trigger={<img src={login} className='nb-icon-login' alt='' /> } modal><SignIn /></Popup>                                            
                                 </div>
                                 :<div>

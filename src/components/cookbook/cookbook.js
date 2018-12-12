@@ -109,7 +109,7 @@ class Cookbook extends Component {
                         <div id={`bb${index}`} className='nr-tab' >
 
                         <div className='label-box recipeTitle'>
-                            <img src={deleteIcon} className='delete-lemon' onClick={() => this.handleDeleteRecipe(element.id, element.title)} alt="delete recipe"/>
+                            <img src={deleteIcon} className='delete-lemon' onClick={() => this.handleDeleteRecipe(element.recipe_id, element.title)} alt="delete recipe"/>
                             <h4 >{element.title}</h4>
                         </div>
                             <Media query='(max-width: 768px)'>
