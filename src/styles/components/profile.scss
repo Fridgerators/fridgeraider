@@ -15,6 +15,7 @@
 
     img {
     height: 40px;
+    cursor: pointer;
     }
   }
   @include height {
@@ -54,12 +55,22 @@
   .prof-add-input {
     // margin-top: 5px;
     // margin-bottom: 2px;
+    cursor: pointer;
+  }
+  @keyframes scaleUp {
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  .prof-add-input:hover {
+    animation: scaleUp .35s 1 forwards;
   }
 
   .prof-remove-ingredient {
     margin-bottom: 6px;
     margin-left: 4px;
-
+    cursor: pointer;
   }
   @keyframes jiggle {
     50% {

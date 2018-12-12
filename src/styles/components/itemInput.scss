@@ -78,6 +78,15 @@ input:nth-child(1) {
       height: 50px;
     }
   }
+  @keyframes scaleUp {
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  .ni-add-input:hover {
+    animation: scaleUp .35s 1 forwards;
+  }
   .ni-clear-input {
     margin: 0px 44px;
 

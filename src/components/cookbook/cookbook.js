@@ -14,7 +14,7 @@ import fork from '../images/fork.svg';
 import plate from '../images/plate.svg';
 import knife from '../images/knife.svg';
 // import saveRecipe from '../images/saveRecipe.svg';
-// import deleteIcon from '../../components/images/delete.svg';
+import deleteIcon from '../../components/images/delete.svg';
 
 class Cookbook extends Component {
     constructor() {
@@ -110,8 +110,8 @@ console.log('allrecipeinfo',this.state.allRecipeInfo)
                         <div id={`bb${index}`} className='nr-tab' >
 
                         <div className='label-box recipeTitle'>
+                            <img src={deleteIcon} className='delete-lemon' onClick={() => this.handleDeleteRecipe(element.id, element.title)} alt="delete recipe"/>
                             <h4 >{element.title}</h4>
-                            <button onClick={() => this.handleDeleteRecipe(element.id, element.title)}>X</button>
                         </div>
                             <Media query='(max-width: 768px)'>
                                 {matches => matches ? (

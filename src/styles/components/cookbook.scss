@@ -3,6 +3,14 @@
   background-color: $pale-bg;
 }
 
+.delete-lemon {
+  height: 25px !important;
+  cursor: pointer;
+}
+.delete-lemon:hover {
+  animation: jiggle .35s 1 forwards;
+}
+
 .loading-box {
   margin: auto;
   padding: 15px;

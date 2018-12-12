@@ -56,9 +56,9 @@ class Navbar extends Component {
                                 </div>
                                 :
                                     <div>
-                                    <Link to='/cookbook'><img src={book} className="nb-icon-book" alt='' /></Link>
-                                    <Link to='/profile'><img src={profile} className='nb-icon-profile' alt='' /></Link>
-                                    <Link to='./input'><img src={logout} className='nb-icon-login' alt='' onClick={this.logout}/></Link>
+                                    <Link to='/cookbook'><img src={book} className="nb-icon-book" alt='go to saved recipes' /></Link>
+                                    <Link to='/profile'><img src={profile} className='nb-icon-profile' alt='go to profile' /></Link>
+                                    <Link to='./input'><img src={logout} className='nb-icon-login' alt='log out' onClick={this.logout}/></Link>
                                     </div>
                                 }
                                     
@@ -87,7 +87,7 @@ class Navbar extends Component {
                                     <div className='top-menu'>
                                         <Link to='/cookbook'><h3 className='nb-book'>cookbook</h3></Link>
                                         <Link to='/profile'><h3 className='nb-profile'>profile</h3></Link>
-                                        <Link to='/input' onClick={this.logout}>logout</Link>
+                                        <Link to='/input' className='nb-login' onClick={this.logout}>logout</Link>
                                     </div>
 
                                     }
