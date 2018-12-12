@@ -4,7 +4,7 @@ import Popup from 'reactjs-popup';
 import Media from 'react-media';
 import Navbar from '../navbar/navbar';
 import CookbookPopup from './cookbookPopup/cookbookPopup';
-// import swal from 'sweetalert2';
+import swal from 'sweetalert2';
 import expand from '../images/open-icon.svg';
 import Grid from '@material-ui/core/Grid';
 import Loading from '../Loading';

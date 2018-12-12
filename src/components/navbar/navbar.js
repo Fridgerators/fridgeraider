@@ -67,7 +67,7 @@ class Navbar extends Component {
                                 :<div>
                                     <img onClick={this.handleCookbook} src={book} className="nb-icon-book" alt='' />
                                     <Link to='/profile'><img src={profile} className='nb-icon-profile' alt='' /></Link>
-                                    <Link to='./input'><img src={login} className='nb-icon-login' alt='' onClick={this.logout}/></Link>
+                                    <Link to='./input'><img src={logout} className='nb-icon-login' alt='' onClick={this.logout}/></Link>
                                     </div>
                                 }
                                 </div>
