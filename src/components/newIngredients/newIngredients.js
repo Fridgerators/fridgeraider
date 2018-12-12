@@ -44,7 +44,7 @@ class NewIngredients extends Component {
 
         const newInput = this.state.ingredients.map((ingredient, index) => {
             return (
-                <div key={index} >
+                <div key={index}>
                     <input className='ni-input' value={ingredient} onChange={(e) => this.handleChange(e, index)} />
                 </div>
             )

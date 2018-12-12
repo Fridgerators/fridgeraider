@@ -70,7 +70,7 @@ class Profile extends Component {
                 
                     <input className='prof-input' type="text" value={ingredient} onChange={(e) => this.handleInput(e, index)} />
                     
-                    <img src={deleteItem} className='prof-remove-ingredient' onClick={() => this.handleDelete(ingredient)}></img>
+                    <img src={deleteItem} className='prof-remove-ingredient' onClick={() => this.handleDelete(ingredient)} alt="delete an ingredient" />
                 </form>
             )
         })
@@ -90,8 +90,8 @@ class Profile extends Component {
                             {existingIngredients}
                         </div> : null}
                     <div className='prof-btns'>
-                        <img src={save} onClick={() => this.handleUpdate(this.state.myIngredients)} ></img>
-                        <img src={add} className='prof-add-input' onClick={(e) => this.addInput(e)} alt='' />
+                        <img src={save} onClick={() => this.handleUpdate(this.state.myIngredients)} alt="save my ingredients"/>
+                        <img src={add} className='prof-add-input' onClick={(e) => this.addInput(e)} alt="add input box" />
                         <Link to={`/results/${this.state.myIngredients}`}><img src={search} className='prof-img' alt='' /></Link>
                     </div>
                 </div>

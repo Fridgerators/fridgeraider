@@ -60,6 +60,10 @@
     margin-bottom: 6px;
     margin-left: 4px;
   }
+  .prof-remove-ingredient:hover {
+    transform: rotate(30deg);
+    transition: all .3s ease-in-out;
+  }
 
   .prof-input {
     @include width-height(236px, 32px);

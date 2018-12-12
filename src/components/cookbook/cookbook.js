@@ -13,8 +13,8 @@ import prev from '../images/previous.svg';
 import fork from '../images/fork.svg';
 import plate from '../images/plate.svg';
 import knife from '../images/knife.svg';
-import saveRecipe from '../images/saveRecipe.svg';
-import deleteIcon from '../../components/images/delete.svg';
+// import saveRecipe from '../images/saveRecipe.svg';
+// import deleteIcon from '../../components/images/delete.svg';
 
 class Cookbook extends Component {
     constructor() {
@@ -154,7 +154,7 @@ console.log('allrecipeinfo',this.state.allRecipeInfo)
                                         <Popup trigger={
                                             <div className='label-box'>
                                                 <label>ingredients and instructions</label>
-                                                <img id={`d${index}`} src={expand} />
+                                                <img className='desktop-view-recipe' id={`d${index}`} src={expand} alt="view instructions"/>
                                             </div>
                                         } modal><CookbookPopup recipeNum={element.id} recipeLabel={element.title} /></Popup>)
                                 }
@@ -184,14 +184,14 @@ console.log('allrecipeinfo',this.state.allRecipeInfo)
                                 </Grid>
                             </Grid>
                             {this.state.firstIndex === 0 ?
-                                <img src={next} className='nr-next-btn' onClick={this.handleForward} />
+                                <img src={next} className='nr-next-btn' onClick={this.handleForward} alt="see next page"/>
                                 :
                                 <div>
                                     {this.state.firstIndex >= 36 ?
                                         null
-                                        : <img src={next} className='nr-next-btn' onClick={this.handleForward} />
+                                        : <img src={next} className='nr-next-btn' onClick={this.handleForward} alt="see next page"/>
                                     }
-                                    <img src={prev} className='nr-previous' onClick={this.handleBack} />
+                                    <img src={prev} className='nr-previous' onClick={this.handleBack} alt="see previous page"/>
                                 </div>
                             }
                         </div>

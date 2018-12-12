@@ -20,3 +20,9 @@
     font-family: $main-font;
   }
 }
+.desktop-view-recipe {
+  cursor: pointer;
+  @include tablet {
+    transform: rotate(-145deg);
+  }
+  }

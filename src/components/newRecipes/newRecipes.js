@@ -209,7 +209,7 @@ class NewRecipes extends Component {
                                         <Popup trigger={
                                         <div className='label-box'>
                                             <label>ingredients and instructions</label>
-                                            <img id={`d${index}`} src={expand} />
+                                            <img className='desktop-view-recipe' id={`d${index}`} src={expand} />
                                         </div>
                                         
                                         // onClick={() => this.expandRecipe(index, element.id)}
