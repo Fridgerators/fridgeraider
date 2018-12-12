@@ -14,24 +14,25 @@
   }
 }
 
-.loading-animation2 {
-  height: 50vh;
-}
 
-.fork {
-  .popup {
-    height: 200px;
+.fork.popup {
+  height: 10rem;
+
+  @include tablet {
+    height: 12rem;
   }
 }
 
-.plate {
-  .popup {
-    height: 200px;
-  }
+.plate.popup {
+    height: 10rem;
+    @include tablet {
+      height: 12rem;
+    }
 }
 
-.knife {
-  .popup {
-    height: 200px;
-  }
+.knife.popup {
+    height: 10rem;
+    @include tablet {
+      height: 12rem;
+    }
 }

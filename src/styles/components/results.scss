@@ -102,6 +102,11 @@
 
       }
 }
+
+.nr-outer-box:first-child {
+  margin-top: 8px;
+}
+
 .initial-view {
   @include flexSetUp(flex-end, center, column);
 
@@ -126,7 +131,6 @@
   img {
     margin-left: 5px;
     margin-top: 5px;
-
     transition: all .35s ease-in-out;
 
   }
@@ -169,11 +173,6 @@
       padding: 8px;
     }
     label {
-    }
-    img {
-      transform: rotate(-145deg);
-      transition: all .35s ease-in-out;
-
     }
   }
 }

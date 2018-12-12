@@ -53,15 +53,9 @@
   
 }
 
-input:nth-of-type(odd) {
+input:nth-child(1) {
   border: 3px solid $purple-3;
 }
-// .ni-input:nth-child(even) {
-//   border: 3px solid $purple-4;
-// }
-// .ni-input:nth-child(odd) {
-//   border: 3px solid $purple-3;
-// }
 
 .ni-buttons {
   width: 78vw;
@@ -83,6 +77,15 @@ input:nth-of-type(odd) {
       margin-left: 15px;
       height: 50px;
     }
+  }
+  @keyframes scaleUp {
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  .ni-add-input:hover {
+    animation: scaleUp .35s 1 forwards;
   }
   .ni-clear-input {
     margin: 0px 44px;

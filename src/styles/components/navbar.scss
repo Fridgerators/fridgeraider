@@ -1,6 +1,9 @@
 .nb-large-screen {
   display: flex;
 }
+.top-menu {
+  display: flex;
+}
 
 .nb-menu {
   @include flexSetUp(flex-end, center, row);
@@ -36,25 +39,30 @@
   }
 }
 
+
 .nb-title {
   font-size: 1rem;
   margin-left: 5px;
   color: $purple-2;
   cursor: pointer;
-
+  
   @include desktop {
+    width: 150px;
     font-size: 1.5rem;
     margin-left: 15px;
   }
   @include height {
+    width: 150px;
     font-size: 1.5rem;
-    width: 60%;
   }
+}
+.nb-title:hover {
+  color: lighten($purple-2, 25%);
 }
 
 .nb-bottom {
   @include flexSetUp(flex-end, center, row);
-  @include width-height(100vw, 8vh);
+  @include width-height(102vw, 8vh);
   @include position(fixed);
   background-color: $purple-bg;
   bottom: 0px;
@@ -66,26 +74,37 @@
   padding-left: 12px;
   cursor: pointer;
 }
+
 .nb-icon-book {
   padding-right: 15px;
   cursor: pointer;
 }
 
+
   .nb-logo-mobile.large {
     padding: 25px;
     padding-left: 30px;
-    width: 40%;
+    // width: 40%;
     margin-bottom: 0px;
-  cursor: pointer;
+    cursor: pointer;
   }
 
   .nb-profile {
     margin: 0px 20px;
     cursor: pointer;
   }
+  .nb-profile:hover {
+    color: lighten($purple-2, 25%);
+  }
   .nb-book {
     cursor: pointer;
   }
+  .nb-book:hover {
+    color: lighten($purple-2, 25%);
+  }
   .nb-login {
     cursor: pointer;
+  }
+  .nb-login:hover {
+    color: lighten($purple-2, 25%);
   }
