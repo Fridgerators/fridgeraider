@@ -38,9 +38,9 @@ app.put('/api/ingredients/manageList', ingredient.manageList);
 // app.delete('/api/ingredients/deleteItem', ingredient.deleteItem);
 
 //api/saved recipe endpoints
-// app.get('/api/recipes/getResults/:searchIngredients/:rIndex', recipe.getResults);
+app.get('/api/recipes/getResults/:searchIngredients/:rIndex', recipe.getResults);
 app.get('/api/cookbook/recipeList', recipe.recipeList);
-// app.get('/api/recipes/getRecipe/:id', recipe.getRecipe)
+app.get('/api/recipes/getRecipe/:id', recipe.getRecipe)
 app.post('/api/cookbook/saveRecipe', recipe.saveRecipe);
 app.delete('/api/cookbook/deleteRecipe/:recipeId', recipe.deleteRecipe);
 
