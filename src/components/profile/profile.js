@@ -3,8 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Nav from '../navbar/navbar';
 import add from '../images/add.svg';
-import remove from '../images/remove.svg';
-import search from '../images/search.svg';
+import searchTwo from '../images/search-profile.svg';
 import deleteItem from '../images/delete.svg';
 import swal from 'sweetalert2';
 import save from '../images/save.svg';
@@ -92,7 +91,7 @@ class Profile extends Component {
                     <div className='prof-btns'>
                         <img src={save} onClick={() => this.handleUpdate(this.state.myIngredients)} alt="save my ingredients"/>
                         <img src={add} className='prof-add-input' onClick={(e) => this.addInput(e)} alt="add input box" />
-                        <Link to={`/results/${this.state.myIngredients}`}><img src={search} className='prof-img' alt='' /></Link>
+                        <Link to={`/results/${this.state.myIngredients}`}><img src={searchTwo} className='prof-img' alt='' /></Link>
                     </div>
                 </div>
             </div>

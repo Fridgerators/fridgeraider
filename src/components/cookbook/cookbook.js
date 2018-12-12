@@ -4,7 +4,7 @@ import Popup from 'reactjs-popup';
 import Media from 'react-media';
 import Navbar from '../navbar/navbar';
 import CookbookPopup from './cookbookPopup/cookbookPopup';
-import swal from 'sweetalert2';
+// import swal from 'sweetalert2';
 import expand from '../images/open-icon.svg';
 import Grid from '@material-ui/core/Grid';
 import Loading from '../Loading';
@@ -156,7 +156,7 @@ console.log('allrecipeinfo',this.state.allRecipeInfo)
                                                 <label>ingredients and instructions</label>
                                                 <img className='desktop-view-recipe' id={`d${index}`} src={expand} alt="view instructions"/>
                                             </div>
-                                        } modal><CookbookPopup recipeNum={element.id} recipeLabel={element.title} /></Popup>)
+                                        } modal><CookbookPopup recipeNum={element.recipe_id} recipeLabel={element.title} /></Popup>)
                                 }
                             </Media>
                         </div>

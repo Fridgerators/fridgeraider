@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import swal from 'sweetalert2';
+// import swal from 'sweetalert2';
 import fork from '../../images/fork.svg';
 import plate from '../../images/plate.svg';
 import knife from '../../images/knife.svg';

@@ -30,7 +30,17 @@ class NewIngredients extends Component {
     }
 
     handleClear(){
-        this.setState({ingredients: ['', '', '', '', '', '']})
+        swal({
+            title: 'Are you sure?',
+            text: 'Do you really want to clear out this search?',
+            showCancelButton: true,
+            cancelButtonText: 'no!',
+            confirmButtonText: 'yep',
+            // backdrop: '$faded-bg'
+
+        }).then((result) => {
+            this.setState({ingredients: ['', '', '', '', '', '']})
+        })
     }
 
     handleAlert(){
