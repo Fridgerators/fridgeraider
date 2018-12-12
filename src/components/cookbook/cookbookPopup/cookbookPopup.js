@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {connect} from 'react-redux';
-import swal from 'sweetalert2';
 import fork from '../../images/fork.svg';
 import plate from '../../images/plate.svg';
 import knife from '../../images/knife.svg';
-import saveRecipe from '../../images/saveRecipe.svg';
 
 class CookbookPopup extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             timeAndServings: {},
             ingredientResponse: [],
@@ -28,6 +25,7 @@ class CookbookPopup extends Component {
     
 
     render() {
+        console.log('props',this.props.recipeNum)
         const ingredientArray = this.state.ingredientResponse.map((element,index)=>{
             console.log('load',this.state.splitInstructions)
             return(

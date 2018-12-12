@@ -81,7 +81,7 @@ class InstructionsPopup extends Component {
                                     {instructionList}
                                 </div>
                                 {this.props.user.empty==='empty'?null:
-                                                <img src={saveRecipe} onClick={this.handleSaveRecipe} />
+                                                <img src={saveRecipe} onClick={this.handleSaveRecipe} alt=''/>
                                                 }
                             </div>
 

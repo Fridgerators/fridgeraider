@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import login from '../../images/login.svg';
 import register from '../../images/register.svg';
-
 import {connect} from 'react-redux';
 import {updateUserData} from '../../../ducklings/reducer';
 
@@ -24,14 +23,7 @@ class SignIn extends Component{
     }
 
     async login(username,password){
-    await axios.post('/auth/login',{username,password}).then(res=>{this.props.updateUserData(res.data)});
-        // console.log('ses',this.props.user)
-    // await axios.post('/auth/login',{username,password})
-    // const session = await axios.get('/auth/getUser');
-    // await this.props.updateUserData(session.data);
-    // await this.props.history.push('/input');
-
-    }
+    await axios.post('/auth/login',{username,password}).then(res=>{this.props.updateUserData(res.data)})}
 
     async register(username,password){
     await axios.post('/auth/register',{username,password})
@@ -51,8 +43,8 @@ class SignIn extends Component{
               <input type="text" onChange={e=>this.handleUsername(e.target.value)}/><br/>
               <h3>password</h3>
                 <input type="text" onChange={e=>this.handlePassword(e.target.value)}/><br/>
-                <img src={register} onClick={()=>this.register(username,password)} />
-                <img src={login} onClick={()=>this.login(username,password)} />
+                <img src={register} onClick={()=>this.register(username,password)} alt=''/>
+                <img src={login} onClick={()=>this.login(username,password)} alt=''/>
             </div>
         )
     }

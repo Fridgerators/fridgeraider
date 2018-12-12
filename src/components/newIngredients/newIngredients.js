@@ -46,6 +46,7 @@ class NewIngredients extends Component {
             return (
                 <div key={index} >
                     <input className='ni-input' value={ingredient} onChange={(e) => this.handleChange(e, index)} />
+                    <img src={remove} onClick={()=>this.handleRemove(index)} alt='lemon'/>
                 </div>
             )
         })
@@ -73,7 +74,7 @@ class NewIngredients extends Component {
                     </div>
                 </div>
                 <section className="ni-buttons">
-                <img src={remove} className='ni-remove-input' onClick={() => this.handleRemove(finalIndex)} alt=''/>
+                {/* <img src={remove} className='ni-remove-input' onClick={() => this.handleRemove(finalIndex)} alt=''/> */}
                 <img src={add} className='ni-add-input' onClick={(e) => this.addIngredient(e)} alt=''/>
                 <img src={clearInputs} className='ni-clear-input' alt="clear inputs" onClick={this.handleClear.bind(this)}/>
                 {searchIngredients ?
