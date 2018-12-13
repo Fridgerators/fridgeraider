@@ -56,7 +56,7 @@ class NewIngredients extends Component {
             return (
                 <div key={index} style={{ display: "flex", alignItems: "center", alignContent: "center" }}>
                     <input className='ni-input' value={ingredient} onChange={(e) => this.handleChange(e, index)} />
-                    <img src={deleteIcon} onClick={()=>this.handleRemove(index)} alt='lemon'/>
+                    <img src={deleteIcon} className='prof-remove-ingredient' onClick={()=>this.handleRemove(index)} alt='lemon'/>
                 </div>
             )
         })

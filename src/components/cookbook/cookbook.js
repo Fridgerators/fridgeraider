@@ -96,6 +96,7 @@ class Cookbook extends Component {
         })
     }
     render() {
+        console.log('this.state.firstIndex: ',this.state.firstIndex)
         const formatInstructions = this.state.allRecipeInfo.map((element, id) => {
             return (
                 <p key={id}>{element.number}{element.step}</p>
