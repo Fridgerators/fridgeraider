@@ -25,6 +25,18 @@ class CookbookPopup extends Component {
     
 
     render() {
+        
+        const customStyles = {
+            content : {
+              top: '50%',
+              left: '50%',
+              right: 'auto',
+              bottom: 'auto',
+              height: '500px', // <-- This sets the height
+              overflow: 'auto' // <-- This tells the modal to scrol
+            }
+          };
+
         console.log('props',this.props.recipeNum)
         const ingredientArray = this.state.ingredientResponse.map((element,index)=>{
             console.log('load',this.state.splitInstructions)
@@ -40,8 +52,8 @@ class CookbookPopup extends Component {
         })
         
         return (
-            <div>
-                <div className='pop-content'>
+            <div style={customStyles.content}>
+                <div className='pop-content' >
                     {
                         !this.state.timeAndServings.hasOwnProperty('extendedIngredients') ?
                         <div className='loading2'>
@@ -84,3 +96,5 @@ class CookbookPopup extends Component {
 }
  
  export default CookbookPopup;
+
+ //popup scroll https://github.com/reactjs/react-modal/issues/102

@@ -41,7 +41,7 @@ class NewRecipes extends Component {
                 preparationMinutes: 0,
                 cookingMinutes: 0,
                 readyInMinutes: 0,
-                instructions: '',
+                instructions: [],
                 servings: 0,
                 ingredients: []
             }
@@ -96,10 +96,18 @@ class NewRecipes extends Component {
         )
     }
     render() {
-        console.log('nr recipeDetails',this.state.recipeDetails)
+        console.log('rd',this.state.recipeDetails)
         const numberedInstructions = this.state.recipeDetails.map((element,id)=>{
+            let steps = element.instructions.map((element,index)=>{
+                return(
+                    <p key={index}>{element.number}{element.step}</p>
+                )
+            })
             return(
-            <p key={id}>{element.number}{element.step}</p>
+                <div key={id}>
+                    {steps}
+                </div>
+                
             )
         })
         let recipeRes = this.state.recipes.map((element, index) => {
@@ -162,6 +170,8 @@ class NewRecipes extends Component {
                 </div>
             )
         })
+        
+console.log('ni',numberedInstructions)
         return (
             <div className="nr-bg header-curve">
                 {this.state.recipes.length ?
