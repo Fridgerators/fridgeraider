@@ -100,7 +100,7 @@ class NewRecipes extends Component {
         const numberedInstructions = this.state.recipeDetails.map((element,id)=>{
             let steps = element.instructions.map((element,index)=>{
                 return(
-                    <p key={index}>{element.number}{element.step}</p>
+                    <p key={index}>{element.number} {element.step}</p>
                 )
             })
             return(
@@ -147,7 +147,9 @@ class NewRecipes extends Component {
                                                     <p>serves {this.state.recipeDetails[index].servings}</p>
                                                 </div>
                                                 <div>
+                                                    <h1 className='recipe-header'>ingredients</h1>
                                                     <p>{this.state.recipeDetails[index].ingredients}</p>
+                                                    <h1 className='recipe-header'>instructions</h1>
                                                     {numberedInstructions}
                                                 </div>
                                                 {this.props.user.empty==='empty'?null:

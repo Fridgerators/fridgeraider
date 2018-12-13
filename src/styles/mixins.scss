@@ -4,6 +4,13 @@ $desktop: 840px;
     @content;
   }
 }
+
+$desktopTwo: 1440px;
+@mixin desktopTwo {
+  @media (min-width: #{$desktopTwo}) {
+    @content;
+  }
+}
 $tablet: 768px;
 @mixin tablet {
   @media (min-width: #{$tablet}) {
