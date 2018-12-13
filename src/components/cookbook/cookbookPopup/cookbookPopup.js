@@ -34,7 +34,7 @@ class CookbookPopup extends Component {
               right: 'auto',
               bottom: 'auto',
               height: '500px', // <-- This sets the height
-              overflow: 'auto' // <-- This tells the modal to scrol
+              overflow: 'auto' // <-- This tells the modal to scroll
             }
           };
 
@@ -48,7 +48,10 @@ class CookbookPopup extends Component {
 
         const instructionArray = this.state.splitInstructions.map((element,id)=>{
             return(
-            <p key={id}>{element.number}.  {element.step}</p>
+            <div key={id}>
+                <p>{element.number}. {element.step}</p>
+                <br/>
+            </div>
             )
         })
         
@@ -82,7 +85,12 @@ class CookbookPopup extends Component {
                                     <p>serves {this.state.timeAndServings.servings}</p>
                                 </div>
                                 <div>
+                                    <br/>
+                                    <h1 className='recipe-header'>ingredients</h1>
+                                    <br/>
                                     {ingredientArray}
+                                    <br/>
+                                    <h1 className='recipe-header'>instructions</h1>
                                     <br/>
                                     {instructionArray}
                                 </div>
