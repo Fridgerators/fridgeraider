@@ -33,6 +33,18 @@ class InstructionsPopup extends Component {
     }
 
     render() {
+
+        const ipCustomStyles = {
+            content : {
+              top: '50%',
+              left: '50%',
+              right: 'auto',
+              bottom: 'auto',
+              height: '500px', // <-- This sets the height
+              overflow: 'auto' // <-- This tells the modal to scrol
+            }
+          };
+
         const ingredientList = this.state.ingredientInfo.map((element,index)=>{
             console.log('load',this.state.analyzedInstructions)
             return(
@@ -47,7 +59,7 @@ class InstructionsPopup extends Component {
         })
         
         return (
-            <div>
+            <div style={ipCustomStyles.content}>
                 <div className='pop-content'>
                     {
                         !this.state.instructionsInfo.hasOwnProperty('extendedIngredients') ?

@@ -27,7 +27,7 @@ class Cookbook extends Component {
         this.handleDeleteRecipe = this.handleDeleteRecipe.bind(this);
         this.handleForward = this.handleForward.bind(this);
         this.handleBack = this.handleBack.bind(this);
-        this.handleRetrieveDetails = this.handleRetrieveDetails.bind(this);
+        // this.handleRetrieveDetails = this.handleRetrieveDetails.bind(this);
     }
     async componentDidMount() {
         let recDets = [];
@@ -36,7 +36,7 @@ class Cookbook extends Component {
                 preparationMinutes: 0,
                 cookingMinutes: 0,
                 readyInMinutes: 0,
-                instructions: '',
+                instructions: [],
                 servings: 0,
                 ingredients: []
             }
@@ -53,6 +53,7 @@ class Cookbook extends Component {
         document.getElementById(`dd${index}`).classList.toggle('spin');
         if (!this.state.allRecipeInfo[index].ingredients[0]) {
             let recipeDeets = [...this.state.allRecipeInfo];
+            console.log('id',id)
             await axios.get(`/api/recipes/getRecipe/${id}`)
                 .then(response => {
                     recipeDeets[index].preparationMinutes = response.data.preparationMinutes;
@@ -69,14 +70,14 @@ class Cookbook extends Component {
             })
         }
     }
-    async handleRetrieveDetails() {
-        let res = await axios.get(`/api/recipes/getRecipe/${this.props.recipeId}`)
-        if (this.state.open === true) {
-            await this.setState({ prepTimeServing: res.data })
-            await this.setState({ ings: res.data.extendedIngredients })
-            await this.setState({ instructionSteps: res.data.analyzedInstructions[0].steps })
-        }
-    }
+    // async handleRetrieveDetails() {
+    //     let res = await axios.get(`/api/recipes/getRecipe/${this.props.recipeId}`)
+    //     if (this.state.open === true) {
+    //         await this.setState({ prepTimeServing: res.data })
+    //         await this.setState({ ings: res.data.extendedIngredients })
+    //         await this.setState({ instructionSteps: res.data.analyzedInstructions[0].steps })
+    //     }
+    // }
 
     async handleDeleteRecipe(id, title) {
         let res = await axios.delete(`/api/cookbook/deleteRecipe/${id}`)
@@ -96,10 +97,29 @@ class Cookbook extends Component {
         })
     }
     render() {
-        console.log('this.state.firstIndex: ',this.state.firstIndex)
+        // const customStyles = {
+        //     content : {
+        //       top: '50%',
+        //       left: '50%',
+        //       right: 'auto',
+        //       bottom: 'auto',
+        //       marginRight: '-50%',
+        //       transform: 'translate(-50%, -50%)',
+        //       height: '500px', // <-- This sets the height
+        //       overflow: 'scroll' // <-- This tells the modal to scrol
+        //     }
+        //   };
+
         const formatInstructions = this.state.allRecipeInfo.map((element, id) => {
+            let deepFormat = element.instructions.map((element,index)=>{
+                return(
+                    <p key={index}>{element.number}{element.step}</p>
+                )
+            })
             return (
-                <p key={id}>{element.number}{element.step}</p>
+                <div key={id}> 
+                    {deepFormat}
+                </div>
             )
         })
         let favRecipes = this.state.myRecipes.map((element, index) => {
@@ -118,7 +138,7 @@ class Cookbook extends Component {
                                     <div>
                                         <div className='label-box'>
                                             <label>ingredients and instructions</label>
-                                            <img id={`dd${index}`} src={expand} onClick={() => this.handleAccordian(index, element.id)} alt="see recipe" />
+                                            <img id={`dd${index}`} src={expand} onClick={() => this.handleAccordian(index, element.recipe_id)} alt="see recipe" />
                                         </div>
                                         <div id={`cc${index}`} className='nr-tab-content'>
                                             {
@@ -156,7 +176,9 @@ class Cookbook extends Component {
                                                 <label>ingredients and instructions</label>
                                                 <img className='desktop-view-recipe' id={`d${index}`} src={expand} alt="view instructions"/>
                                             </div>
-                                        } modal><CookbookPopup recipeNum={element.recipe_id} recipeLabel={element.title} /></Popup>)
+                                        } modal 
+                                        // style={customStyles.content}
+                                        ><CookbookPopup recipeNum={element.recipe_id} recipeLabel={element.title} /></Popup>)
                                 }
                             </Media>
                         </div>
