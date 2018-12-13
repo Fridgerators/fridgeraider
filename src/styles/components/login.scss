@@ -1,3 +1,32 @@
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+    color: $purple-4;
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+.warning-text {
+  color: $purple-2;
+}
+
+.shake {
+  animation: shake 0.8s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
 .popup-content {
   width: 75% !important;
   // height: 48%;
@@ -26,9 +55,10 @@
   input {
     border: 3px solid darken($purple-1, 10%);
     border-radius: 20px;
-    height: 26px;
+    height: 24px;
     padding: 4px;
     width: 80%;
+    text-align: center;
   }
   h3 {
     margin: 20px 0px 5px 0px;
@@ -38,6 +68,7 @@
     margin: 11px;
     margin-top: 20px;
     margin-bottom: 20px;
+    cursor: pointer;
   }
 
   @include mobile {
@@ -65,7 +96,7 @@
       margin-bottom: 40px;
     }
     img:nth-last-of-type(1) {
-      margin-left: 13%;
+      margin-left: 10%;
     }
   }
   @include desktop {
@@ -76,7 +107,7 @@
       height: 50px;
     }
     img:nth-last-of-type(1) {
-      margin-left: 13%;
+      margin-left: 5%;
     }
   }
 

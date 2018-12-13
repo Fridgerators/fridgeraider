@@ -4,20 +4,20 @@
 }
 
 .ni-img {
-  height: 30px;
+  cursor: pointer;
 
   @include tablet{
-    height: 50px;
+    height: 40px;
 
   }
 }
 
 .ni-inputs-box {
   display: flex;
-  margin-top: 2vh;
+  margin-top: 4vh;
 
   @include tablet {
-    margin-top: 4vh;
+    margin-top: 6vh;
   }
   @include height {
     margin-top: 6vh;
@@ -32,6 +32,7 @@
   box-sizing: border-box;
   border-radius: 15px;
   margin-bottom: 4px;
+  margin-left: 10px;
 
   @include mobile {
     @include width-height(300px, 32px);
@@ -58,13 +59,13 @@ input:nth-child(1) {
 }
 
 .ni-buttons {
-  width: 78vw;
   margin: auto;
   margin-top: 5px;
-
+  width: 86vw;
+  @include flexSetUp(space-between, center, row);
 
   @include tablet {
-    width: 620px; 
+    width: 655px; 
   }
 @include height {
 
@@ -72,10 +73,11 @@ input:nth-child(1) {
 }
   .ni-add-input {
     margin-left: 5px;
+    cursor: pointer;
 
     @include tablet {
       margin-left: 15px;
-      height: 50px;
+      height: 40px;
     }
   }
   @keyframes scaleUp {
@@ -88,19 +90,17 @@ input:nth-child(1) {
     animation: scaleUp .35s 1 forwards;
   }
   .ni-clear-input {
-    margin: 0px 44px;
+    cursor: pointer;
+    margin-left: 5px;
 
     @include mobile {
-      margin: 0px 66px;
     }
 
     @include tablet {
-      margin: 0px 144px;
-      height: 50px;
+      height: 40px;
     }
 
     @include desktop {
-        margin: 0px 173px;
     }
   }
 
@@ -108,11 +108,11 @@ input:nth-child(1) {
 @media only screen and (min-width: 768px) {
 
 .ni-remove-input {
-  height: 50px;
+  height: 40px;
 }
 
   .ni-search {
-    height: 50px;
+    height: 40px;
   }
   
 }

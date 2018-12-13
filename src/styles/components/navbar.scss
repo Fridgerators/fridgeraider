@@ -9,6 +9,7 @@
   @include flexSetUp(flex-end, center, row);
   color: $purple-2;
   font-size: 1.5rem;
+  width: 72%;
 
   @include desktop {
     z-index: 1;

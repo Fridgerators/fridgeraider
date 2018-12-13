@@ -3,6 +3,7 @@ import axios from 'axios';
 import fork from '../../images/fork.svg';
 import plate from '../../images/plate.svg';
 import knife from '../../images/knife.svg';
+import deleteRecipe from '../../images/deleteRecipe.svg';
 
 class CookbookPopup extends Component {
     constructor(props) {
@@ -47,7 +48,7 @@ class CookbookPopup extends Component {
 
         const instructionArray = this.state.splitInstructions.map((element,id)=>{
             return(
-            <p key={id}>{element.number}{element.step}</p>
+            <p key={id}>{element.number}.  {element.step}</p>
             )
         })
         
@@ -85,7 +86,7 @@ class CookbookPopup extends Component {
                                     <br/>
                                     {instructionArray}
                                 </div>
-                                <button onClick={this.handleDeleteRecipe}>delete</button>
+                                <img className='delete-save-recipe' src={deleteRecipe} onClick={this.handleDeleteRecipe} alt="delete this recipe" />
                             </div>
 
                     }
