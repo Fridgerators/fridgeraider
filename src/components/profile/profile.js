@@ -33,8 +33,9 @@ class Profile extends Component {
     }
 
     handleInput(e, index) {
-        this.state.myIngredients[index] = e.target.value
-        this.setState({ myIngredients: this.state.myIngredients })
+        let tempIng = [...this.state.myIngredients]
+        tempIng[index] = e.target.value
+        this.setState({ myIngredients: tempIng })
     }
 
     //add ingredients on DB

@@ -11,59 +11,62 @@ class CookbookPopup extends Component {
         this.state = {
             timeAndServings: {},
             ingredientResponse: [],
-            splitInstructions:[]
+            splitInstructions: []
         }
     }
 
     async componentDidMount() {
         let res = await axios.get(`/api/recipes/getRecipe/${this.props.recipeNum}`)
-        await this.setState({timeAndServings: res.data})
-        await this.setState({ingredientResponse: res.data.extendedIngredients})
-        await this.setState({splitInstructions: res.data.analyzedInstructions[0].steps})
+        await this.setState({ timeAndServings: res.data })
+        await this.setState({ ingredientResponse: res.data.extendedIngredients })
+        if (res.data.analyzedInstructions[0]) {
+            await this.setState({ splitInstructions: res.data.analyzedInstructions[0].steps })
+        } else {
+            await this.setState({ splitInstructions: [{ number: 1, step: "This recipe did not come with instructions. Whoops" }] })
+        }
+
     }
 
-    
-    
+
+
 
     render() {
-        
-        const customStyles = {
-            content : {
-              top: '50%',
-              left: '50%',
-              right: 'auto',
-              bottom: 'auto',
-              height: '500px', // <-- This sets the height
-              overflow: 'auto' // <-- This tells the modal to scrol
-            }
-          };
 
-        console.log('props',this.props.recipeNum)
-        const ingredientArray = this.state.ingredientResponse.map((element,index)=>{
-            console.log('load',this.state.splitInstructions)
-            return(
+        const customStyles = {
+            content: {
+                top: '50%',
+                left: '50%',
+                right: 'auto',
+                bottom: 'auto',
+                height: '500px', // <-- This sets the height
+                overflow: 'auto' // <-- This tells the modal to scrol
+            }
+        };
+
+        const ingredientArray = this.state.ingredientResponse.map((element, index) => {
+            return (
                 <p key={index}>{element.original}</p>
             )
         })
 
-        const instructionArray = this.state.splitInstructions.map((element,id)=>{
-            return(
-            <p key={id}>{element.number}.  {element.step}</p>
+        const instructionArray = this.state.splitInstructions.map((element, id) => {
+            return (
+                <p key={id}>{element.number}.  {element.step}</p>
             )
         })
-        
+
         return (
             <div style={customStyles.content}>
                 <div className='pop-content' >
                     {
                         !this.state.timeAndServings.hasOwnProperty('extendedIngredients') ?
-                        <div className='loading2'>
-                            <div className='loading-animation2'>
-                                <img className='fork popup' src={fork} alt="fork" />
-                                <img className='plate popup' src={plate} alt="plate" />
-                                <img className='knife popup' src={knife} alt="knife" />
-                                <h1>loading...</h1>
-                            </div>
+                            <div className='loading2'>
+                                <div className='loading-animation2'>
+                                    <img className='fork popup' src={fork} alt="fork" />
+                                    <img className='plate popup' src={plate} alt="plate" />
+                                    <img className='knife popup' src={knife} alt="knife" />
+                                    <h1>loading...</h1>
+                                </div>
                             </div>
 
 
@@ -83,7 +86,7 @@ class CookbookPopup extends Component {
                                 </div>
                                 <div>
                                     {ingredientArray}
-                                    <br/>
+                                    <br />
                                     {instructionArray}
                                 </div>
                                 <img className='delete-save-recipe' src={deleteRecipe} onClick={this.handleDeleteRecipe} alt="delete this recipe" />
@@ -95,7 +98,7 @@ class CookbookPopup extends Component {
         )
     }
 }
- 
- export default CookbookPopup;
+
+export default CookbookPopup;
 
  //popup scroll https://github.com/reactjs/react-modal/issues/102
