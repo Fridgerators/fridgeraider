@@ -4,6 +4,7 @@
 }
 
 .ni-img {
+  cursor: pointer;
 
   @include tablet{
     height: 40px;
@@ -31,6 +32,7 @@
   box-sizing: border-box;
   border-radius: 15px;
   margin-bottom: 4px;
+  margin-left: 10px;
 
   @include mobile {
     @include width-height(300px, 32px);
@@ -71,6 +73,7 @@ input:nth-child(1) {
 }
   .ni-add-input {
     margin-left: 5px;
+    cursor: pointer;
 
     @include tablet {
       margin-left: 15px;
@@ -87,6 +90,8 @@ input:nth-child(1) {
     animation: scaleUp .35s 1 forwards;
   }
   .ni-clear-input {
+    cursor: pointer;
+    margin-left: 5px;
 
     @include mobile {
     }

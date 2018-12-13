@@ -4,6 +4,7 @@ import login from '../../images/login.svg';
 import register from '../../images/register.svg';
 import {connect} from 'react-redux';
 import {updateUserData} from '../../../ducklings/reducer';
+import swal from 'sweetalert2';
 
 class SignIn extends Component{
     constructor(){
@@ -23,14 +24,28 @@ class SignIn extends Component{
     }
 
     async login(username,password){
-    await axios.post('/auth/login',{username,password}).then(res=>{this.props.updateUserData(res.data)})}
+        await axios.post('/auth/login',{username,password}).then(res=>{this.props.updateUserData(res.data)}).catch(()=>{
+                swal('please enter the correct username and/or password')
+        })
+     }
+     
+        async register(){
+        let {username, password} = this.state
+            if(username.length < 5 || password.length<5){
+                let jiggle = document.querySelector('.warning-text')
+                jiggle.classList.add('shake');
+                setTimeout(() => {
+                    jiggle.classList.remove('shake');
+                }, 900)
 
-    async register(username,password){
-    await axios.post('/auth/register',{username,password})
-    const session = await axios.get('/auth/getUser');
-    console.log('user',session.data)
-    await this.props.updateUserData(session.data);
-    }
+            }else{
+        await axios.post('/auth/register',{username,password}).then(session=>{
+            this.props.updateUserData(session.data)
+        }).catch((err)=>{
+            console.log('err',err)
+            swal('please select a different username')
+        })}
+        }
 
 
 
@@ -43,6 +58,7 @@ class SignIn extends Component{
               <input type="text" onChange={e=>this.handleUsername(e.target.value)}/><br/>
               <h3>password</h3>
                 <input type="text" onChange={e=>this.handlePassword(e.target.value)}/><br/>
+              <h6 className='warning-text'>at least 5 characters please</h6>
                 <img src={register} onClick={()=>this.register(username,password)} alt="click to register"/>
                 <img src={login} onClick={()=>this.login(username,password)} alt="click to login"/>
             </div>

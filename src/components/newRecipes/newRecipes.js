@@ -99,7 +99,7 @@ class NewRecipes extends Component {
         console.log('nr recipeDetails',this.state.recipeDetails)
         const numberedInstructions = this.state.recipeDetails.map((element,id)=>{
             return(
-            <p key={id}>{element.number}{element.step}</p>
+            <p key={id}>{element.number}. {element.step}</p>
             )
         })
         let recipeRes = this.state.recipes.map((element, index) => {
@@ -143,7 +143,7 @@ class NewRecipes extends Component {
                                                     {numberedInstructions}
                                                 </div>
                                                 {this.props.user.empty==='empty'?null:
-                                                <img src={saveRecipe} onClick={()=>this.handleSaveRecipe(element.id,element.image,element.title)} alt="click to save recipe"/>
+                                                <img className='delete-save-recipe' src={saveRecipe} onClick={()=>this.handleSaveRecipe(element.id,element.image,element.title)} alt="click to save recipe"/>
                                                 }
                                             </div>
                                     }
