@@ -13,7 +13,7 @@ class InstructionsPopup extends Component {
         this.state = {
             instructionsInfo: {},
             ingredientInfo: [],
-            analyzedInstructions:[]
+            splitInstructions:[]
         }
         this.handleSaveRecipe=this.handleSaveRecipe.bind(this);
     }
@@ -22,7 +22,11 @@ class InstructionsPopup extends Component {
         let res = await axios.get(`/api/recipes/getRecipe/${this.props.recipeId}`)
         await this.setState({instructionsInfo: res.data})
         await this.setState({ingredientInfo: res.data.extendedIngredients})
-        await this.setState({analyzedInstructions: res.data.analyzedInstructions[0].steps})
+        if (res.data.analyzedInstructions[0]) {
+            await this.setState({ splitInstructions: res.data.analyzedInstructions[0].steps })
+        } else {
+            await this.setState({ splitInstructions: [{ number: 1, step: "This recipe did not come with instructions. Whoops" }] })
+        }
     }
 
     handleSaveRecipe(){
@@ -46,13 +50,12 @@ class InstructionsPopup extends Component {
           };
 
         const ingredientList = this.state.ingredientInfo.map((element,index)=>{
-            console.log('load',this.state.analyzedInstructions)
             return(
                 <p key={index}>{element.original}</p>
             )
         })
 
-        const instructionList = this.state.analyzedInstructions.map((element,id)=>{
+        const instructionList = this.state.splitInstructions.map((element,id)=>{
             return(
                 <div key={id}>
                     <p>{element.number}. {element.step}</p>

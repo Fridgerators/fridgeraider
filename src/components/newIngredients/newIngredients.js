@@ -20,8 +20,9 @@ class NewIngredients extends Component {
     }
 
     handleChange(e, index) {
-        this.state.ingredients[index] = e.target.value
-        this.setState({ ingredients: this.state.ingredients })
+        let tempIng = [...this.state.ingredients]
+        tempIng[index] = e.target.value
+        this.setState({ ingredients: tempIng })
     }
 
     handleRemove(index) {
@@ -60,7 +61,7 @@ class NewIngredients extends Component {
                 </div>
             )
         })
-        const finalIndex = newInput.length - 1;
+        // const finalIndex = newInput.length - 1;
         let searchIngredients= ''
         
         let {ingredients} = this.state;
