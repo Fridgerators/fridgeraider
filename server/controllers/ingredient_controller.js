@@ -18,7 +18,7 @@ module.exports = {
             let ingredients = await dbInstance.manage_ingredients([req.session.user.user_id, ingredient])
             res.status(200).send(ingredients)
         } else {
-            res.status(400).send('Log in to save your list!')
+            res.status(401).send('Log in to save your list!')
         }
 
     },
