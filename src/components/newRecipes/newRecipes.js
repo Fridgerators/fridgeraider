@@ -103,7 +103,6 @@ class NewRecipes extends Component {
         )
     }
     render() {
-        console.log('ing', this.state.recipeDetails)
         const numberedInstructions = this.state.recipeDetails.map((element, id) => {
             const ingredientList = element.ingredients.map((element, index) => {
                 return (
@@ -118,8 +117,10 @@ class NewRecipes extends Component {
             })
             return (
                 <div key={id}>
+                    <h1 className='recipe-header'>ingredients</h1>
                     <p>{ingredientList}</p>
                     <hr />
+                    <h1 className='recipe-header'>instructions</h1>
                     {steps}
                 </div>
 

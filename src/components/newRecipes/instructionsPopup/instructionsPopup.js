@@ -57,7 +57,10 @@ class InstructionsPopup extends Component {
 
         const instructionList = this.state.splitInstructions.map((element,id)=>{
             return(
-            <p key={id}>{element.number}. {element.step}</p>
+                <div key={id}>
+                    <p>{element.number}. {element.step}</p>
+                    <br/>
+                </div>
             )
         })
         
@@ -91,12 +94,18 @@ class InstructionsPopup extends Component {
                                     <p>serves {this.state.instructionsInfo.servings}</p>
                                 </div>
                                 <div>
+                                    <br/>
+                                    <h1 className='recipe-header'>ingredients</h1>
+                                    <br/>
                                     {ingredientList}
                                     <br/>
+                                    <h1 className='recipe-header'>instructions</h1>
+                                    <br/>
+
                                     {instructionList}
                                 </div>
                                 {this.props.user.empty==='empty'?null:
-                                                <img src={saveRecipe} onClick={this.handleSaveRecipe} alt="save button" />
+                                                <img className='delete-save-recipe' src={saveRecipe} onClick={this.handleSaveRecipe} alt="save button" />
                                                 }
                             </div>
 

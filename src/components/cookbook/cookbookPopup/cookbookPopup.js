@@ -33,13 +33,13 @@ class CookbookPopup extends Component {
     render() {
 
         const customStyles = {
-            content: {
-                top: '50%',
-                left: '50%',
-                right: 'auto',
-                bottom: 'auto',
-                height: '500px', // <-- This sets the height
-                overflow: 'auto' // <-- This tells the modal to scrol
+            content : {
+              top: '50%',
+              left: '50%',
+              right: 'auto',
+              bottom: 'auto',
+              height: '500px', // <-- This sets the height
+              overflow: 'auto' // <-- This tells the modal to scroll
             }
         };
 
@@ -49,9 +49,12 @@ class CookbookPopup extends Component {
             )
         })
 
-        const instructionArray = this.state.splitInstructions.map((element, id) => {
-            return (
-                <p key={id}>{element.number}.  {element.step}</p>
+        const instructionArray = this.state.splitInstructions.map((element,id)=>{
+            return(
+            <div key={id}>
+                <p>{element.number}. {element.step}</p>
+                <br/>
+            </div>
             )
         })
 
@@ -85,8 +88,13 @@ class CookbookPopup extends Component {
                                     <p>serves {this.state.timeAndServings.servings}</p>
                                 </div>
                                 <div>
+                                    <br/>
+                                    <h1 className='recipe-header'>ingredients</h1>
+                                    <br/>
                                     {ingredientArray}
-                                    <br />
+                                    <br/>
+                                    <h1 className='recipe-header'>instructions</h1>
+                                    <br/>
                                     {instructionArray}
                                 </div>
                                 <img className='delete-save-recipe' src={deleteRecipe} onClick={this.handleDeleteRecipe} alt="delete this recipe" />

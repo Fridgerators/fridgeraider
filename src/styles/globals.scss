@@ -11,6 +11,11 @@ outline: none;
 color: inherit;
 }
 
+.recipe-header {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
 .swal2-popup .swal2-styled.swal2-confirm {
   background-color: $purple-3;
   border-radius: 15px 0px 15px 0px;
@@ -87,6 +92,11 @@ input:focus {
   @include desktop {
     background-image: url('../components/images/desktop-header.svg'); 
     background-size: auto;
+  }
+  
+  @include desktopTwo {
+    background-image: url('../components/images/bg-huge.svg'); 
+    background-size: cover;
   }
 }
 
