@@ -38,7 +38,7 @@ module.exports = {
     saveRecipe: async (req, res) => {
         const { recipeId, image, title } = req.body;
         const dbInstance = req.app.get('db')
-        console.log('recipe',recipeId,image,title)
+        // console.log('recipe',recipeId,image,title)
         let check = await dbInstance.check_for_recipe([
             req.session.user.user_id, 
             recipeId])

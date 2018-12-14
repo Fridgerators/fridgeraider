@@ -205,16 +205,17 @@ class Cookbook extends Component {
                                     {favRecipes[8 + this.state.firstIndex]}
                                 </Grid>
                             </Grid>
-                            {this.state.firstIndex === 0 ?
-                                <img src={next} className='nr-next-btn' onClick={this.handleForward} alt="see next page"/>
-                                :
+                            {this.state.myRecipes.length > 9 && this.state.firstIndex===0?
+                            <img src={next} className='nr-next-btn' onClick={this.handleForward} alt="see next page"/>
+                                
+                                : this.state.myRecipes.length > 9 && this.state.firstIndex>8 && this.state.myRecipes.length > this.state.firstIndex+9?
                                 <div>
-                                    {this.state.firstIndex >= 36 ?
-                                        null
-                                        : <img src={next} className='nr-next-btn' onClick={this.handleForward} alt="see next page"/>
-                                    }
+                                    <img src={next} className='nr-next-btn' onClick={this.handleForward} alt="see next page"/>
                                     <img src={prev} className='nr-previous' onClick={this.handleBack} alt="see previous page"/>
-                                </div>
+                                </div>:
+                                this.state.myRecipes.length > 9 && this.state.myRecipes.length <= this.state.firstIndex+9?
+                                <img src={prev} className='nr-previous' onClick={this.handleBack} alt="see previous page"/>:
+                                null
                             }
                         </div>
                         : <Loading />}

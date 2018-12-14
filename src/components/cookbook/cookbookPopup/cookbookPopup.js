@@ -20,6 +20,7 @@ class CookbookPopup extends Component {
         await this.setState({timeAndServings: res.data})
         await this.setState({ingredientResponse: res.data.extendedIngredients})
         await this.setState({splitInstructions: res.data.analyzedInstructions[0].steps})
+        console.log('load',res.data.analyzedInstructions[0])
     }
 
     
@@ -38,9 +39,8 @@ class CookbookPopup extends Component {
             }
           };
 
-        console.log('props',this.props.recipeNum)
+        // console.log('props',this.props.recipeNum)
         const ingredientArray = this.state.ingredientResponse.map((element,index)=>{
-            console.log('load',this.state.splitInstructions)
             return(
                 <p key={index}>{element.original}</p>
             )
