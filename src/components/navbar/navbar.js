@@ -28,7 +28,7 @@ class Navbar extends Component {
     axios.get('/auth/logout')
     this.props.updateUserData({empty:'empty'}) 
     swal({
-        title: "clocking out",
+        title: "logging out",
         showConfirmButton: false,
         timer: 500
     })

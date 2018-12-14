@@ -59,8 +59,14 @@ class Cookbook extends Component {
                     recipeDeets[index].preparationMinutes = response.data.preparationMinutes;
                     recipeDeets[index].cookingMinutes = response.data.cookingMinutes;
                     recipeDeets[index].readyInMinutes = response.data.readyInMinutes;
-                    recipeDeets[index].instructions = response.data.analyzedInstructions[0].steps;
-                    recipeDeets[index].servings = response.data.servings;
+                    if (response.data.analyzedInstructions[0]) {
+                        recipeDeets[index].instructions = response.data.analyzedInstructions[0].steps;
+                    } else {
+                        recipeDeets[index].instructions = [{ number: 1, step: "This recipe did not come with instructions. Whoops" }]
+                    }
+                    if (response.data.servings) {
+                        recipeDeets[index].servings = response.data.servings;
+                    }
                     recipeDeets[index].ingredients = response.data.extendedIngredients.map((element, index) => {
                         return element.original
                     })
@@ -111,13 +117,22 @@ class Cookbook extends Component {
         //   };
 
         const formatInstructions = this.state.allRecipeInfo.map((element, id) => {
+            const ingredientList = element.ingredients.map((element, index) => {
+                return (
+                    <p key={index}>{element}</p>
+                )
+            })
             let deepFormat = element.instructions.map((element,index)=>{
                 return(
-                    <p key={index}>{element.number}{element.step}</p>
+                    <p key={index}>{element.number}. {element.step}</p>
                 )
             })
             return (
-                <div key={id}> 
+                <div key={id}>
+                    <h1 className='recipe-header'>ingredients</h1>
+                    {ingredientList}
+                    
+                    <h1 className='recipe-header'>instructions</h1>
                     {deepFormat}
                 </div>
             )
@@ -154,17 +169,16 @@ class Cookbook extends Component {
                                                         <div>
                                                             {this.state.allRecipeInfo[index].preparationMinutes && this.state.allRecipeInfo[index].cookingMinutes ?
                                                                 <div>
-                                                                    <p>prep:{this.state.allRecipeInfo[index].preparationMinutes} minutes</p>
-                                                                    <p>cook:{this.state.allRecipeInfo[index].cookingMinutes} minutes</p>
+                                                                    <p>prep: {this.state.allRecipeInfo[index].preparationMinutes} minutes</p>
+                                                                    <p>cook: {this.state.allRecipeInfo[index].cookingMinutes} minutes</p>
                                                                 </div>
                                                                 :
-                                                                <p>Ready in:{this.state.allRecipeInfo[index].readyInMinutes} minutes</p>
+                                                                <p>Ready in: {this.state.allRecipeInfo[index].readyInMinutes} minutes</p>
                                                             }
                                                             <p>serves {this.state.allRecipeInfo[index].servings}</p>
                                                         </div>
                                                         <div>
-                                                            <p>{this.state.allRecipeInfo[index].ingredients}</p>
-                                                            {formatInstructions}
+                                                            {formatInstructions[index]}
                                                         </div>
                                                     </div>
                                             }
@@ -205,17 +219,18 @@ class Cookbook extends Component {
                                     {favRecipes[8 + this.state.firstIndex]}
                                 </Grid>
                             </Grid>
-                            {this.state.firstIndex === 0 ?
-                                <img src={next} className='nr-next-btn' onClick={this.handleForward} alt="see next page"/>
-                                :
-                                <div>
-                                    {this.state.firstIndex >= 36 ?
-                                        null
-                                        : <img src={next} className='nr-next-btn' onClick={this.handleForward} alt="see next page"/>
-                                    }
-                                    <img src={prev} className='nr-previous' onClick={this.handleBack} alt="see previous page"/>
-                                </div>
-                            }
+                            {this.state.myRecipes.length > 9 && this.state.firstIndex===0?
+                           <img src={next} className='nr-next-btn' onClick={this.handleForward} alt="see next page"/>
+
+                               : this.state.myRecipes.length > 9 && this.state.firstIndex>8 && this.state.myRecipes.length > this.state.firstIndex+9?
+                               <div>
+                                   <img src={next} className='nr-next-btn' onClick={this.handleForward} alt="see next page"/>
+                                   <img src={prev} className='nr-previous' onClick={this.handleBack} alt="see previous page"/>
+                               </div>:
+                               this.state.myRecipes.length > 9 && this.state.myRecipes.length <= this.state.firstIndex+9?
+                               <img src={prev} className='nr-previous' onClick={this.handleBack} alt="see previous page"/>:
+                               null
+                           }
                         </div>
                         : <Loading />}
                 </div>

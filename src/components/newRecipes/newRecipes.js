@@ -119,7 +119,6 @@ class NewRecipes extends Component {
                 <div key={id}>
                     <h1 className='recipe-header'>ingredients</h1>
                     {ingredientList}
-                    <hr />
                     <h1 className='recipe-header'>instructions</h1>
                     {steps}
                 </div>
