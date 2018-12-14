@@ -5,7 +5,7 @@ module.exports = {
     getResults: async (req, res) => {
         const { searchIngredients, rIndex} = req.params;
         const { REACT_APP_AppKey } = process.env;
-        axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=45&ranking=${rIndex}&ingredients=${searchIngredients}`, {headers: {"X-RapidAPI-Key": REACT_APP_AppKey}} )
+        axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=18&ranking=${rIndex}&ingredients=${searchIngredients}`, {headers: {"X-RapidAPI-Key": REACT_APP_AppKey}} )
         .then((response) => {
         res.status(200).send(response.data)
         })
@@ -22,7 +22,6 @@ module.exports = {
         res.status(200).send(response.data)
         })
         .catch((err) => {
-            console.log('an error', err)
             res.status(400).send('An error occurred')
         })
     },
@@ -38,7 +37,6 @@ module.exports = {
     saveRecipe: async (req, res) => {
         const { recipeId, image, title } = req.body;
         const dbInstance = req.app.get('db')
-        console.log('recipe',recipeId,image,title)
         let check = await dbInstance.check_for_recipe([
             req.session.user.user_id, 
             recipeId])

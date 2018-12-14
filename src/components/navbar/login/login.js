@@ -42,7 +42,6 @@ class SignIn extends Component{
         await axios.post('/auth/register',{username,password}).then(session=>{
             this.props.updateUserData(session.data)
         }).catch((err)=>{
-            console.log('err',err)
             swal('please select a different username')
         })}
         }
