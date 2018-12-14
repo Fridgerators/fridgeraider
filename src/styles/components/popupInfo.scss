@@ -3,8 +3,14 @@
 }
 .nr-tab .delete-save-recipe {
   margin-top: 15px;
+  margin-bottom: 5px;
   height: 25px;
+  cursor: pointer;
+  @include desktop {
+  height: 35px;
+  }
 }
+
 
 .loading2 {
   background-color: $pale-bg;
