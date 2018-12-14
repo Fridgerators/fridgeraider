@@ -13,7 +13,6 @@ import prev from '../images/previous.svg';
 import fork from '../images/fork.svg';
 import plate from '../images/plate.svg';
 import knife from '../images/knife.svg';
-// import saveRecipe from '../images/saveRecipe.svg';
 import deleteIcon from '../../components/images/delete.svg';
 
 class Cookbook extends Component {
