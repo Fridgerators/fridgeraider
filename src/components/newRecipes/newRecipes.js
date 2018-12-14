@@ -37,7 +37,7 @@ class NewRecipes extends Component {
 
     async componentDidMount() {
         let recDets = [];
-        for (let i = 0; i < 45; i++) {
+        for (let i = 0; i < 18; i++) {
             recDets[i] = {
                 preparationMinutes: 0,
                 cookingMinutes: 0,
@@ -85,7 +85,6 @@ class NewRecipes extends Component {
                     if (response.data.servings) {
                         recipeDeets[index].servings = response.data.servings;
                     }
-                    recipeDeets[index].servings = response.data.servings;
                     recipeDeets[index].ingredients = response.data.extendedIngredients.map((element, index) => {
                         return element.original
                     })
@@ -141,7 +140,7 @@ class NewRecipes extends Component {
                                         </div>
                                         <div id={`c${index}`} className='nr-tab-content'>
                                             {
-                                                this.state.recipeDetails[index].instructions === '' ?
+                                                this.state.recipeDetails[index].instructions.length === 0 ?
                                                     <div>
                                                         <img className='fork' src={fork} alt="" />
                                                         <img className='plate' src={plate} alt="" />

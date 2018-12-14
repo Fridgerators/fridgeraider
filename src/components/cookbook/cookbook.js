@@ -30,11 +30,11 @@ class Cookbook extends Component {
         // this.handleRetrieveDetails = this.handleRetrieveDetails.bind(this);
     }
     async componentDidMount() {
-        await axios.get('/api/cookbook/recipeList').then(res => {
+        let recDets = [];
+        axios.get('/api/cookbook/recipeList').then(res => {
             this.setState({ myRecipes: res.data })
         })
-        let recDets = [];
-        for (let i = 0; i < this.state.myRecipes.length; i++) {
+        for (let i = 0; i < 45; i++) {
             recDets[i] = {
                 preparationMinutes: 0,
                 cookingMinutes: 0,
@@ -51,6 +51,7 @@ class Cookbook extends Component {
         document.getElementById(`bb${index}`).classList.toggle('radius');
         document.getElementById(`aa${index}`).classList.toggle('radius2');
         document.getElementById(`dd${index}`).classList.toggle('spin');
+
         if (!this.state.allRecipeInfo[index].ingredients[0]) {
             let recipeDeets = [...this.state.allRecipeInfo];
             await axios.get(`/api/recipes/getRecipe/${id}`)
@@ -115,19 +116,38 @@ class Cookbook extends Component {
         //     }
         //   };
 
+        // const formatInstructions = this.state.allRecipeInfo.map((element, id) => {
+        //     let deepFormat = element.instructions.map((element, index) => {
+        //         return (
+        //             <p key={index}>{element.number}{element.step}</p>
+        //         )
+        //     })
+        //     return (
+        //         <div key={id}>
+        //             {deepFormat}
+        //         </div>
+        //     )
+        // })
         const formatInstructions = this.state.allRecipeInfo.map((element, id) => {
-            let deepFormat = element.instructions.map((element, index) => {
+            const ingredientList = element.ingredients.map((element, index) => {
                 return (
-                    <p key={index}>{element.number} {element.step}</p>
+                    <p key={index}>{element}</p>
+                )
+            })
+
+            let steps = element.instructions.map((element, index) => {
+                return (
+                    <p key={index}>{element.number}. {element.step}</p>
                 )
             })
             return (
                 <div key={id}>
-                    {/* <h1 className='recipe-header'>ingredients</h1>
-                    
-                    <h1 className='recipe-header'>instructions</h1> */}
-                    {deepFormat}
+                    <h1 className='recipe-header'>ingredients</h1>
+                    {ingredientList}
+                    <h1 className='recipe-header'>instructions</h1>
+                    {steps}
                 </div>
+
             )
         })
         let favRecipes = this.state.myRecipes.map((element, index) => {
@@ -150,7 +170,7 @@ class Cookbook extends Component {
                                         </div>
                                         <div id={`cc${index}`} className='nr-tab-content'>
                                             {
-                                                this.state.allRecipeInfo[index].instructions === '' ?
+                                                this.state.allRecipeInfo[index].instructions.length === 0 ?
                                                     <div className='loading-box'>
                                                         <img className='fork popup' src={fork} alt="" />
                                                         <img className='plate popup' src={plate} alt="" />
