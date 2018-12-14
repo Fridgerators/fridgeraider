@@ -12,7 +12,6 @@ let recipes = [];
     describe('can retrieve and save ingredients', () => {
         test('can save ingredients from the server', () => {
             ingredients = getIngredients()
-            console.log(ingredients)
             expect(ingredients).toEqual(getIngredients())
         });
     });

@@ -45,7 +45,6 @@ class Navbar extends Component {
     }
 
     render() {
-        console.log("pagename",this.state.pageName)
         return (
             <div className='nb-page'>
                 <Media query='(max-width: 400px)'>
