@@ -4,6 +4,7 @@ import login from '../../images/login.svg';
 import register from '../../images/register.svg';
 import {connect} from 'react-redux';
 import {updateUserData} from '../../../ducklings/reducer';
+import swal from 'sweetalert2';
 
 class SignIn extends Component{
     constructor(){

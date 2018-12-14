@@ -28,6 +28,7 @@ module.exports = {
     },
     //get recipes saved to database
     recipeList: async (req, res) => {
+        console.log("esh",req.session.user.user_id)
         const dbInstance = req.app.get('db')
         let recipes = await dbInstance.get_saved_recipes([req.session.user.user_id])
         res.status(200).send(recipes)
