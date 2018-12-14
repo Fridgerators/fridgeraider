@@ -97,18 +97,6 @@ class Cookbook extends Component {
         })
     }
     render() {
-        // const customStyles = {
-        //     content : {
-        //       top: '50%',
-        //       left: '50%',
-        //       right: 'auto',
-        //       bottom: 'auto',
-        //       marginRight: '-50%',
-        //       transform: 'translate(-50%, -50%)',
-        //       height: '500px', // <-- This sets the height
-        //       overflow: 'scroll' // <-- This tells the modal to scrol
-        //     }
-        //   };
 
         const formatInstructions = this.state.allRecipeInfo.map((element, id) => {
             let deepFormat = element.instructions.map((element,index)=>{
@@ -177,7 +165,6 @@ class Cookbook extends Component {
                                                 <img className='desktop-view-recipe' id={`d${index}`} src={expand} alt="view instructions"/>
                                             </div>
                                         } modal 
-                                        // style={customStyles.content}
                                         ><CookbookPopup recipeNum={element.recipe_id} recipeLabel={element.title} /></Popup>)
                                 }
                             </Media>
