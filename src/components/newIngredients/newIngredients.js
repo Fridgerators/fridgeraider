@@ -51,8 +51,6 @@ class NewIngredients extends Component {
 
     render() {
 
-        console.log('state:', this.state.ingredients);
-
         const newInput = this.state.ingredients.map((ingredient, index) => {
             return (
                 <div key={index} style={{ display: "flex", alignItems: "center", alignContent: "center" }}>
@@ -70,8 +68,6 @@ class NewIngredients extends Component {
                 searchIngredients += ingredients[i] + ','
             }
         }
-        console.log(searchIngredients, typeof searchIngredients)
-        console.log('searchIngredients',searchIngredients)
 
         return (
             <div className="ni-bg header-curve">

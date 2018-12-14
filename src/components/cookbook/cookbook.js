@@ -30,8 +30,11 @@ class Cookbook extends Component {
         // this.handleRetrieveDetails = this.handleRetrieveDetails.bind(this);
     }
     async componentDidMount() {
+        await axios.get('/api/cookbook/recipeList').then(res => {
+            this.setState({ myRecipes: res.data })
+        })
         let recDets = [];
-        for (let i = 0; i < 45; i++) {
+        for (let i = 0; i < this.state.myRecipes.length; i++) {
             recDets[i] = {
                 preparationMinutes: 0,
                 cookingMinutes: 0,
@@ -42,9 +45,6 @@ class Cookbook extends Component {
             }
         }
         await this.setState({ allRecipeInfo: recDets })
-        await axios.get('/api/cookbook/recipeList').then(res => {
-            this.setState({ myRecipes: res.data })
-        })
     }
     async handleAccordian(index, id) {
         document.getElementById(`cc${index}`).classList.toggle('expand');
@@ -53,7 +53,6 @@ class Cookbook extends Component {
         document.getElementById(`dd${index}`).classList.toggle('spin');
         if (!this.state.allRecipeInfo[index].ingredients[0]) {
             let recipeDeets = [...this.state.allRecipeInfo];
-            console.log('id',id)
             await axios.get(`/api/recipes/getRecipe/${id}`)
                 .then(response => {
                     recipeDeets[index].preparationMinutes = response.data.preparationMinutes;
@@ -111,13 +110,13 @@ class Cookbook extends Component {
         //   };
 
         const formatInstructions = this.state.allRecipeInfo.map((element, id) => {
-            let deepFormat = element.instructions.map((element,index)=>{
-                return(
+            let deepFormat = element.instructions.map((element, index) => {
+                return (
                     <p key={index}>{element.number}{element.step}</p>
                 )
             })
             return (
-                <div key={id}> 
+                <div key={id}>
                     {deepFormat}
                 </div>
             )
@@ -129,10 +128,10 @@ class Cookbook extends Component {
                         <img id={`aa${index}`} className='food' src={element.image} alt='' />
                         <div id={`bb${index}`} className='nr-tab' >
 
-                        <div className='label-box recipeTitle'>
-                            <img src={deleteIcon} className='delete-lemon' onClick={() => this.handleDeleteRecipe(element.recipe_id, element.title)} alt="delete recipe"/>
-                            <h4 >{element.title}</h4>
-                        </div>
+                            <div className='label-box recipeTitle'>
+                                <img src={deleteIcon} className='delete-lemon' onClick={() => this.handleDeleteRecipe(element.recipe_id, element.title)} alt="delete recipe" />
+                                <h4 >{element.title}</h4>
+                            </div>
                             <Media query='(max-width: 768px)'>
                                 {matches => matches ? (
                                     <div>
@@ -174,9 +173,9 @@ class Cookbook extends Component {
                                         <Popup trigger={
                                             <div className='label-box'>
                                                 <label>ingredients and instructions</label>
-                                                <img className='desktop-view-recipe' id={`d${index}`} src={expand} alt="view instructions"/>
+                                                <img className='desktop-view-recipe' id={`d${index}`} src={expand} alt="view instructions" />
                                             </div>
-                                        } modal 
+                                        } modal
                                         // style={customStyles.content}
                                         ><CookbookPopup recipeNum={element.recipe_id} recipeLabel={element.title} /></Popup>)
                                 }
@@ -205,16 +204,25 @@ class Cookbook extends Component {
                                     {favRecipes[8 + this.state.firstIndex]}
                                 </Grid>
                             </Grid>
-                            {this.state.firstIndex === 0 ?
-                                <img src={next} className='nr-next-btn' onClick={this.handleForward} alt="see next page"/>
+                            {this.state.firstIndex === 0 && this.state.myRecipes.length > 9 ?
+                                <img src={next} className='nr-next-btn' onClick={this.handleForward} alt="see next page" />
                                 :
                                 <div>
-                                    {this.state.firstIndex >= 36 ?
+                                    {
+                                        this.state.myRecipes.length <= 9 ?
                                         null
-                                        : <img src={next} className='nr-next-btn' onClick={this.handleForward} alt="see next page"/>
+                                    :
+                                            <div>
+                                                {this.state.firstIndex >= this.state.myRecipes.length ?
+                                                    null
+                                                    : <img src={next} className='nr-next-btn' onClick={this.handleForward} alt="see next page" />
+                                                }
+                                                <img src={prev} className='nr-previous' onClick={this.handleBack} alt="see previous page" />
+                                            </div>
+
                                     }
-                                    <img src={prev} className='nr-previous' onClick={this.handleBack} alt="see previous page"/>
                                 </div>
+
                             }
                         </div>
                         : <Loading />}
