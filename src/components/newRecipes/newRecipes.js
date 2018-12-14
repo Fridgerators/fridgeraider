@@ -118,7 +118,7 @@ class NewRecipes extends Component {
             return (
                 <div key={id}>
                     <h1 className='recipe-header'>ingredients</h1>
-                    <p>{ingredientList}</p>
+                    {ingredientList}
                     <hr />
                     <h1 className='recipe-header'>instructions</h1>
                     {steps}
