@@ -33,7 +33,6 @@ const recipes = [
 module.exports = {
     manageList: (ing, i) => {
         if(ing){
-            console.log(ing)
         ingredients = [...ing];
         return [...ingredients]
         } else {

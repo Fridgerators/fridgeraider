@@ -20,7 +20,7 @@ class Profile extends Component {
 
     componentDidMount() {
         axios.get('/api/ingredients/getList').then(res => {
-            if (res.data[0].ingredient && res.data[0].ingredient.length>0) {
+            if (res.data[0].ingredient && res.data[0].ingredient.length > 0) {
                 this.setState({ myIngredients: res.data[0].ingredient })
             }
         }
@@ -47,12 +47,11 @@ class Profile extends Component {
                 saveIngredients.push(myIngredients[i])
             }
         }
-        console.log('saveIngredients', saveIngredients);
-    let res= await axios.put('/api/ingredients/manageList', { ingredient: saveIngredients})
-            if (res.data[0].ingredient && res.data[0].ingredient.length>0) {
-                this.setState({ myIngredients: res.data[0].ingredient })
-            }
-    await swal('your saved ingredients list has been updated')
+        let res = await axios.put('/api/ingredients/manageList', { ingredient: saveIngredients })
+        if (res.data[0].ingredient && res.data[0].ingredient.length > 0) {
+            this.setState({ myIngredients: res.data[0].ingredient })
+        }
+        await swal('your saved ingredients list has been updated')
     }
 
     //remove from myIngredients on state
@@ -63,20 +62,18 @@ class Profile extends Component {
     }
 
     render() {
-        console.log('add', this.state.myIngredients)
         const existingIngredients = this.state.myIngredients.map((ingredient, index) => {
             return (
                 <form key={index} style={{ display: "flex", alignItems: "center", alignContent: "center" }}>
-                
+
                     <input className='prof-input' type="text" value={ingredient} onChange={(e) => this.handleInput(e, index)} />
-                    
+
                     <img src={deleteItem} className='prof-remove-ingredient' onClick={() => this.handleDelete(ingredient)} alt="delete an ingredient" />
                 </form>
             )
         })
 
 
-        console.log("add", this.state.myIngredients)
         return (
             <div className="profile-bg header-curve">
                 <Nav />
@@ -90,7 +87,7 @@ class Profile extends Component {
                             {existingIngredients}
                         </div> : null}
                     <div className='prof-btns'>
-                        <img src={save} onClick={() => this.handleUpdate(this.state.myIngredients)} alt="save my ingredients"/>
+                        <img src={save} onClick={() => this.handleUpdate(this.state.myIngredients)} alt="save my ingredients" />
                         <img src={add} className='prof-add-input' onClick={(e) => this.addInput(e)} alt="add input box" />
                         <Link to={`/results/${this.state.myIngredients}`}><img src={searchTwo} className='prof-img' alt='' /></Link>
                     </div>
