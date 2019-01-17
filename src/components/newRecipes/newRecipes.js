@@ -205,7 +205,7 @@ class NewRecipes extends Component {
                             <img src={next} className='nr-next-btn' onClick={this.handleNext} alt="click to see next page" />
                             :
                             <div>
-                                {this.state.iniState >= 36 ?
+                                {this.state.iniState >= 9 ?
                                     null
                                     : <img src={next} className='nr-next-btn' onClick={this.handleNext} alt="click to see next page" />
                                 }
