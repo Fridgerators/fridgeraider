@@ -1,11 +1,15 @@
+
+
 .landing-page {
   background-image: url('https://s3-us-west-1.amazonaws.com/fridgeraiders/bg-image.png');
   @include bg-image();
   height: 100vh;
 }
+
 .landing-content {
   @include flexSetUp(center, center, column);
 }
+
 
 .landing-title {
   color: $purple-1;
