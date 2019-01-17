@@ -46,7 +46,7 @@ class Cookbook extends Component {
         }
         await this.setState({ allRecipeInfo: recDets })
     }
-    async handleAccordian(index, id) {
+    async handleAccordion(index, id) {
         document.getElementById(`cc${index}`).classList.toggle('expand');
         document.getElementById(`bb${index}`).classList.toggle('radius');
         document.getElementById(`aa${index}`).classList.toggle('radius2');
@@ -112,7 +112,7 @@ class Cookbook extends Component {
         //       marginRight: '-50%',
         //       transform: 'translate(-50%, -50%)',
         //       height: '500px', // <-- This sets the height
-        //       overflow: 'scroll' // <-- This tells the modal to scrol
+        //       overflow: 'scroll' // <-- This tells the modal to scroll
         //     }
         //   };
 
@@ -166,7 +166,7 @@ class Cookbook extends Component {
                                     <div>
                                         <div className='label-box'>
                                             <label>ingredients and instructions</label>
-                                            <img id={`dd${index}`} src={expand} onClick={() => this.handleAccordian(index, element.recipe_id)} alt="see recipe" />
+                                            <img id={`dd${index}`} src={expand} onClick={() => this.handleAccordion(index, element.recipe_id)} alt="see recipe" />
                                         </div>
                                         <div id={`cc${index}`} className='nr-tab-content'>
                                             {
@@ -182,11 +182,11 @@ class Cookbook extends Component {
                                                         <div>
                                                             {this.state.allRecipeInfo[index].preparationMinutes && this.state.allRecipeInfo[index].cookingMinutes ?
                                                                 <div>
-                                                                    <p>prep:{this.state.allRecipeInfo[index].preparationMinutes} minutes</p>
-                                                                    <p>cook:{this.state.allRecipeInfo[index].cookingMinutes} minutes</p>
+                                                                    <p>prep: {this.state.allRecipeInfo[index].preparationMinutes} minutes</p>
+                                                                    <p>cook: {this.state.allRecipeInfo[index].cookingMinutes} minutes</p>
                                                                 </div>
                                                                 :
-                                                                <p>Ready in:{this.state.allRecipeInfo[index].readyInMinutes} minutes</p>
+                                                                <p>Ready in: {this.state.allRecipeInfo[index].readyInMinutes} minutes</p>
                                                             }
                                                             <p>serves {this.state.allRecipeInfo[index].servings}</p>
                                                         </div>

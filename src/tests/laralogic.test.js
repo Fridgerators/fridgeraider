@@ -1,4 +1,4 @@
-// const { canLogin, createUser } = require('../Logic/laralogic');
+// const { authenticateUser, logOut } = require('../Logic/laralogic');
 
 // const user = {
 //   user_id: 10,
@@ -6,36 +6,33 @@
 // };
 
 // describe('authenticate user', () => {
-//   var user = [];
+//   var user = {};
 //   beforeEach(() => {
-//     user = []
+//     user = {}
 //   })
 
 //   test('can log in', () => {
-//     expect(canLogin(user)).toHaveLength(1);
+//     let user = 
+//     expect(getUser(user)).toBeDefined();
 //   })
 
 //   test('logging in should return an object', () => {
-//     expect.assertions(1);
-//     return fns.loggedIn().then(res =>{
-//         expect(typeof res).toBe('object');
-//     })
+//     expect(getUser(user)).toBe('object');    
 // })
 
 //   test('can register a new account', () => {
-//     let newUser = createUser(user)
-//     expect(newUser[0].id).toEqual(user.id);
+//     let newUser = authenticateUser(user)
+//     expect(newUser[0].user_id).toEqual(user.user_id);
 //   })
 
-//   test('duplicate account not allowed', () => {
-//     let newUser = createUser(user)
-//     expect(newUser.username).not.toBe(user.username);
+//   test('should return login data', () => {
+//     expect(getUser(user)).toBeDefined();
 //   })
 
 // });
 
 // describe('logout user', () => {
-//   var user = [];
+//   var user = {};
 
 //   test('can log out', () => {
     

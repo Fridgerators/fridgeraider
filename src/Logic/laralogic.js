@@ -1,16 +1,16 @@
-// const axios = require('axios');
+// let user =  {user_id: 10, username: 'Lara'}
 
 // module.exports = {
 
 //   getUser: (user) => {
-//     axios.get()
-//   },
-
-//   canLogin: (user) => { 
 //     return user
 //   },
 
-//   createUser: (user) => {
+//   authenticateUser: (user) => { 
+//     return user
+//   },
+
+//   logOut: (user) => {
 //     return user
 //   }
 

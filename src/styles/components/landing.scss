@@ -1,11 +1,15 @@
+
+
 .landing-page {
   background-image: url('https://s3-us-west-1.amazonaws.com/fridgeraiders/bg-image.png');
   @include bg-image();
   height: 100vh;
 }
+
 .landing-content {
   @include flexSetUp(center, center, column);
 }
+
 
 .landing-title {
   color: $purple-1;
@@ -51,6 +55,7 @@
   box-sizing: border-box;
   border-radius: 15px 0px;
   font-size: 14px;
+  cursor: pointer;
 
   @include desktop {
     @include width-height(155px, 42px);

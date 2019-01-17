@@ -50,7 +50,6 @@ class NewIngredients extends Component {
  
 
     render() {
-
         const newInput = this.state.ingredients.map((ingredient, index) => {
             return (
                 <div key={index} style={{ display: "flex", alignItems: "center", alignContent: "center" }}>
@@ -70,6 +69,7 @@ class NewIngredients extends Component {
         }
 
         return (
+
             <div className="ni-bg header-curve">
 
                 <Nav />

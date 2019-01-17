@@ -54,8 +54,14 @@
   
 }
 
-input:nth-child(1) {
+.inputs div:nth-child(1n) input {
   border: 3px solid $purple-3;
+}
+.inputs div:nth-child(2n) input {
+  border: 3px solid darken($purple-3, 10%);
+}
+.inputs div:nth-child(3n) input {
+  border: 3px solid darken($purple-3, 15%);
 }
 
 .ni-buttons {
