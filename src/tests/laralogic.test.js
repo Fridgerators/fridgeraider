@@ -31,6 +31,6 @@ describe('logout user', () => {
   })
   var user = {};
   test('can log out', () => {
-    expect(user).toEqual({})
+    expect(logOut(user)).toEqual({})
   })
 });
