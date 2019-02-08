@@ -1,19 +1,25 @@
-// let user =  {user_id: 10, username: 'Lara'}
+let user =  {
+  user_id: 10, 
+  username: 'Lara'
+}
 
-// module.exports = {
+let newUser = {
+  user_id: 11, 
+  username: 'Amy'
+}
 
-//   getUser: (user) => {
-//     return user
-//   },
+module.exports = {
 
-//   authenticateUser: (user) => { 
-//     return user
-//   },
+  getUser: () => {
+    return user
+  },
 
-//   logOut: (user) => {
-//     return user
-//   }
+  authenticateUser: () => { 
+    return newUser
+  },
 
+  logOut: () => {
+    return {}
+  }
 
-
-// }
+}
