@@ -5,7 +5,7 @@ module.exports = {
     getResults: async (req, res) => {
         const { searchIngredients, rIndex} = req.params;
         const { REACT_APP_AppKey } = process.env;
-        axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=18&ranking=${rIndex}&ingredients=${searchIngredients}`, {headers: {"X-RapidAPI-Key": REACT_APP_AppKey}} )
+        axios.get(`https://api.spoonacular.com/recipes/findByIngredients?number=18&ranking=${rIndex}&ingredients=${searchIngredients}&apiKey=${REACT_APP_AppKey}`)
         .then((response) => {
         res.status(200).send(response.data)
         })
@@ -17,7 +17,7 @@ module.exports = {
     getRecipe: async (req, res) => {
         const { id } = req.params;
         const { REACT_APP_AppKey } = process.env;
-        axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {headers: {"X-RapidAPI-Key": REACT_APP_AppKey}} )
+        axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${REACT_APP_AppKey}`)
         .then((response) => {
         res.status(200).send(response.data)
         })
