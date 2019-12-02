@@ -31,8 +31,7 @@
     "sweetalert2": "^7.33.1"
   },
   "scripts": {
-    "start-js": "react-scripts start",
-    "start": "start-js",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject"
