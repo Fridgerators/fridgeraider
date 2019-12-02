@@ -1,5 +1,8 @@
 //dependencies
-if (process.env.NODE_ENV !== 'production') { require('dotenv').config() }
+if (process.env.NODE_ENV === 'development') { 
+  require('dotenv').config() 
+  console.log(process.env.NODE_ENV)
+}
 const express = require('express');
 const massive = require('massive');
 const bodyParser = require('body-parser');
