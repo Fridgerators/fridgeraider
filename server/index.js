@@ -1,7 +1,6 @@
 //dependencies
 if (process.env.NODE_ENV === 'development') { 
   require('dotenv').config() 
-  console.log(process.env.NODE_ENV)
 }
 const express = require('express');
 const massive = require('massive');
@@ -19,6 +18,7 @@ const recipe = require('./controllers/recipe_controller')
 app.use(express.static(`${__dirname}/../build`));
 
 let {
+  PORT,
   SERVER_PORT,
   CONNECTION_STRING,
   SECRET
@@ -55,8 +55,7 @@ app.post('/auth/register', user.register);
 // app.delete('/auth/deleteUser', user.delete);
 
 
-app.listen(SERVER_PORT, () => {
-  console.log(`Server is listening on port ${SERVER_PORT}`)
-})
+app.listen(PORT || SERVER_PORT || 80, () => console.log(`Listening on port ${PORT || SERVER_PORT || 80}`))
+
 
 
